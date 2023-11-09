@@ -1,7 +1,7 @@
 import os
 import spotipy
 import webbrowser
-
+import pandas as pd
 from spotipy import CacheHandler
 from spotipy.oauth2 import SpotifyOAuth
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -61,11 +61,45 @@ def get_auth_url():
 def get_user_data():
     if token_info:
         sp = spotipy.Spotify(auth=token_info['access_token'])
-        results = sp.current_user_top_tracks()  # This gets the top tracks of the user
-        for track in results['items']:
-            print(track['name'])
-    else:
-        print("Can't get token for user")
+
+        top_tracks = sp.current_user_top_tracks()
+        favorite_songs = [{
+            'Name': track['name'],
+            'Artist': ", ".join([artist['name'] for artist in track['artists']]),
+            'Album': track['album']['name']
+        } for track in top_tracks['items']]
+        df_favorites = pd.DataFrame(favorite_songs)
+
+        recently_played = sp.current_user_recently_played()
+        last_played = [{
+            'Name': item['track']['name'],
+            'Artist': ", ".join([artist['name'] for artist in item['track']['artists']]),
+            'Played At': item['played_at']
+        } for item in recently_played['items']]
+        df_last_played = pd.DataFrame(last_played)
+
+        artist_list = []
+        genre_list = []
+        for track in top_tracks['items']:
+            for artist in track['artists']:
+                artist_data = sp.artist(artist['id'])
+                artist_list.append({
+                    'Artist Name': artist_data['name'],
+                    'Artist Genres': ", ".join(artist_data['genres']),
+                    'Artist Popularity': artist_data['popularity']
+                })
+                genre_list.extend(artist_data['genres'])
+
+        df_artists = pd.DataFrame(artist_list).drop_duplicates()
+        df_genres = pd.DataFrame(list(set(genre_list)), columns=['Genre'])
+
+        with pd.ExcelWriter('spotify_favorites.xlsx') as writer:
+            df_favorites.to_excel(writer, sheet_name='Favorite Songs', index=False)
+            df_last_played.to_excel(writer, sheet_name='Last Played', index=False)
+            df_artists.to_excel(writer, sheet_name='Artists', index=False)
+            df_genres.to_excel(writer, sheet_name='Genres', index=False)
+
+        print("Data has been written to spotify_favorites.xlsx")
 
 # Start the server in a new thread
 server_thread = threading.Thread(target=start_server)

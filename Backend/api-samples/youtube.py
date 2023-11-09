@@ -6,11 +6,16 @@ import webbrowser
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import threading
 from dotenv import load_dotenv
+import pandas as pd
 
 load_dotenv()
 
 REDIRECT_URI = os.getenv('REDIRECT_URI')
-SCOPES = ["https://www.googleapis.com/auth/youtube.readonly"]
+SCOPES = [
+    "https://www.googleapis.com/auth/youtube.readonly",
+    "https://www.googleapis.com/auth/youtube.channel-memberships.creator",
+    "https://www.googleapis.com/auth/youtubepartner",
+]
 
 class OAuthHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -23,19 +28,43 @@ class OAuthHandler(BaseHTTPRequestHandler):
             self.wfile.write(b"You can close this window now.")
             flow.fetch_token(code=query['code'])
             credentials = flow.credentials
-            get_liked_videos(credentials)
+            get_user_data(credentials)
 
-def get_liked_videos(credentials):
+def get_user_data(credentials):
     youtube = googleapiclient.discovery.build(
         "youtube", "v3", credentials=credentials
     )
-    request = youtube.videos().list(
-        part="snippet,contentDetails,statistics",
-        myRating="like"
-    )
-    response = request.execute()
-    for item in response.get("items", []):
-        print(item["snippet"]["title"])
+    with pd.ExcelWriter('youtube_data.xlsx', engine='openpyxl') as writer:
+
+        # Fetch liked videos
+        liked_videos_request = youtube.videos().list(
+            part="snippet,contentDetails,statistics",
+            myRating="like"
+        )
+        liked_videos_response = liked_videos_request.execute()
+        liked_videos_data = [{
+            'Title': item['snippet']['title'],
+            'Video ID': item['id'],
+            'Published At': item['snippet']['publishedAt']
+        } for item in liked_videos_response.get("items", [])]
+        df_liked_videos = pd.DataFrame(liked_videos_data)
+        df_liked_videos.to_excel(writer, sheet_name='Liked Videos', index=False)
+
+        # Fetch subscribed channels
+        subscriptions_request = youtube.subscriptions().list(
+            part="snippet,contentDetails",
+            mine=True,
+            maxResults=50
+        )
+        subscriptions_response = subscriptions_request.execute()
+        subscribed_channels_data = [{
+            'Channel Title': item['snippet']['title'],
+            'Channel ID': item['snippet']['resourceId']['channelId']
+        } for item in subscriptions_response.get("items", [])]
+        df_subscribed_channels = pd.DataFrame(subscribed_channels_data)
+        df_subscribed_channels.to_excel(writer, sheet_name='Subscribed Channels', index=False)
+
+        writer.save()
 
 def start_server():
     server = HTTPServer(('localhost', 8888), OAuthHandler)
