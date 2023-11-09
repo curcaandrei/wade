@@ -7,6 +7,15 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import threading
 from dotenv import load_dotenv
 import pandas as pd
+import rdflib
+from rdflib import URIRef, BNode, Literal
+from rdflib.namespace import RDF, FOAF
+
+# RDF
+g = rdflib.Graph()
+
+YOUTUBE = rdflib.Namespace("http://www.youtube.com/")
+g.bind("youtube", YOUTUBE)
 
 load_dotenv()
 
@@ -64,6 +73,18 @@ def get_user_data(credentials):
         df_subscribed_channels = pd.DataFrame(subscribed_channels_data)
         df_subscribed_channels.to_excel(writer, sheet_name='Subscribed Channels', index=False)
 
+        for video in liked_videos_data:
+            video_uri = URIRef(f"http://www.youtube.com/video/{video['Video ID']}")
+            g.add((video_uri, RDF.type, YOUTUBE.Video))
+            g.add((video_uri, FOAF.name, Literal(video['Title'])))
+            g.add((video_uri, YOUTUBE.publishedAt, Literal(video['Published At'])))
+
+        for channel in subscribed_channels_data:
+            channel_uri = URIRef(f"http://www.youtube.com/channel/{channel['Channel ID']}")
+            g.add((channel_uri, RDF.type, YOUTUBE.Channel))
+            g.add((channel_uri, FOAF.name, Literal(channel['Channel Title'])))
+
+
         writer.save()
 
 def start_server():
@@ -89,3 +110,11 @@ server_thread.start()
 webbrowser.open(auth_url)
 
 server_thread.join()
+
+
+turtle_data = g.serialize(format='turtle')
+
+print(turtle_data)
+
+with open("youtube_data.ttl", "w") as f:
+    f.write(turtle_data)
