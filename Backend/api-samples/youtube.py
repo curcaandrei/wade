@@ -1,120 +1,91 @@
-import os
+from flask import Flask, request, redirect
 import google_auth_oauthlib.flow
 import googleapiclient.discovery
-import googleapiclient.errors
-import webbrowser
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import threading
+import os
+import json
 from dotenv import load_dotenv
-import pandas as pd
-import rdflib
-from rdflib import URIRef, BNode, Literal
-from rdflib.namespace import RDF, FOAF
-
-# RDF
-g = rdflib.Graph()
-
-YOUTUBE = rdflib.Namespace("http://www.youtube.com/")
-g.bind("youtube", YOUTUBE)
 
 load_dotenv()
 
 REDIRECT_URI = os.getenv('REDIRECT_URI')
 SCOPES = [
     "https://www.googleapis.com/auth/youtube.readonly",
-    "https://www.googleapis.com/auth/youtube.channel-memberships.creator",
-    "https://www.googleapis.com/auth/youtubepartner",
 ]
 
-class OAuthHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        query_s = self.path.split('?', 1)[-1]
-        query = dict(qc.split('=') for qc in query_s.split('&'))
-        if 'code' in query:
-            self.send_response(200)
-            self.send_header('Content-type', 'text/html')
-            self.end_headers()
-            self.wfile.write(b"You can close this window now.")
-            flow.fetch_token(code=query['code'])
-            credentials = flow.credentials
-            get_user_data(credentials)
+app = Flask(__name__)
+
+flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+    "google_client_secrets.json",
+    scopes=SCOPES,
+    redirect_uri=REDIRECT_URI
+)
+flow.redirect_uri = REDIRECT_URI
+
+@app.route('/')
+def home():
+    auth_url, _ = flow.authorization_url(prompt='consent')
+    return redirect(auth_url)
+
+@app.route('/callback')
+def callback():
+    code = request.args.get('code')
+    flow.fetch_token(code=code)
+    credentials = flow.credentials
+    return get_user_data(credentials)
 
 def get_user_data(credentials):
     youtube = googleapiclient.discovery.build(
         "youtube", "v3", credentials=credentials
     )
-    with pd.ExcelWriter('youtube_data.xlsx', engine='openpyxl') as writer:
 
-        # Fetch liked videos
-        liked_videos_request = youtube.videos().list(
-            part="snippet,contentDetails,statistics",
-            myRating="like"
-        )
-        liked_videos_response = liked_videos_request.execute()
-        liked_videos_data = [{
-            'Title': item['snippet']['title'],
-            'Video ID': item['id'],
-            'Published At': item['snippet']['publishedAt']
-        } for item in liked_videos_response.get("items", [])]
-        df_liked_videos = pd.DataFrame(liked_videos_data)
-        df_liked_videos.to_excel(writer, sheet_name='Liked Videos', index=False)
+    # Fetch liked videos with tags and descriptions
+    liked_videos_request = youtube.videos().list(
+        part="snippet,contentDetails,statistics",
+        myRating="like"
+    )
+    liked_videos_response = liked_videos_request.execute()
+    liked_videos_data = [{
+        'Title': item['snippet']['title'],
+        'Video ID': item['id'],
+        'Published At': item['snippet']['publishedAt'],
+        'Tags': item['snippet'].get('tags', []),
+        'Description': item['snippet'].get('description', '')
+    } for item in liked_videos_response.get("items", [])]
 
-        # Fetch subscribed channels
-        subscriptions_request = youtube.subscriptions().list(
-            part="snippet,contentDetails",
-            mine=True,
-            maxResults=50
-        )
-        subscriptions_response = subscriptions_request.execute()
-        subscribed_channels_data = [{
-            'Channel Title': item['snippet']['title'],
-            'Channel ID': item['snippet']['resourceId']['channelId']
-        } for item in subscriptions_response.get("items", [])]
-        df_subscribed_channels = pd.DataFrame(subscribed_channels_data)
-        df_subscribed_channels.to_excel(writer, sheet_name='Subscribed Channels', index=False)
+    # Fetch subscribed channels with descriptions
+    subscriptions_request = youtube.subscriptions().list(
+        part="snippet,contentDetails",
+        mine=True,
+        maxResults=50
+    )
+    subscriptions_response = subscriptions_request.execute()
+    subscribed_channels_data = []
+    for item in subscriptions_response.get("items", []):
+        channel_id = item['snippet']['resourceId']['channelId']
+        channel_data = youtube.channels().list(
+            part="snippet,brandingSettings",
+            id=channel_id
+        ).execute()
 
-        for video in liked_videos_data:
-            video_uri = URIRef(f"http://www.youtube.com/video/{video['Video ID']}")
-            g.add((video_uri, RDF.type, YOUTUBE.Video))
-            g.add((video_uri, FOAF.name, Literal(video['Title'])))
-            g.add((video_uri, YOUTUBE.publishedAt, Literal(video['Published At'])))
+        if channel_data['items']:
+            channel_info = channel_data['items'][0]
+            channel_details = {
+                'Channel Title': channel_info['snippet']['title'],
+                'Channel ID': channel_id,
+                'Description': channel_info['snippet'].get('description', ''),
+                'Keywords': channel_info['brandingSettings']['channel'].get('keywords', '')
+            }
+            subscribed_channels_data.append(channel_details)
 
-        for channel in subscribed_channels_data:
-            channel_uri = URIRef(f"http://www.youtube.com/channel/{channel['Channel ID']}")
-            g.add((channel_uri, RDF.type, YOUTUBE.Channel))
-            g.add((channel_uri, FOAF.name, Literal(channel['Channel Title'])))
+    youtube_data = {
+        'liked_videos': liked_videos_data,
+        'subscribed_channels': subscribed_channels_data
+    }
 
+    with open('youtube_user_data.json', 'w', encoding='utf-8') as f:
+        json.dump(youtube_data, f, ensure_ascii=False, indent=4)
 
-        writer.save()
+    return 'Data has been saved to youtube_user_data.json'
 
-def start_server():
-    server = HTTPServer(('localhost', 8888), OAuthHandler)
-    server.handle_request()
-
-# Disable OAuthlib's HTTPS verification when running locally
-os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-
-flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-    "youtube_client_secrets.json",
-    scopes=SCOPES,
-    redirect_uri=REDIRECT_URI
-)
-
-flow.redirect_uri = REDIRECT_URI
-
-auth_url, _ = flow.authorization_url(prompt='consent')
-
-server_thread = threading.Thread(target=start_server)
-server_thread.start()
-
-webbrowser.open(auth_url)
-
-server_thread.join()
-
-
-turtle_data = g.serialize(format='turtle')
-
-print(turtle_data)
-
-with open("youtube_data.ttl", "w") as f:
-    f.write(turtle_data)
+if __name__ == '__main__':
+    app.run(port=8888)
