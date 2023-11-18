@@ -1,0 +1,52 @@
+.main-screen{
+    height: auto;
+    background-color: #13141D;
+    color: wheat;
+    margin: 0; /* Reset any default margin */
+    padding: 0;
+}
+
+.main-content{
+    
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.people-list{
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+    width: 90%;
+    height: 150px;
+    background-color: #282935;
+    border-radius: 15px;
+}
+.info-container{
+    background-color: #282935;
+    width: 70%;
+    flex-grow: 1;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+ .purple-back{
+    background-color: #43032a;
+ }
+ .people-card{
+    margin:auto;
+    width: 15%;
+    height: 90%;
+    border-radius: 10px;
+    box-shadow:5px 2px #272525;
+
+ }
+ .info-card{
+    width: 70%;
+    height: 90%;
+    margin-top: 5%;
+
+ }

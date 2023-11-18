@@ -1,0 +1,76 @@
+.account-screen{
+    height: auto;
+    background-color: #13141D;
+    color: wheat;
+    margin: 0; /* Reset any default margin */
+    padding: 0;
+}
+.account-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+.content-container{
+    background-color: #242431;
+    margin-top: 3%;
+    width: 70%;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+.form-input{
+    width: 70%;
+    padding: 0 5px;
+    font-size: 24px;
+    border-radius: 13px;
+    height: 10%;
+    background-color:#303033;
+    margin-bottom: 2%;
+}
+label{
+    font-size: 18px;
+}
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	text-align: left;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 70%;
+}
+.hobbies-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 80%;
+    background-color: #303033;
+    height: 100%;
+}
+.hobby-card{
+    background-color: #1E0720;
+    height: 150px;
+    width: 150px;
+    display: flex;
+    font-size: 12px;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+.hobby-card > img{
+    margin-top: 10%;
+    height: 60px;
+    width: 60px;
+}
+.hobby-card > p{
+   margin-top: 5%;
+   margin-left: 1em;
+   margin-right: 1em;
+   margin-bottom: 2%;
+}
