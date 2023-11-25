@@ -1,0 +1,130 @@
+openapi: 3.0.0
+info:
+  title: User-profile Service API
+  description: API for managing and retrieving user profiles, and collecting user feedback.
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080/v1'
+
+paths:
+  /userProfile:
+    get:
+      summary: Retrieve a user profile
+      operationId: getUserProfile
+      parameters:
+        - name: userID
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Unique identifier for the user
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '404':
+          description: User profile not found
+
+    post:
+      summary: Create a new user profile
+      operationId: createUserProfile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUserProfile'
+      responses:
+        '201':
+          description: User profile created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '400':
+          description: Invalid input
+
+  /userFeedback:
+    post:
+      summary: Store user feedback
+      operationId: storeUserFeedback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserFeedback'
+      responses:
+        '201':
+          description: Feedback recorded
+        '400':
+          description: Invalid input
+
+components:
+  schemas:
+    UserProfile:
+      type: object
+      required:
+        - userID
+        - socialMediaProfiles
+      properties:
+        userID:
+          type: string
+        socialMediaProfiles:
+          type: array
+          items:
+            type: string
+        demographics:
+          type: object
+          properties:
+            age:
+              type: integer
+            gender:
+              type: string
+            location:
+              type: string
+        education:
+          type: array
+          items:
+            type: string
+        occupationHistory:
+          type: array
+          items:
+            type: string
+        hobbies:
+          type: array
+          items:
+            type: string
+        aversions:
+          type: array
+          items:
+            type: string
+
+    NewUserProfile:
+      type: object
+      required:
+        - socialMediaProfiles
+      properties:
+        socialMediaProfiles:
+          type: array
+          items:
+            type: string
+        demographics:
+          $ref: '#/components/schemas/UserProfile/properties/demographics'
+
+    UserFeedback:
+      type: object
+      required:
+        - userID
+        - feedbackContent
+      properties:
+        userID:
+          type: string
+        feedbackType:
+          type: string
+          enum: [positive, negative, neutral]
+        feedbackContent:
+          type: string
