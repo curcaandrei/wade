@@ -31,6 +31,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RecommendationList'
+              examples:
+                recommendationExample:
+                  summary: Example Response
+                  value:
+                    recommendations:
+                      - itemId: "item123"
+                        itemName: "Open Source Software Development Kit"
+                        itemDetails: "A comprehensive toolkit for developing open source software."
+                        relevanceScore: 95.5
+                        metadata:
+                          category: "Software"
+                          technology: "Web Technologies"
         '400':
           description: Invalid request parameters.
         '404':

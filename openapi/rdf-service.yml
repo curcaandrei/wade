@@ -18,8 +18,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RDFData'
+              examples:
+                rdfDataExample:
+                  summary: Example RDF Data Response
+                  value:
+                    data: "<http://example.org/resource1> <http://example.org/property> \"Example value\"."
         '400':
           description: Bad request
+
     patch:
       summary: Update RDF Data
       description: Updates the RDF graph with new data.
@@ -55,6 +61,11 @@ paths:
                 properties:
                   queryResult:
                     type: string
+              examples:
+                sparqlQueryExample:
+                  summary: Example SPARQL Query Response
+                  value:
+                    queryResult: "\"Example SPARQL query result\""
         '400':
           description: Bad request
 

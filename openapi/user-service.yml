@@ -25,6 +25,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserProfile'
+              examples:
+                userProfileExample:
+                  summary: Example User Profile Response
+                  value:
+                    userID: "user123"
+                    socialMediaProfiles: ["http://twitter.com/user123"]
+                    demographics:
+                      age: 30
+                      gender: "female"
+                      location: "Iasi"
+                    education: ["Bachelor's in Computer Science"]
+                    occupationHistory: ["Software Developer at TechCorp"]
+                    hobbies: ["coding", "gaming"]
+                    aversions: ["phone calls"]
         '404':
           description: User profile not found
 
@@ -44,8 +58,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserProfile'
+              examples:
+                createUserProfileExample:
+                  summary: Example Create User Profile Request
+                  value:
+                    socialMediaProfiles: ["http://facebook.com/userNew"]
+                    demographics:
+                      age: 25
+                      gender: "male"
+                      location: "Berlin"
         '400':
           description: Invalid input
+
 
   /userFeedback:
     post:
@@ -57,11 +81,19 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserFeedback'
+            examples:
+              userFeedbackExample:
+                summary: Example User Feedback Submission
+                value:
+                  userID: "user123"
+                  feedbackType: "positive"
+                  feedbackContent: "The recommendation system is very accurate and helpful!"
       responses:
         '201':
           description: Feedback recorded
         '400':
           description: Invalid input
+
 
 components:
   schemas:
