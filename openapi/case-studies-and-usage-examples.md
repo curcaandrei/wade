@@ -47,9 +47,14 @@ POST /sparqlQuery
 **Objective**: To form an IT team with specific skills and location preferences.
 
 **Process**:
-- User inputs desired skills (e.g., Web technologies, open hardware) and location preferences (Romania, Chile).
+- User logs into the application
+- User gives access to data from various providers
+- User inputs that they search for It professionals with desired skills (e.g., Web technologies, open hardware) and location preferences (Romania, Chile).
 - The system uses the RDF knowledge graph to identify potential team members.
 - Recommendations are provided through the `/recommendations` endpoint.
+- Recommendations are displayed in the frontend
+- User provides feedback (optional)
+  - Feedback is used to refine the search
 
 **Outcome**: The user receives a curated list of professionals matching the specified criteria.
 
@@ -57,9 +62,13 @@ POST /sparqlQuery
 **Objective**: To suggest events to users based on their hobbies and aversions.
 
 **Process**:
+- User logs into the application
+- User gives access to data from various providers
 - The user's profile indicates a love for classical music and a dislike for phone communications.
 - The system queries the RDF graph for events matching these preferences.
 - Relevant events are recommended, avoiding those that require extensive phone communication.
+- User provides feedback (optional)
+  - Feedback is used to refine the search
 
 **Outcome**: The user gets event recommendations tailored to their interests and comfort.
 
