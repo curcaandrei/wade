@@ -1,0 +1,1017 @@
+{
+    "favorite_songs": [
+        {
+            "Name": "I'm Goin' Down",
+            "Artist": "Bruce Springsteen",
+            "Album": "Born In The U.S.A.",
+            "Genres": [
+                "heartland rock",
+                "mellow gold",
+                "permanent wave",
+                "rock",
+                "singer-songwriter"
+            ]
+        },
+        {
+            "Name": "Rescue Me",
+            "Artist": "Buckcherry",
+            "Album": "Black Butterfly",
+            "Genres": [
+                "alternative metal",
+                "glam metal",
+                "hard rock",
+                "nu metal",
+                "post-grunge",
+                "sleaze rock"
+            ]
+        },
+        {
+            "Name": "Still Alive",
+            "Artist": "3 Doors Down",
+            "Album": "Us And The Night",
+            "Genres": [
+                "alternative metal",
+                "nu metal",
+                "post-grunge",
+                "rock"
+            ]
+        },
+        {
+            "Name": "Breaking the Chains",
+            "Artist": "Dokken",
+            "Album": "Breaking the Chains",
+            "Genres": [
+                "album rock",
+                "glam metal",
+                "hard rock",
+                "metal"
+            ]
+        },
+        {
+            "Name": "Karma Chameleon - Remastered 2002",
+            "Artist": "Culture Club",
+            "Album": "Colour By Numbers (Remastered / Expanded Edition)",
+            "Genres": [
+                "new romantic",
+                "new wave",
+                "new wave pop",
+                "soft rock",
+                "synthpop"
+            ]
+        },
+        {
+            "Name": "Legs - 2008 Remaster",
+            "Artist": "ZZ Top",
+            "Album": "Eliminator",
+            "Genres": [
+                "album rock",
+                "blues rock",
+                "classic rock",
+                "hard rock",
+                "rock"
+            ]
+        },
+        {
+            "Name": "All Night Long",
+            "Artist": "Buckcherry",
+            "Album": "All Night Long",
+            "Genres": [
+                "alternative metal",
+                "glam metal",
+                "hard rock",
+                "nu metal",
+                "post-grunge",
+                "sleaze rock"
+            ]
+        },
+        {
+            "Name": "Hungry Heart",
+            "Artist": "Bruce Springsteen",
+            "Album": "The River",
+            "Genres": [
+                "heartland rock",
+                "mellow gold",
+                "permanent wave",
+                "rock",
+                "singer-songwriter"
+            ]
+        },
+        {
+            "Name": "Sweet Talkin' Woman",
+            "Artist": "Electric Light Orchestra",
+            "Album": "Out of the Blue",
+            "Genres": [
+                "album rock",
+                "art rock",
+                "beatlesque",
+                "classic rock",
+                "glam rock",
+                "mellow gold",
+                "rock",
+                "soft rock",
+                "symphonic rock"
+            ]
+        },
+        {
+            "Name": "Quit Playing Games (With My Heart)",
+            "Artist": "Backstreet Boys",
+            "Album": "Backstreet Boys",
+            "Genres": [
+                "boy band",
+                "dance pop",
+                "pop"
+            ]
+        },
+        {
+            "Name": "Touch Too Much",
+            "Artist": "AC/DC",
+            "Album": "Highway to Hell",
+            "Genres": [
+                "australian rock",
+                "hard rock",
+                "rock"
+            ]
+        },
+        {
+            "Name": "Edge Of A Broken Heart",
+            "Artist": "Vixen",
+            "Album": "Vixen",
+            "Genres": [
+                "glam metal"
+            ]
+        },
+        {
+            "Name": "New Shoes",
+            "Artist": "Paolo Nutini",
+            "Album": "These Streets",
+            "Genres": [
+                "british soul",
+                "neo mellow",
+                "scottish singer-songwriter"
+            ]
+        },
+        {
+            "Name": "When Will I Be Loved",
+            "Artist": "Linda Ronstadt",
+            "Album": "Heart Like A Wheel",
+            "Genres": [
+                "country rock",
+                "folk",
+                "folk rock",
+                "heartland rock",
+                "mellow gold",
+                "singer-songwriter",
+                "soft rock"
+            ]
+        },
+        {
+            "Name": "Caribbean Queen (No More Love On the Run)",
+            "Artist": "Billy Ocean",
+            "Album": "The Very Best of Billy Ocean",
+            "Genres": [
+                "disco",
+                "mellow gold",
+                "new romantic",
+                "new wave pop",
+                "soft rock",
+                "yacht rock"
+            ]
+        },
+        {
+            "Name": "Get Outta My Dreams, Get Into My Car",
+            "Artist": "Billy Ocean",
+            "Album": "The Very Best of Billy Ocean",
+            "Genres": [
+                "disco",
+                "mellow gold",
+                "new romantic",
+                "new wave pop",
+                "soft rock",
+                "yacht rock"
+            ]
+        },
+        {
+            "Name": "Need You Tonight",
+            "Artist": "INXS",
+            "Album": "Kick (Remastered 2011)",
+            "Genres": [
+                "australian rock",
+                "dance rock",
+                "funk rock",
+                "new romantic",
+                "new wave",
+                "rock"
+            ]
+        },
+        {
+            "Name": "When Legends Rise",
+            "Artist": "Godsmack",
+            "Album": "When Legends Rise",
+            "Genres": [
+                "alternative metal",
+                "nu metal",
+                "post-grunge",
+                "rap metal"
+            ]
+        },
+        {
+            "Name": "Metalingus",
+            "Artist": "Alter Bridge",
+            "Album": "One Day Remains",
+            "Genres": [
+                "alternative metal",
+                "nu metal",
+                "post-grunge"
+            ]
+        },
+        {
+            "Name": "It's so Easy",
+            "Artist": "Linda Ronstadt",
+            "Album": "Simple Dreams",
+            "Genres": [
+                "country rock",
+                "folk",
+                "folk rock",
+                "heartland rock",
+                "mellow gold",
+                "singer-songwriter",
+                "soft rock"
+            ]
+        },
+        {
+            "Name": "The Sign",
+            "Artist": "Ace of Base",
+            "Album": "The Sign",
+            "Genres": [
+                "eurodance",
+                "europop",
+                "new wave pop"
+            ]
+        },
+        {
+            "Name": "Make Me Smile (Come up and See Me) - 2014 Remaster",
+            "Artist": "Steve Harley, Steve Harley & Cockney Rebel",
+            "Album": "The Best Years of Our Lives (Deluxe Version)",
+            "Genres": [
+                "classic uk pop",
+                "glam rock",
+                "glam rock"
+            ]
+        },
+        {
+            "Name": "Loverboy",
+            "Artist": "Billy Ocean",
+            "Album": "The Very Best of Billy Ocean",
+            "Genres": [
+                "disco",
+                "mellow gold",
+                "new romantic",
+                "new wave pop",
+                "soft rock",
+                "yacht rock"
+            ]
+        },
+        {
+            "Name": "Miss Murder",
+            "Artist": "AFI",
+            "Album": "DECEMBERUNDERGROUND",
+            "Genres": [
+                "alternative metal",
+                "nu metal",
+                "pop punk",
+                "post-grunge",
+                "punk",
+                "screamo"
+            ]
+        },
+        {
+            "Name": "Hungry Eyes - From \"Dirty Dancing\" Soundtrack",
+            "Artist": "Eric Carmen",
+            "Album": "The Definitive Collection",
+            "Genres": [
+                "new wave pop",
+                "soft rock",
+                "yacht rock"
+            ]
+        },
+        {
+            "Name": "Powerline",
+            "Artist": "Lee Aaron",
+            "Album": "Lee Aaron",
+            "Genres": [
+                "glam metal"
+            ]
+        },
+        {
+            "Name": "Upside Down",
+            "Artist": "Jack Johnson",
+            "Album": "Upside Down",
+            "Genres": [
+                "neo mellow"
+            ]
+        },
+        {
+            "Name": "From Hell With Love",
+            "Artist": "Beast In Black",
+            "Album": "From Hell With Love",
+            "Genres": [
+                "finnish heavy metal",
+                "finnish power metal",
+                "power metal"
+            ]
+        },
+        {
+            "Name": "Love Attack",
+            "Artist": "Shakin' Stevens",
+            "Album": "There Are Two Kinds Of Music...Rock 'n' Roll",
+            "Genres": [
+                "classic uk pop",
+                "rockabilly"
+            ]
+        },
+        {
+            "Name": "Scarface (Push It To The Limit)",
+            "Artist": "Paul Engemann",
+            "Album": "Scarface (Expanded Motion Picture Soundtrack)",
+            "Genres": []
+        },
+        {
+            "Name": "Rhythm of Love - 2015 Remaster",
+            "Artist": "Scorpions",
+            "Album": "Savage Amusement",
+            "Genres": [
+                "album rock",
+                "german hard rock",
+                "german metal",
+                "german rock",
+                "hard rock",
+                "rock"
+            ]
+        },
+        {
+            "Name": "It's Only Love",
+            "Artist": "Bryan Adams, Tina Turner",
+            "Album": "Reckless (30th Anniversary / Deluxe Edition)",
+            "Genres": [
+                "canadian pop",
+                "canadian singer-songwriter",
+                "classic canadian rock",
+                "heartland rock",
+                "mellow gold",
+                "soft rock",
+                "soft rock"
+            ]
+        },
+        {
+            "Name": "Absolute Zero",
+            "Artist": "Stone Sour",
+            "Album": "House of Gold & Bones, Part 1",
+            "Genres": [
+                "alternative metal",
+                "nu metal",
+                "post-grunge"
+            ]
+        },
+        {
+            "Name": "She Works Hard For The Money",
+            "Artist": "Donna Summer",
+            "Album": "She Works Hard For The Money",
+            "Genres": [
+                "disco",
+                "hi-nrg",
+                "new wave pop",
+                "soft rock"
+            ]
+        },
+        {
+            "Name": "The Devil's Bleeding Crown",
+            "Artist": "Volbeat",
+            "Album": "Seal The Deal & Let's Boogie (Deluxe)",
+            "Genres": [
+                "danish metal",
+                "danish rock"
+            ]
+        },
+        {
+            "Name": "Give Me Tonight",
+            "Artist": "Shannon",
+            "Album": "Let the Music Play",
+            "Genres": [
+                "freestyle",
+                "hi-nrg",
+                "minneapolis sound",
+                "post-disco"
+            ]
+        },
+        {
+            "Name": "Love Really Hurts Without You",
+            "Artist": "Billy Ocean",
+            "Album": "Billy Ocean (Expanded Edition)",
+            "Genres": [
+                "disco",
+                "mellow gold",
+                "new romantic",
+                "new wave pop",
+                "soft rock",
+                "yacht rock"
+            ]
+        },
+        {
+            "Name": "Life",
+            "Artist": "Des'ree",
+            "Album": "Supernatural",
+            "Genres": [
+                "europop",
+                "new wave pop"
+            ]
+        },
+        {
+            "Name": "Girl You Know It's True",
+            "Artist": "Milli Vanilli",
+            "Album": "Girl You Know It's True - The Best Of Milli Vanilli",
+            "Genres": [
+                "freestyle",
+                "new jack swing",
+                "new wave pop"
+            ]
+        },
+        {
+            "Name": "Gotta Give Me (feat. Sebastiën)",
+            "Artist": "Saco, Sebastiën",
+            "Album": "Gotta Give Me",
+            "Genres": [
+                "tropical house"
+            ]
+        },
+        {
+            "Name": "Red Light Spells Danger",
+            "Artist": "Billy Ocean",
+            "Album": "Billy Ocean (Expanded Edition)",
+            "Genres": [
+                "disco",
+                "mellow gold",
+                "new romantic",
+                "new wave pop",
+                "soft rock",
+                "yacht rock"
+            ]
+        },
+        {
+            "Name": "L.O.D. (Love on Delivery)",
+            "Artist": "Billy Ocean",
+            "Album": "Billy Ocean (Expanded Edition)",
+            "Genres": [
+                "disco",
+                "mellow gold",
+                "new romantic",
+                "new wave pop",
+                "soft rock",
+                "yacht rock"
+            ]
+        },
+        {
+            "Name": "Gloria",
+            "Artist": "Laura Branigan",
+            "Album": "Branigan",
+            "Genres": [
+                "new romantic",
+                "new wave pop",
+                "soft rock",
+                "synthpop"
+            ]
+        },
+        {
+            "Name": "Black Rose",
+            "Artist": "Volbeat, Danko Jones",
+            "Album": "Seal The Deal & Let's Boogie (Deluxe)",
+            "Genres": [
+                "danish metal",
+                "danish rock",
+                "punk 'n' roll"
+            ]
+        },
+        {
+            "Name": "This Time I Know It's for Real",
+            "Artist": "Donna Summer",
+            "Album": "Another Place & Time",
+            "Genres": [
+                "disco",
+                "hi-nrg",
+                "new wave pop",
+                "soft rock"
+            ]
+        },
+        {
+            "Name": "Hurts So Good",
+            "Artist": "John Mellencamp",
+            "Album": "American Fool",
+            "Genres": [
+                "album rock",
+                "classic rock",
+                "country rock",
+                "folk rock",
+                "hard rock",
+                "heartland rock",
+                "mellow gold",
+                "rock",
+                "singer-songwriter",
+                "soft rock"
+            ]
+        },
+        {
+            "Name": "Out of Touch",
+            "Artist": "Daryl Hall & John Oates",
+            "Album": "The Very Best of Daryl Hall / John Oates",
+            "Genres": [
+                "album rock",
+                "classic rock",
+                "heartland rock",
+                "mellow gold",
+                "rock",
+                "singer-songwriter",
+                "soft rock",
+                "yacht rock"
+            ]
+        },
+        {
+            "Name": "Burning Love",
+            "Artist": "Elvis Presley",
+            "Album": "Elvis (Fool)",
+            "Genres": [
+                "rock-and-roll",
+                "rockabilly"
+            ]
+        },
+        {
+            "Name": "Dancing In the Dark",
+            "Artist": "Bruce Springsteen",
+            "Album": "Born In The U.S.A.",
+            "Genres": [
+                "heartland rock",
+                "mellow gold",
+                "permanent wave",
+                "rock",
+                "singer-songwriter"
+            ]
+        },
+        {
+            "Name": "Aicha",
+            "Artist": "Outlandish",
+            "Album": "Bread & Barrels Of Water (International Version)",
+            "Genres": []
+        }
+    ],
+    "artists_info": [
+        {
+            "Name": "Eric Carmen",
+            "Genres": [
+                "new wave pop",
+                "soft rock",
+                "yacht rock"
+            ],
+            "Popularity": 58,
+            "Followers": 341309
+        },
+        {
+            "Name": "Elvis Presley",
+            "Genres": [
+                "rock-and-roll",
+                "rockabilly"
+            ],
+            "Popularity": 75,
+            "Followers": 8884160
+        },
+        {
+            "Name": "Alter Bridge",
+            "Genres": [
+                "alternative metal",
+                "nu metal",
+                "post-grunge"
+            ],
+            "Popularity": 58,
+            "Followers": 1101731
+        },
+        {
+            "Name": "Backstreet Boys",
+            "Genres": [
+                "boy band",
+                "dance pop",
+                "pop"
+            ],
+            "Popularity": 72,
+            "Followers": 5436556
+        },
+        {
+            "Name": "Volbeat",
+            "Genres": [
+                "danish metal",
+                "danish rock"
+            ],
+            "Popularity": 67,
+            "Followers": 2445854
+        },
+        {
+            "Name": "Bruce Springsteen",
+            "Genres": [
+                "heartland rock",
+                "mellow gold",
+                "permanent wave",
+                "rock",
+                "singer-songwriter"
+            ],
+            "Popularity": 72,
+            "Followers": 5945670
+        },
+        {
+            "Name": "ZZ Top",
+            "Genres": [
+                "album rock",
+                "blues rock",
+                "classic rock",
+                "hard rock",
+                "rock"
+            ],
+            "Popularity": 66,
+            "Followers": 4161671
+        },
+        {
+            "Name": "Shakin' Stevens",
+            "Genres": [
+                "classic uk pop",
+                "rockabilly"
+            ],
+            "Popularity": 56,
+            "Followers": 137158
+        },
+        {
+            "Name": "Vixen",
+            "Genres": [
+                "glam metal"
+            ],
+            "Popularity": 37,
+            "Followers": 102643
+        },
+        {
+            "Name": "Paolo Nutini",
+            "Genres": [
+                "british soul",
+                "neo mellow",
+                "scottish singer-songwriter"
+            ],
+            "Popularity": 63,
+            "Followers": 1362925
+        },
+        {
+            "Name": "3 Doors Down",
+            "Genres": [
+                "alternative metal",
+                "nu metal",
+                "post-grunge",
+                "rock"
+            ],
+            "Popularity": 68,
+            "Followers": 4250014
+        },
+        {
+            "Name": "Dokken",
+            "Genres": [
+                "album rock",
+                "glam metal",
+                "hard rock",
+                "metal"
+            ],
+            "Popularity": 49,
+            "Followers": 665772
+        },
+        {
+            "Name": "Paul Engemann",
+            "Genres": [],
+            "Popularity": 44,
+            "Followers": 6731
+        },
+        {
+            "Name": "Stone Sour",
+            "Genres": [
+                "alternative metal",
+                "nu metal",
+                "post-grunge"
+            ],
+            "Popularity": 61,
+            "Followers": 2824577
+        },
+        {
+            "Name": "Donna Summer",
+            "Genres": [
+                "disco",
+                "hi-nrg",
+                "new wave pop",
+                "soft rock"
+            ],
+            "Popularity": 60,
+            "Followers": 1859516
+        },
+        {
+            "Name": "Shannon",
+            "Genres": [
+                "freestyle",
+                "hi-nrg",
+                "minneapolis sound",
+                "post-disco"
+            ],
+            "Popularity": 40,
+            "Followers": 81961
+        },
+        {
+            "Name": "Bryan Adams",
+            "Genres": [
+                "canadian pop",
+                "canadian singer-songwriter",
+                "classic canadian rock",
+                "heartland rock",
+                "mellow gold",
+                "soft rock"
+            ],
+            "Popularity": 72,
+            "Followers": 3351275
+        },
+        {
+            "Name": "Linda Ronstadt",
+            "Genres": [
+                "country rock",
+                "folk",
+                "folk rock",
+                "heartland rock",
+                "mellow gold",
+                "singer-songwriter",
+                "soft rock"
+            ],
+            "Popularity": 59,
+            "Followers": 880953
+        },
+        {
+            "Name": "AFI",
+            "Genres": [
+                "alternative metal",
+                "nu metal",
+                "pop punk",
+                "post-grunge",
+                "punk",
+                "screamo"
+            ],
+            "Popularity": 58,
+            "Followers": 880111
+        },
+        {
+            "Name": "Ace of Base",
+            "Genres": [
+                "eurodance",
+                "europop",
+                "new wave pop"
+            ],
+            "Popularity": 62,
+            "Followers": 728856
+        },
+        {
+            "Name": "Lee Aaron",
+            "Genres": [
+                "glam metal"
+            ],
+            "Popularity": 25,
+            "Followers": 35857
+        },
+        {
+            "Name": "Billy Ocean",
+            "Genres": [
+                "disco",
+                "mellow gold",
+                "new romantic",
+                "new wave pop",
+                "soft rock",
+                "yacht rock"
+            ],
+            "Popularity": 59,
+            "Followers": 1110985
+        },
+        {
+            "Name": "Steve Harley",
+            "Genres": [
+                "classic uk pop",
+                "glam rock"
+            ],
+            "Popularity": 42,
+            "Followers": 30415
+        },
+        {
+            "Name": "Des'ree",
+            "Genres": [
+                "europop",
+                "new wave pop"
+            ],
+            "Popularity": 52,
+            "Followers": 252031
+        },
+        {
+            "Name": "Saco",
+            "Genres": [
+                "tropical house"
+            ],
+            "Popularity": 54,
+            "Followers": 12820
+        },
+        {
+            "Name": "Scorpions",
+            "Genres": [
+                "album rock",
+                "german hard rock",
+                "german metal",
+                "german rock",
+                "hard rock",
+                "rock"
+            ],
+            "Popularity": 69,
+            "Followers": 6772617
+        },
+        {
+            "Name": "Milli Vanilli",
+            "Genres": [
+                "freestyle",
+                "new jack swing",
+                "new wave pop"
+            ],
+            "Popularity": 49,
+            "Followers": 351779
+        },
+        {
+            "Name": "Tina Turner",
+            "Genres": [
+                "soft rock"
+            ],
+            "Popularity": 67,
+            "Followers": 3795829
+        },
+        {
+            "Name": "Outlandish",
+            "Genres": [],
+            "Popularity": 47,
+            "Followers": 91846
+        },
+        {
+            "Name": "Jack Johnson",
+            "Genres": [
+                "neo mellow"
+            ],
+            "Popularity": 72,
+            "Followers": 3712396
+        },
+        {
+            "Name": "Sebastiën",
+            "Genres": [],
+            "Popularity": 47,
+            "Followers": 526
+        },
+        {
+            "Name": "Buckcherry",
+            "Genres": [
+                "alternative metal",
+                "glam metal",
+                "hard rock",
+                "nu metal",
+                "post-grunge",
+                "sleaze rock"
+            ],
+            "Popularity": 54,
+            "Followers": 780043
+        },
+        {
+            "Name": "Godsmack",
+            "Genres": [
+                "alternative metal",
+                "nu metal",
+                "post-grunge",
+                "rap metal"
+            ],
+            "Popularity": 65,
+            "Followers": 3110731
+        },
+        {
+            "Name": "Laura Branigan",
+            "Genres": [
+                "new romantic",
+                "new wave pop",
+                "soft rock",
+                "synthpop"
+            ],
+            "Popularity": 58,
+            "Followers": 693031
+        },
+        {
+            "Name": "AC/DC",
+            "Genres": [
+                "australian rock",
+                "hard rock",
+                "rock"
+            ],
+            "Popularity": 78,
+            "Followers": 27624862
+        },
+        {
+            "Name": "Danko Jones",
+            "Genres": [
+                "punk 'n' roll"
+            ],
+            "Popularity": 48,
+            "Followers": 190317
+        },
+        {
+            "Name": "Daryl Hall & John Oates",
+            "Genres": [
+                "album rock",
+                "classic rock",
+                "heartland rock",
+                "mellow gold",
+                "rock",
+                "singer-songwriter",
+                "soft rock",
+                "yacht rock"
+            ],
+            "Popularity": 71,
+            "Followers": 2257870
+        },
+        {
+            "Name": "Steve Harley & Cockney Rebel",
+            "Genres": [
+                "glam rock"
+            ],
+            "Popularity": 43,
+            "Followers": 50776
+        },
+        {
+            "Name": "INXS",
+            "Genres": [
+                "australian rock",
+                "dance rock",
+                "funk rock",
+                "new romantic",
+                "new wave",
+                "rock"
+            ],
+            "Popularity": 67,
+            "Followers": 2512973
+        },
+        {
+            "Name": "Beast In Black",
+            "Genres": [
+                "finnish heavy metal",
+                "finnish power metal",
+                "power metal"
+            ],
+            "Popularity": 58,
+            "Followers": 274601
+        },
+        {
+            "Name": "John Mellencamp",
+            "Genres": [
+                "album rock",
+                "classic rock",
+                "country rock",
+                "folk rock",
+                "hard rock",
+                "heartland rock",
+                "mellow gold",
+                "rock",
+                "singer-songwriter",
+                "soft rock"
+            ],
+            "Popularity": 63,
+            "Followers": 1631141
+        },
+        {
+            "Name": "Electric Light Orchestra",
+            "Genres": [
+                "album rock",
+                "art rock",
+                "beatlesque",
+                "classic rock",
+                "glam rock",
+                "mellow gold",
+                "rock",
+                "soft rock",
+                "symphonic rock"
+            ],
+            "Popularity": 68,
+            "Followers": 3921702
+        },
+        {
+            "Name": "Culture Club",
+            "Genres": [
+                "new romantic",
+                "new wave",
+                "new wave pop",
+                "soft rock",
+                "synthpop"
+            ],
+            "Popularity": 61,
+            "Followers": 1505237
+        }
+    ]
+}
