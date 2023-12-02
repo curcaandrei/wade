@@ -1,0 +1,90 @@
+openapi: 3.0.0
+info:
+  title: RDF Knowledge Graph Service API
+  description: This API allows for interaction with the RDF Knowledge Graph, including data retrieval, updates, and executing SPARQL queries.
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080/v1'
+
+paths:
+  /rdfGraph:
+    get:
+      summary: Retrieve RDF Data
+      description: Retrieves RDF data based on given parameters.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RDFData'
+              examples:
+                rdfDataExample:
+                  summary: Example RDF Data Response
+                  value:
+                    data: "<http://example.org/resource1> <http://example.org/property> \"Example value\"."
+        '400':
+          description: Bad request
+
+    patch:
+      summary: Update RDF Data
+      description: Updates the RDF graph with new data.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RDFData'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad request
+
+  /sparqlQuery:
+    post:
+      summary: Execute SPARQL Query
+      description: Executes a given SPARQL query on the RDF graph.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SPARQLQuery'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  queryResult:
+                    type: string
+              examples:
+                sparqlQueryExample:
+                  summary: Example SPARQL Query Response
+                  value:
+                    queryResult: "\"Example SPARQL query result\""
+        '400':
+          description: Bad request
+
+components:
+  schemas:
+    RDFData:
+      type: object
+      properties:
+        data:
+          type: string
+          description: The RDF data in serialized format.
+      required:
+        - data
+
+    SPARQLQuery:
+      type: object
+      properties:
+        queryText:
+          type: string
+          description: The SPARQL query to be executed.
+      required:
+        - queryText

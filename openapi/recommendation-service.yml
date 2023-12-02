@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: Recommendation Service API
+  description: API for generating personalized recommendations based on user profiles and RDF knowledge graph.
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080/v1'
+
+paths:
+  /recommendations:
+    get:
+      summary: Retrieve recommendations
+      description: Get a list of recommendations based on the user's profile and RDF knowledge graph.
+      parameters:
+        - in: query
+          name: userID
+          required: true
+          schema:
+            type: string
+          description: Unique identifier for the user.
+        - in: query
+          name: recommendationCriteria
+          required: false
+          schema:
+            type: string
+          description: Optional criteria to refine recommendations.
+      responses:
+        '200':
+          description: A list of recommendations successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendationList'
+              examples:
+                recommendationExample:
+                  summary: Example Response
+                  value:
+                    recommendations:
+                      - itemId: "item123"
+                        itemName: "Open Source Software Development Kit"
+                        itemDetails: "A comprehensive toolkit for developing open source software."
+                        relevanceScore: 95.5
+                        metadata:
+                          category: "Software"
+                          technology: "Web Technologies"
+        '400':
+          description: Invalid request parameters.
+        '404':
+          description: User not found.
+        '500':
+          description: Internal server error.
+
+components:
+  schemas:
+    Recommendation:
+      type: object
+      properties:
+        itemId:
+          type: string
+          description: Unique identifier for the recommended item.
+        itemName:
+          type: string
+          description: Name of the recommended item.
+        itemDetails:
+          type: string
+          description: Detailed description of the recommended item.
+        relevanceScore:
+          type: number
+          format: float
+          description: Score indicating the relevance of the recommendation.
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Additional metadata for the recommended item
+
+    RecommendationList:
+      type: object
+      properties:
+        recommendations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recommendation'
