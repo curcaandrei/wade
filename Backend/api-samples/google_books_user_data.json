@@ -1,0 +1,274 @@
+{
+    "bookshelves": [
+        {
+            "id": 7,
+            "title": "My Google eBooks",
+            "books": [
+                {
+                    "Title": "Trace Evidence Analysis",
+                    "Authors": [
+                        "Max M. Houck"
+                    ],
+                    "Description": "Trace Evidence Analysis continues and builds upon the tradition of its successful companion title Mute Witnesses (2000). The book contains nine entirely new cases, each self-contained in its own chapter, covering everything from homicides to ...",
+                    "Categories": [
+                        "Social Science"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "title": "Purchased",
+            "books": []
+        },
+        {
+            "id": 5,
+            "title": "Reviewed",
+            "books": []
+        },
+        {
+            "id": 6,
+            "title": "Recently viewed",
+            "books": []
+        },
+        {
+            "id": 0,
+            "title": "Favorites",
+            "books": [
+                {
+                    "Title": "Crimă şi pedeapsă",
+                    "Authors": [
+                        "Dostoevski, Feodor Mihailovich"
+                    ],
+                    "Description": "<p>Romanul prezintă în prim plan drama lui Raskolnikov, un student care pune la cale uciderea și jefuirea unei bătrâne cămătare, pentru a-și rezolva problemele financiare, dar și din dorința de a-și demonstra lui însuși că este îndreptățit să o facă ...",
+                    "Categories": []
+                },
+                {
+                    "Title": "Blood Dynamics",
+                    "Authors": [
+                        "Anita Y. Wonder"
+                    ],
+                    "Description": "Today's resources on bloodstain analysis are still based on methods that were derived in the 1920s. Although medical and clinical research have provided a growing body of information on blood composition and behavior, this information has been ...",
+                    "Categories": [
+                        "Bloodstains"
+                    ]
+                },
+                {
+                    "Title": "The Forensic Laboratory Handbook",
+                    "Authors": [
+                        "Ashraf Mozayani",
+                        "Carla Noziglia"
+                    ],
+                    "Description": "A comprehensive and easy-to-read introduction to the work of the modern forensic laboratory. The authors explain in simple language the capabilities and limitations of modern forensic laboratory procedures, techniques, analyses, and ...",
+                    "Categories": [
+                        "Medical"
+                    ]
+                },
+                {
+                    "Title": "Criminalistics: Forensic Science, Crime and Terrorism",
+                    "Authors": [
+                        "James E. Girard"
+                    ],
+                    "Description": "Criminalistics: Forensic Science, Crime and Terrorism, Second Edition introduces readers with no background in biology or chemistry, to the study of forensic science, crime analysis and application. Principle topics such as fingerprint ...",
+                    "Categories": [
+                        "Law"
+                    ]
+                },
+                {
+                    "Title": "Blood, Bugs, and Plants",
+                    "Authors": [
+                        "Robert E. Gaensslen"
+                    ],
+                    "Description": "Explores several core biological areas that have influenced modern forensic science. This book includes a 'blood' section that covers the identification of blood and body fluids, DNA typing, and blood-spatter patterns. Each chapter provides an ...",
+                    "Categories": [
+                        "Forensic biology"
+                    ]
+                },
+                {
+                    "Title": "Fundamentals of Forensic DNA Typing",
+                    "Authors": [
+                        "John M. Butler"
+                    ],
+                    "Description": "Fundamentals of Forensic DNA Typing is written with a broad viewpoint. It examines the methods of current forensic DNA typing, focusing on short tandem repeats (STRs). It encompasses current forensic DNA analysis methods, as well as biology ...",
+                    "Categories": [
+                        "Law"
+                    ]
+                },
+                {
+                    "Title": "Encyclopedia of Forensic Sciences",
+                    "Authors": [],
+                    "Description": "Forensic science includes all aspects of investigating a crime, including: chemistry, biology and physics, and also incorporates countless other specialties. Today, the service offered under the guise of \"forensic science’ includes specialties ...",
+                    "Categories": [
+                        "Law"
+                    ]
+                },
+                {
+                    "Title": "Techniques of Crime Scene Investigation, Seventh Edition",
+                    "Authors": [
+                        "Barry A. J. Fisher",
+                        "David Fisher"
+                    ],
+                    "Description": "This latest edition of Techniques of Crime Scene Investigation examines concepts, field-tested techniques and procedures, and technical information concerning crime scene investigation. It has been widely adopted by police academies, community ...",
+                    "Categories": [
+                        "Law"
+                    ]
+                },
+                {
+                    "Title": "Bloodstain Pattern Analysis",
+                    "Authors": [
+                        "Tom Bevel",
+                        "Ross M. Gardner"
+                    ],
+                    "Description": "Bloodstain pattern analysis helps establish events associated with violent crimes. It is a critical bridge between forensics and the definition of a precise crime reconstruction. The second edition of this bestselling book is thoroughly updated ...",
+                    "Categories": [
+                        "Law"
+                    ]
+                },
+                {
+                    "Title": "Trace Evidence Analysis",
+                    "Authors": [
+                        "Max M. Houck"
+                    ],
+                    "Description": "Trace Evidence Analysis continues and builds upon the tradition of its successful companion title Mute Witnesses (2000). The book contains nine entirely new cases, each self-contained in its own chapter, covering everything from homicides to ...",
+                    "Categories": [
+                        "Social Science"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Reading now",
+            "books": [
+                {
+                    "Title": "Crimă şi pedeapsă",
+                    "Authors": [
+                        "Dostoevski, Feodor Mihailovich"
+                    ],
+                    "Description": "<p>Romanul prezintă în prim plan drama lui Raskolnikov, un student care pune la cale uciderea și jefuirea unei bătrâne cămătare, pentru a-și rezolva problemele financiare, dar și din dorința de a-și demonstra lui însuși că este îndreptățit să o facă ...",
+                    "Categories": []
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "To read",
+            "books": [
+                {
+                    "Title": "Crimă şi pedeapsă",
+                    "Authors": [
+                        "Dostoevski, Feodor Mihailovich"
+                    ],
+                    "Description": "<p>Romanul prezintă în prim plan drama lui Raskolnikov, un student care pune la cale uciderea și jefuirea unei bătrâne cămătare, pentru a-și rezolva problemele financiare, dar și din dorința de a-și demonstra lui însuși că este îndreptățit să o facă ...",
+                    "Categories": []
+                },
+                {
+                    "Title": "Bloodstains As Evidence: A Field Manual",
+                    "Authors": [],
+                    "Description": "",
+                    "Categories": []
+                },
+                {
+                    "Title": "Blood Evidence",
+                    "Authors": [
+                        "Henry Lee",
+                        "Frank Tirnady"
+                    ],
+                    "Description": "Uses case studies to examine how investigators collect genetic evidence and discusses how DNA has altered crime-solving and the court system as well as the ethical ramifications of cloning, genetic modification, and the death penalty.",
+                    "Categories": [
+                        "Science"
+                    ]
+                },
+                {
+                    "Title": "Blood Dynamics",
+                    "Authors": [
+                        "Anita Y. Wonder"
+                    ],
+                    "Description": "Today's resources on bloodstain analysis are still based on methods that were derived in the 1920s. Although medical and clinical research have provided a growing body of information on blood composition and behavior, this information has been ...",
+                    "Categories": [
+                        "Bloodstains"
+                    ]
+                },
+                {
+                    "Title": "The Forensic Laboratory Handbook",
+                    "Authors": [
+                        "Ashraf Mozayani",
+                        "Carla Noziglia"
+                    ],
+                    "Description": "A comprehensive and easy-to-read introduction to the work of the modern forensic laboratory. The authors explain in simple language the capabilities and limitations of modern forensic laboratory procedures, techniques, analyses, and ...",
+                    "Categories": [
+                        "Medical"
+                    ]
+                },
+                {
+                    "Title": "Criminalistics: Forensic Science, Crime and Terrorism",
+                    "Authors": [
+                        "James E. Girard"
+                    ],
+                    "Description": "Criminalistics: Forensic Science, Crime and Terrorism, Second Edition introduces readers with no background in biology or chemistry, to the study of forensic science, crime analysis and application. Principle topics such as fingerprint ...",
+                    "Categories": [
+                        "Law"
+                    ]
+                },
+                {
+                    "Title": "Blood, Bugs, and Plants",
+                    "Authors": [
+                        "Robert E. Gaensslen"
+                    ],
+                    "Description": "Explores several core biological areas that have influenced modern forensic science. This book includes a 'blood' section that covers the identification of blood and body fluids, DNA typing, and blood-spatter patterns. Each chapter provides an ...",
+                    "Categories": [
+                        "Forensic biology"
+                    ]
+                },
+                {
+                    "Title": "Fundamentals of Forensic DNA Typing",
+                    "Authors": [
+                        "John M. Butler"
+                    ],
+                    "Description": "Fundamentals of Forensic DNA Typing is written with a broad viewpoint. It examines the methods of current forensic DNA typing, focusing on short tandem repeats (STRs). It encompasses current forensic DNA analysis methods, as well as biology ...",
+                    "Categories": [
+                        "Law"
+                    ]
+                },
+                {
+                    "Title": "Encyclopedia of Forensic Sciences",
+                    "Authors": [],
+                    "Description": "Forensic science includes all aspects of investigating a crime, including: chemistry, biology and physics, and also incorporates countless other specialties. Today, the service offered under the guise of \"forensic science’ includes specialties ...",
+                    "Categories": [
+                        "Law"
+                    ]
+                },
+                {
+                    "Title": "Techniques of Crime Scene Investigation, Seventh Edition",
+                    "Authors": [
+                        "Barry A. J. Fisher",
+                        "David Fisher"
+                    ],
+                    "Description": "This latest edition of Techniques of Crime Scene Investigation examines concepts, field-tested techniques and procedures, and technical information concerning crime scene investigation. It has been widely adopted by police academies, community ...",
+                    "Categories": [
+                        "Law"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Have read",
+            "books": [
+                {
+                    "Title": "Crimă şi pedeapsă",
+                    "Authors": [
+                        "Dostoevski, Feodor Mihailovich"
+                    ],
+                    "Description": "<p>Romanul prezintă în prim plan drama lui Raskolnikov, un student care pune la cale uciderea și jefuirea unei bătrâne cămătare, pentru a-și rezolva problemele financiare, dar și din dorința de a-și demonstra lui însuși că este îndreptățit să o facă ...",
+                    "Categories": []
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "title": "Books for you",
+            "books": []
+        }
+    ]
+}
