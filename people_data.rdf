@@ -1,153 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
-   xmlns:ns1="http://custom.org/"
-   xmlns:ns2="http://schema.org/"
+   xmlns:ns1="http://schema.org/"
+   xmlns:ns2="http://custom.org/"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 >
-  <rdf:Description rdf:about="http://custom.org/Harry_Alcantara">
-    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
-    <ns2:name>Harry_Alcantara</ns2:name>
-    <ns2:worksFor rdf:resource="http://custom.org/Facebook"/>
-    <ns2:hobby rdf:resource="http://custom.org/hobby/books"/>
-    <ns1:hasSkill rdf:resource="http://custom.org/skill/C#"/>
-    <ns1:hasSkill rdf:resource="http://custom.org/skill/python"/>
-    <ns1:hasSkill rdf:resource="http://custom.org/skill/React"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/Tobby_Andersen">
-    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
-    <ns2:name>Tobby_Andersen</ns2:name>
-    <ns2:worksFor rdf:resource="http://custom.org/Microsoft"/>
-    <ns2:hobby rdf:resource="http://custom.org/hobby/play_piano"/>
-    <ns2:hobby rdf:resource="http://custom.org/hobby/movies"/>
-    <ns1:hasSkill rdf:resource="http://custom.org/skill/python"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/skill/databases">
+  <rdf:Description rdf:about="http://custom.org/skill/angular">
     <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>databases</ns1:label>
+    <ns2:label>angular</ns2:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/skill/go">
-    <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>go</ns1:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/Julian_Silva">
-    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
-    <ns2:name>Julian_Silva</ns2:name>
-    <ns2:worksFor rdf:resource="http://custom.org/Amazon"/>
-    <ns2:hobby rdf:resource="http://custom.org/hobby/play_piano"/>
-    <ns2:hobby rdf:resource="http://custom.org/hobby/table_tennis"/>
-    <ns1:hasSkill rdf:resource="http://custom.org/skill/photoshop"/>
-    <ns1:hasSkill rdf:resource="http://custom.org/skill/nodejs"/>
+  <rdf:Description rdf:about="http://schema.org/Sofia">
+    <rdf:type rdf:resource="http://schema.org/City"/>
+    <ns1:name>Sofia</ns1:name>
   </rdf:Description>
   <rdf:Description rdf:about="http://custom.org/skill/React">
     <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>React</ns1:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/Elliot_Andersen">
-    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
-    <ns2:name>Elliot_Andersen</ns2:name>
-    <ns2:worksFor rdf:resource="http://custom.org/Microsoft"/>
-    <ns2:hobby rdf:resource="http://custom.org/hobby/hiking"/>
-    <ns1:hasSkill rdf:resource="http://custom.org/skill/C#"/>
-    <ns1:hasSkill rdf:resource="http://custom.org/skill/ML"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/hobby/table_tennis">
-    <rdf:type rdf:resource="http://schema.org/Hobby"/>
-    <ns1:label>table_tennis</ns1:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/hobby/music">
-    <rdf:type rdf:resource="http://schema.org/Hobby"/>
-    <ns1:label>music</ns1:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/skill/C#">
-    <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>C#</ns1:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/hobby/play_piano">
-    <rdf:type rdf:resource="http://schema.org/Hobby"/>
-    <ns1:label>play_piano</ns1:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/skill/turbo_pascal">
-    <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>turbo_pascal</ns1:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/skill/ML">
-    <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>ML</ns1:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/Amazon">
-    <rdf:type rdf:resource="http://schema.org/Organization"/>
-    <ns2:name>Amazon</ns2:name>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/skill/python">
-    <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>python</ns1:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/Luxoft">
-    <rdf:type rdf:resource="http://schema.org/Organization"/>
-    <ns2:name>Luxoft</ns2:name>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/Facebook">
-    <rdf:type rdf:resource="http://schema.org/Organization"/>
-    <ns2:name>Facebook</ns2:name>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/hobby/esports">
-    <rdf:type rdf:resource="http://schema.org/Hobby"/>
-    <ns1:label>esports</ns1:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/Linkedin">
-    <rdf:type rdf:resource="http://schema.org/Organization"/>
-    <ns2:name>Linkedin</ns2:name>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/hobby/movies">
-    <rdf:type rdf:resource="http://schema.org/Hobby"/>
-    <ns1:label>movies</ns1:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/hobby/hiking">
-    <rdf:type rdf:resource="http://schema.org/Hobby"/>
-    <ns1:label>hiking</ns1:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/skill/spring">
-    <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>spring</ns1:label>
+    <ns2:label>React</ns2:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://custom.org/Microsoft">
     <rdf:type rdf:resource="http://schema.org/Organization"/>
-    <ns2:name>Microsoft</ns2:name>
+    <ns1:name>Microsoft</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/Amazon">
+    <rdf:type rdf:resource="http://schema.org/Organization"/>
+    <ns1:name>Amazon</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/skill/turbo_pascal">
+    <rdf:type rdf:resource="http://custom.org/Skill"/>
+    <ns2:label>turbo_pascal</ns2:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://custom.org/skill/nodejs">
     <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>nodejs</ns1:label>
+    <ns2:label>nodejs</ns2:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/hobby/chess">
+  <rdf:Description rdf:about="http://custom.org/hobby/movies">
     <rdf:type rdf:resource="http://schema.org/Hobby"/>
-    <ns1:label>chess</ns1:label>
+    <ns2:label>movies</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/Bernardo_Alvarez">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <ns1:name>Bernardo_Alvarez</ns1:name>
+    <ns1:worksFor rdf:resource="http://custom.org/Amazon"/>
+    <ns1:hobby rdf:resource="http://custom.org/hobby/play_piano"/>
+    <ns1:hobby rdf:resource="http://custom.org/hobby/chess"/>
+    <ns1:hobby rdf:resource="http://custom.org/hobby/music"/>
+    <ns2:hasSkill rdf:resource="http://custom.org/skill/python"/>
+    <ns2:hasSkill rdf:resource="http://custom.org/skill/C++"/>
+    <ns2:studied rdf:resource="http://schema.org/UAIC"/>
+    <ns2:livesIn rdf:resource="http://schema.org/Amsterdam"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/Linkedin">
+    <rdf:type rdf:resource="http://schema.org/Organization"/>
+    <ns1:name>Linkedin</ns1:name>
   </rdf:Description>
   <rdf:Description rdf:about="http://custom.org/skill/C++">
     <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>C++</ns1:label>
+    <ns2:label>C++</ns2:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/skill/ui/ux">
-    <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>ui/ux</ns1:label>
+  <rdf:Description rdf:about="http://custom.org/Manuel_Andersen">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <ns1:name>Manuel_Andersen</ns1:name>
+    <ns1:worksFor rdf:resource="http://custom.org/Microsoft"/>
+    <ns1:hobby rdf:resource="http://custom.org/hobby/chess"/>
+    <ns1:hobby rdf:resource="http://custom.org/hobby/books"/>
+    <ns2:hasSkill rdf:resource="http://custom.org/skill/ui/ux"/>
+    <ns2:livesIn rdf:resource="http://schema.org/Bucharest"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/hobby/books">
-    <rdf:type rdf:resource="http://schema.org/Hobby"/>
-    <ns1:label>books</ns1:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/Amd">
-    <rdf:type rdf:resource="http://schema.org/Organization"/>
-    <ns2:name>Amd</ns2:name>
+  <rdf:Description rdf:about="http://schema.org/Amsterdam">
+    <rdf:type rdf:resource="http://schema.org/City"/>
+    <ns1:name>Amsterdam</ns1:name>
   </rdf:Description>
   <rdf:Description rdf:about="http://custom.org/skill/java">
     <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>java</ns1:label>
+    <ns2:label>java</ns2:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://custom.org/skill/angular">
+  <rdf:Description rdf:about="http://custom.org/skill/C#">
     <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>angular</ns1:label>
+    <ns2:label>C#</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/skill/go">
+    <rdf:type rdf:resource="http://custom.org/Skill"/>
+    <ns2:label>go</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/UAIC">
+    <rdf:type rdf:resource="http://schema.org/EducationalOrganization"/>
+    <ns1:name>UAIC</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/skill/ui/ux">
+    <rdf:type rdf:resource="http://custom.org/Skill"/>
+    <ns2:label>ui/ux</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/Luxoft">
+    <rdf:type rdf:resource="http://schema.org/Organization"/>
+    <ns1:name>Luxoft</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/Iasi">
+    <rdf:type rdf:resource="http://schema.org/City"/>
+    <ns1:name>Iasi</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/Budapest">
+    <rdf:type rdf:resource="http://schema.org/City"/>
+    <ns1:name>Budapest</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/Andrew_Akanji">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <ns1:name>Andrew_Akanji</ns1:name>
+    <ns1:worksFor rdf:resource="http://custom.org/Amazon"/>
+    <ns1:hobby rdf:resource="http://custom.org/hobby/play_piano"/>
+    <ns1:hobby rdf:resource="http://custom.org/hobby/chess"/>
+    <ns1:hobby rdf:resource="http://custom.org/hobby/esports"/>
+    <ns2:hasSkill rdf:resource="http://custom.org/skill/go"/>
+    <ns2:hasSkill rdf:resource="http://custom.org/skill/angular"/>
+    <ns2:livesIn rdf:resource="http://schema.org/Paris"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/Ny">
+    <rdf:type rdf:resource="http://schema.org/City"/>
+    <ns1:name>Ny</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/Madrid">
+    <rdf:type rdf:resource="http://schema.org/City"/>
+    <ns1:name>Madrid</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/Bucharest">
+    <rdf:type rdf:resource="http://schema.org/City"/>
+    <ns1:name>Bucharest</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/Facebook">
+    <rdf:type rdf:resource="http://schema.org/Organization"/>
+    <ns1:name>Facebook</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/skill/ML">
+    <rdf:type rdf:resource="http://custom.org/Skill"/>
+    <ns2:label>ML</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/Michail_Akanji">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <ns1:name>Michail_Akanji</ns1:name>
+    <ns1:worksFor rdf:resource="http://custom.org/Luxoft"/>
+    <ns1:hobby rdf:resource="http://custom.org/hobby/hiking"/>
+    <ns1:hobby rdf:resource="http://custom.org/hobby/esports"/>
+    <ns1:hobby rdf:resource="http://custom.org/hobby/play_piano"/>
+    <ns2:hasSkill rdf:resource="http://custom.org/skill/turbo_pascal"/>
+    <ns2:livesIn rdf:resource="http://schema.org/Seattle"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/hobby/music">
+    <rdf:type rdf:resource="http://schema.org/Hobby"/>
+    <ns2:label>music</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/Amd">
+    <rdf:type rdf:resource="http://schema.org/Organization"/>
+    <ns1:name>Amd</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/Paris">
+    <rdf:type rdf:resource="http://schema.org/City"/>
+    <ns1:name>Paris</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/hobby/books">
+    <rdf:type rdf:resource="http://schema.org/Hobby"/>
+    <ns2:label>books</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/USV">
+    <rdf:type rdf:resource="http://schema.org/EducationalOrganization"/>
+    <ns1:name>USV</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/hobby/play_piano">
+    <rdf:type rdf:resource="http://schema.org/Hobby"/>
+    <ns2:label>play_piano</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/hobby/chess">
+    <rdf:type rdf:resource="http://schema.org/Hobby"/>
+    <ns2:label>chess</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://schema.org/Seattle">
+    <rdf:type rdf:resource="http://schema.org/City"/>
+    <ns1:name>Seattle</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/skill/databases">
+    <rdf:type rdf:resource="http://custom.org/Skill"/>
+    <ns2:label>databases</ns2:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://custom.org/skill/photoshop">
     <rdf:type rdf:resource="http://custom.org/Skill"/>
-    <ns1:label>photoshop</ns1:label>
+    <ns2:label>photoshop</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/hobby/esports">
+    <rdf:type rdf:resource="http://schema.org/Hobby"/>
+    <ns2:label>esports</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/skill/spring">
+    <rdf:type rdf:resource="http://custom.org/Skill"/>
+    <ns2:label>spring</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/hobby/table_tennis">
+    <rdf:type rdf:resource="http://schema.org/Hobby"/>
+    <ns2:label>table_tennis</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/hobby/hiking">
+    <rdf:type rdf:resource="http://schema.org/Hobby"/>
+    <ns2:label>hiking</ns2:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://custom.org/skill/python">
+    <rdf:type rdf:resource="http://custom.org/Skill"/>
+    <ns2:label>python</ns2:label>
   </rdf:Description>
 </rdf:RDF>
