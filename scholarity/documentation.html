@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <title>Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="author" content="co-authored by Curca Andrei, Bodnariu Daniel">
+    <meta property="og:description" content="SORE social recommendation system">
+    <meta property="og:title" content="SORE">
+    <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 
 <body>
@@ -54,9 +58,12 @@
         </div>
         <section typeof="sa:Abstract" role="doc-abstract">
             <h3>1. Abstract</h3>
-            <p> WADE - Sore is an innovative web application that curates personalized recommendations for users based on a sophisticated analysis of 
-                their social media profiles and preferences. It harnesses a knowledge graph to suggest items such as people, events, places, and other 
-                entities, tailored to user-defined criteria such as skills, geographic location, technical preferences, and personal interests
+            <p> WADE - Sore is an innovative web application that curates personalized recommendations for users based
+                on a sophisticated analysis of
+                their social media profiles and preferences. It harnesses a knowledge graph to suggest items such as
+                people, events, places, and other
+                entities, tailored to user-defined criteria such as skills, geographic location, technical preferences,
+                and personal interests
             </p>
             <span> Keywords: semantic web, rdf, concepts, recommendations, Semantic Distance,Linked Data </span>
             <section role="doc-introduction">
@@ -76,13 +83,13 @@
                 </section>
                 <section>
                     <h4>1.3 Semantic Web and RDF</h4>
-                    The Semantic Web is an extension of the World Wide Web that aims to make web content more
+                    <p>The Semantic Web is an extension of the World Wide Web that aims to make web content more
                     machine-readable and understandable by computers.
                     It is based on the idea that information on the web should be not only accessible to humans but also
                     structured and linked in a way that allows computers to understand and process it.
                     The Semantic Web is an initiative led by the World Wide Web Consortium (W3C), the same organization
                     that develops web standards.
-                    Key components and principles of the Semantic Web include:
+                    Key components and principles of the Semantic Web include:</p>
                     <ul>
                         <li>
                             RDF (Resource Description Framework): RDF is a standard for describing resources on
@@ -116,22 +123,22 @@
                             relationships and classifications.
                         </li>
                     </ul>
-                    The goal of the Semantic Web is to enhance data interoperability,
+                    <p>The goal of the Semantic Web is to enhance data interoperability,
                     enable better data integration, and facilitate automated reasoning and decision-making.
                     It has applications in various domains, including search engines, data integration, knowledge
                     representation, and the development of intelligent agents.
                     By providing a standardized framework for representing and linking data, the Semantic Web aims to
-                    transform the web into a more intelligent and interconnected information space.
+                    transform the web into a more intelligent and interconnected information space.</p>
                 </section>
                 <section>
                     <h4>Connection between RDF and recommendations systems</h4>
-                    The connection between RDF (Resource Description Framework) and recommendation systems lies in the
+                    <p>The connection between RDF (Resource Description Framework) and recommendation systems lies in the
                     ability of RDF to represent structured and linked data,
                     making it suitable for modeling and capturing the complex relationships between users, items, and
                     their characteristics. RDF provides a flexible and standardized way to express data
                     , and this can be leveraged in recommendation systems to enhance the representation of user
                     preferences, item features, and the connections between them. Here's how RDF is connected to
-                    recommendation systems:
+                    recommendation systems:</p>
                     <ol>
                         <li>
                             <h5>Representation of User and Item Profiles</h5>
@@ -181,12 +188,12 @@
                             process.
                         </li>
                     </ol>
-                    In summary, RDF provides a structured and linked data representation that can be leveraged to model
+                    <p>In summary, RDF provides a structured and linked data representation that can be leveraged to model
                     complex relationships in recommendation systems.
                     It enables a more detailed and flexible representation of user preferences, item features, and their
                     interactions, contributing to the development of more accurate and personalized recommendation
                     algorithms. The use of RDF aligns well with the principles of the Semantic Web and Linked Data,
-                    providing a foundation for building intelligent and interconnected recommendation systems.
+                    providing a foundation for building intelligent and interconnected recommendation systems.</p>
 
                 </section>
                 <section>
@@ -242,16 +249,14 @@
             </section>
             <section>
                 <h3>2. Products that use recommendations systems or combination</h3>
-                <h4>2.1 </h4>
-                <h3>
-                    Facebook
-                </h3>
+                <h4>2.1 Facebook </h4>
+                
                 <p>Facebook collects extensive data on user behavior, including interactions, likes, comments, shares,
                     and clicks. This data is crucial for understanding user preferences and interests.
                     Facebook likely employs content-based filtering, where user preferences are inferred based on the
                     content they interact with. For example,
                     the system may analyze the types of posts, articles, videos, and advertisements a user engages with
-                    to understand their interests.[5]
+                    to understand their interests.[5] </p>
                 <ul>
                     <li>
                         Collaborative filtering involves making recommendations based on the preferences of similar
@@ -282,10 +287,6 @@
                         across different content formats.
                     </li>
                 </ul>
-                </p>
-                <p>
-                   
-                </p>
             </section>
             <section>
                 <h3>3. Overall Description</h3>
@@ -304,7 +305,6 @@
                         The system should be "smart" enough to improve recommendations based on various methods such
                         as user feedback, reasoning, and/or machine learning. The recommended items will be
                         available via a SPARQL endpoint.
-                    </p>
                     </p>
                 </section>
                 <section>
@@ -358,8 +358,7 @@
                         It is commonly used as a way for users to grant access to their information on one website or
                         application to another website or application without sharing their credentials, such as
                         usernames and passwords.</p>
-                    <img src="https://miro.medium.com/max/1400/1*2xfYDB38ZqtXWVrBMmZsmQ.jpeg"
-                        alt="login auth arthitecture" width="35%" />
+                    <img src="https://miro.medium.com/max/1400/1*2xfYDB38ZqtXWVrBMmZsmQ.jpeg" alt="login auth arthitecture">
                     <p>Home page : central point of application where user will receive recommendations</p>
                     <ul>
                         <li>
@@ -389,7 +388,7 @@
                     <h4>4. Product Arhitecture</h4>
                     Overview over entire arhitecture and component subsystems
                     <figure typeof="sa:image">
-                        <img src="./images/main_arhitecture.jpg" alt="main_arhitecture" width="50%">
+                        <img src="./images/main_arhitecture.jpg" alt="main_arhitecture">
                         <figcaption>overall arhitecture</figcaption>
                     </figure>
                     One of the flows is described below.
@@ -407,7 +406,7 @@
                         </li>
                     </ul>
                     <figure typeof="sa:image">
-                        <img src="./images/flow.png" alt="flow diagram" width="40%">
+                        <img src="./images/flow.png" alt="flow diagram">
                     </figure>
                     More flows can be found at <a
                         href="https://github.com/Iustin07/wade/blob/main/openapi/case-studies-and-usage-examples.md">case-studies-and-usage-examples</a>
@@ -418,12 +417,14 @@
                     <h5>User</h5>
                     <p>Users rdf data and users have been generated using a python script with the help of rdflib</p>
                     <figure typeof="sa:image">
-                        <img src="./images/users_data.png" alt="user instance graph" width="50%">
+                        <img src="./images/users_data.png" alt="user instance graph">
                         <figcaption>user instance rdf graph</figcaption>
                     </figure>
-                    Example of instance:(incomplete because tag "otherPref" is missing because with that node will be
-                    linked uris from music, videos, books or other preferences)
                     <p>
+                        Example of instance:(incomplete because tag "otherPref" is missing because with that node will
+                        be
+                        linked uris from music, videos, books or other preferences)
+                    </p>    
                         <xmp>
 
                             <rdf:Description rdf:about="http://custom.org/Bernardo_Alvarez">
@@ -439,13 +440,13 @@
                         </xmp>
                         <xmp>
                             <rdf:Description rdf:about="http://custom.org/skill/java">
-                                <rdf:type rdf:resource="http://custom.org/Skill"/>
+                                <rdf:type rdf:resource="http://custom.org/Skill" />
                                 <ns2:label>java</ns2:label>
                         </xmp>
-                    </p>
+                   
                     <h5>Music</h5>
                     <figure typeof="sa:image">
-                        <img src="./images/music_draph.png" alt="music graph" width="40%">
+                        <img src="./images/music_draph.png" alt="music graph">
                         <figcaption>music instance rdf subgraph</figcaption>
                     </figure>
                     From user who links his spotify account we can retrieve his favorite songs in JSON format. Because
@@ -467,7 +468,7 @@
                     that we'll convert them to rdf format
                     each instance wi'll follow the model from image above.
                     <figure typeof="sa:image">
-                        <img src="./images/music_draph.png" alt="movie  instance graph" width="40%">
+                        <img src="./images/music_draph.png" alt="movie  instance graph">
                         <figcaption>music instance rdf subgraph</figcaption>
                     </figure>
                     <pre>
@@ -501,7 +502,7 @@
                     extract same features.
                     <h5>Books</h5>
                     <figure typeof="sa:image">
-                        <img src="./images/book.png" alt="book graph" width="40%">
+                        <img src="./images/book.png" alt="book graph">
                         <figcaption>book instance rdf subgraph</figcaption>
                     </figure>
                     <pre>
@@ -545,30 +546,28 @@
                 <section>
                     <h4>5.1 User Interfaces</h4>
 
-                    <section>
-                        <figure typeof="sa:image">
-                            <figcaption>SORE's Login page</figcaption>
-                            <img src="./images/login.png" alt="login page screenshot" width="70%">
-                        </figure>
+                    <figure typeof="sa:image">
+                        <figcaption>SORE's Login page</figcaption>
+                        <img src="./images/login.png" alt="login page screenshot">
+                    </figure>
 
-                        <figure typeof="sa:image">
-                            <figcaption>SORE's user page</figcaption>
-                            <img src="./images/account.png" alt="account page screenshot" width="70%">
-                        </figure>
+                    <figure typeof="sa:image">
+                        <figcaption>SORE's user page</figcaption>
+                        <img src="./images/account.png" alt="account page screenshot">
+                    </figure>
 
-                        <figure typeof="sa:image">
-                            <figcaption>Sore's first time login page</figcaption>
-                            <img src="./images/first-time.png" alt="ft screenshot" width="70%">
-                        </figure>
-                        <figure typeof="sa:image">
-                            <figcaption>Sore's first time choose some points of interest</figcaption>
-                            <img src="./images/ft-people.png" alt="ft screenshot" width="70%">
-                        </figure>
-                        <figure typeof="sa:image">
-                            <figcaption>SORE's Home page</figcaption>
-                            <img src="./images/home.png" alt="main page screenshot" width="70%">
-                        </figure>
-                    </section>
+                    <figure typeof="sa:image">
+                        <figcaption>Sore's first time login page</figcaption>
+                        <img src="./images/first-time.png" alt="ft screenshot">
+                    </figure>
+                    <figure typeof="sa:image">
+                        <figcaption>Sore's first time choose some points of interest</figcaption>
+                        <img src="./images/ft-people.png" alt="ft screenshot">
+                    </figure>
+                    <figure typeof="sa:image">
+                        <figcaption>SORE's Home page</figcaption>
+                        <img src="./images/home.png" alt="main page screenshot">
+                    </figure>
                 </section>
 
                 <section>
@@ -584,36 +583,39 @@
         <section>
             <h3>6. Product and linked data principles </h3>
             <p>In computing, linked data (often capitalized as Linked Data)
-            describes a method of publishing structured data so that it can
-            be interlinked and become more useful through semantic
-            queries. It builds upon standard Web technologies such as
-            HTTP, RDF and URIs, but rather than using them to serve web
-            pages for human readers, it extends them to share information
-            in a way that can be read automatically by computers. This
-            enables data from different sources to be connected and
-            queried.</p>
+                describes a method of publishing structured data so that it can
+                be interlinked and become more useful through semantic
+                queries. It builds upon standard Web technologies such as
+                HTTP, RDF and URIs, but rather than using them to serve web
+                pages for human readers, it extends them to share information
+                in a way that can be read automatically by computers. This
+                enables data from different sources to be connected and
+                queried.</p>
             <p>Tim Berners-Lee, the inventor of the Web and Linked Data
-            initiator, suggested a 5 star deployment scheme for Open Data:
+                initiator, suggested a 5 star deployment scheme for Open Data:
+            </p>
             <ol>
-            <li> make your stuff available on the Web (whatever format)
-            under an open license</li>
-            <li>make it available as structured data (e.g., Excel instead
-            of image scan of a table)</li>
-            <li>use non-proprietary formats (e.g., CSV instead of Excel)</li>
-            <li>use URIs to denote things, so that people can point at
-            your stuff</li>
-            <li>link your data to other data to provide context</li>
-            </ol>   
-        </p>
-        <p>
+                <li> make your stuff available on the Web (whatever format)
+                    under an open license</li>
+                <li>make it available as structured data (e.g., Excel instead
+                    of image scan of a table)</li>
+                <li>use non-proprietary formats (e.g., CSV instead of Excel)</li>
+                <li>use URIs to denote things, so that people can point at
+                    your stuff</li>
+                <li>link your data to other data to provide context</li>
+            </ol>
             <ul>
-            <li>When creating data for project we hardly tried to follow steps 4 and 5 making data as simple as possible that we can reuse each entity.
-            A good example is from user data from chapter 2.4 where it can be seen that the thing user contains uris to other entities. And an expanded view over this
-            type of representation of data can be seen at <a href="https://github.com/Iustin07/wade/blob/users_rdf/people_data.rdf">https://github.com/Iustin07/wade/blob/users_rdf/people_data.rdf</a></li>
-            <li>Using a uniform referencing pattern using '/' in uris.</li>
-            <li>Also use schema.org and FOAF to conect out data to other concepts that's already existing.</li>
-        </ul>
-        </p>
+                <li>When creating data for project we hardly tried to follow steps 4 and 5 making data as simple as
+                    possible that we can reuse each entity.
+                    A good example is from user data from chapter 2.4 where it can be seen that the thing user contains
+                    uris to other entities. And an expanded view over this
+                    type of representation of data can be seen at <a
+                        href="https://github.com/Iustin07/wade/blob/users_rdf/people_data.rdf">https://github.com/Iustin07/wade/blob/users_rdf/people_data.rdf</a>
+                </li>
+                <li>Using a uniform referencing pattern using '/' in uris.</li>
+                <li>Also use schema.org and FOAF to conect out data to other concepts that's already existing.</li>
+            </ul>
+        
         </section>
         <section>
             <h3>7. References</h3>
@@ -683,7 +685,7 @@
                         <span property="schema:familyName">van de Venis</span>
                     </span> &
                     ; published in
-                    <time property="schema:datePublished" datatype="xsd:gYear" datetime="20014">2015</time>
+                    <time property="schema:datePublished" datatype="xsd:gYear" datetime="2015">2015</time>
                     <span property="schema:potentialAction" typeof="schema:ReadAction">
                         <meta property="schema:actionStatus" content="CompletedActionStatus">
                     </span>
@@ -698,15 +700,14 @@
                     </cite>
                 </li>
                 <li typeof="schema:WebPage" role="doc-biblioentry"
-                resource=" https://medium.com/wallscope/creating-linked-data-31c7dd479a9e"
-                property="schema:citation">
-                <cite property="schema:name">
-                    <a
-                        href="https://medium.com/wallscope/creating-linked-data-31c7dd479a9e">
-                        Create linked data</a>
-                </cite>
-            </li>
-               
+                    resource=" https://medium.com/wallscope/creating-linked-data-31c7dd479a9e"
+                    property="schema:citation">
+                    <cite property="schema:name">
+                        <a href="https://medium.com/wallscope/creating-linked-data-31c7dd479a9e">
+                            Create linked data</a>
+                    </cite>
+                </li>
+
                 <li typeof="schema:WebPage" role="doc-biblioentry"
                     resource="https://github.com/rick4470/IEEE-SRS-Tempate#42-system-feature-2-and-so-on"
                     property="schema:citation">
@@ -717,12 +718,6 @@
                 </li>
             </ol>
         </section>
-        </section>
-
     </article>
-
-
-
 </body>
-
 </html>
