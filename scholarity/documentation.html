@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="author" content="co-authored by Curca Andrei, Bodnariu Daniel">
+    <meta property="og:description" content="SORE social recommendation system">
+    <meta property="og:title" content="SORE">
+    <link rel="stylesheet" href="css/stylesheet.css">
+</head>
+
+<body>
+
+    <article>
+        <header>
+            <h1>
+                SORE
+            </h1>
+        </header>
+
+        <div role="contentinfo">
+            <section typeof="sa:AuthorsList">
+                <h2>Authors</h2>
+                <ul>
+                    <li typeof="sa:ContributorRole" property="schema:author">
+                        <span typeof="schema:Person">
+                            <meta property="schema:givenName" content="Andrei">
+                            <meta property="schema:familyName" content="Curca">
+                            <span property="schema:name">Andrei Curca</span>
+                        </span>
+                        <ul>
+                            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                                <a href="mailto:andrei.curca@info.uaic.ro"
+                                    property="schema:email">andrei.curca@info.uaic.ro</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li typeof="sa:ContributorRole" property="schema:author">
+                        <span typeof="schema:Person">
+                            <meta property="schema:givenName" content="Daniel">
+                            <meta property="schema:additionalName" content="Iustin">
+                            <meta property="schema:familyName" content="Bodnariu">
+                            <span property="schema:name">Daniel I. Bodnariu</span>
+                        </span>
+                        <ul>
+                            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                                <a href="mailto:daniel.bodnariu@info.uaic.ro"
+                                    property="schema:email">daniel.bodnariu@student.uaic.ro</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </section>
+        </div>
+        <section typeof="sa:Abstract" role="doc-abstract">
+            <h3>1. Abstract</h3>
+            <p> WADE - Sore is an innovative web application that curates personalized recommendations for users based
+                on a sophisticated analysis of
+                their social media profiles and preferences. It harnesses a knowledge graph to suggest items such as
+                people, events, places, and other
+                entities, tailored to user-defined criteria such as skills, geographic location, technical preferences,
+                and personal interests
+            </p>
+            <span> Keywords: semantic web, rdf, concepts, recommendations, Semantic Distance,Linked Data </span>
+            <section role="doc-introduction">
+                <h3>1. Introduction</h3>
+                <section>
+                    <h4>1.1 Purpose</h4>
+                    <p>Build a system meant to give recommendations based on some attributes collected from user.
+                    </p>
+                </section>
+
+                <section>
+                    <h4>1.2 Document Conventions</h4>
+                    <p>
+                        This Document was created based on the IEEE template for System Requirement
+                        Specification Documents.
+                    </p>
+                </section>
+                <section>
+                    <h4>1.3 Semantic Web and RDF</h4>
+                    <p>The Semantic Web is an extension of the World Wide Web that aims to make web content more
+                    machine-readable and understandable by computers.
+                    It is based on the idea that information on the web should be not only accessible to humans but also
+                    structured and linked in a way that allows computers to understand and process it.
+                    The Semantic Web is an initiative led by the World Wide Web Consortium (W3C), the same organization
+                    that develops web standards.
+                    Key components and principles of the Semantic Web include:</p>
+                    <ul>
+                        <li>
+                            RDF (Resource Description Framework): RDF is a standard for describing resources on
+                            the web and their relationships. It uses triples (subject-predicate-object statements) to
+                            represent data, providing a flexible and extensible way to model information.
+                        </li>
+                        <li>
+                            Ontologies: Ontologies provide a formal way to define relationships and concepts
+                            within a specific domain. They help establish a shared understanding of terms and their
+                            meanings, allowing for more precise and consistent representation of data.
+                        </li>
+                        <li>
+                            Linked Data: The concept of Linked Data involves interconnecting data on the web by
+                            using standardized identifiers (URIs) and RDF triples. This allows information from one
+                            source to be linked to related information in other sources, creating a web of linked and
+                            discoverable data.
+                        </li>
+                        <li>
+                            SPARQL (SPARQL Protocol and RDF Query Language): SPARQL is a query language for
+                            querying RDF data. It enables developers and applications to retrieve specific information
+                            from RDF datasets, supporting powerful queries for extracting knowledge from linked data.
+                        </li>
+                        <li>
+                            Inference: In the Semantic Web, reasoning engines can be used to infer additional
+                            information based on the explicit data and relationships defined in RDF. This helps derive
+                            new knowledge and make connections that might not be immediately apparent.
+                        </li>
+                        <li>
+                            Web Ontology Language (OWL): OWL is a language for defining ontologies on the
+                            Semantic Web. It provides more expressive power than RDF, allowing the creation of complex
+                            relationships and classifications.
+                        </li>
+                    </ul>
+                    <p>The goal of the Semantic Web is to enhance data interoperability,
+                    enable better data integration, and facilitate automated reasoning and decision-making.
+                    It has applications in various domains, including search engines, data integration, knowledge
+                    representation, and the development of intelligent agents.
+                    By providing a standardized framework for representing and linking data, the Semantic Web aims to
+                    transform the web into a more intelligent and interconnected information space.</p>
+                </section>
+                <section>
+                    <h4>Connection between RDF and recommendations systems</h4>
+                    <p>The connection between RDF (Resource Description Framework) and recommendation systems lies in the
+                    ability of RDF to represent structured and linked data,
+                    making it suitable for modeling and capturing the complex relationships between users, items, and
+                    their characteristics. RDF provides a flexible and standardized way to express data
+                    , and this can be leveraged in recommendation systems to enhance the representation of user
+                    preferences, item features, and the connections between them. Here's how RDF is connected to
+                    recommendation systems:</p>
+                    <ol>
+                        <li>
+                            <h5>Representation of User and Item Profiles</h5>
+                            - RDF allows you to represent user profiles and item descriptions using triples. Users,
+                            items, and their attributes can be modeled as resources, and relationships between them can
+                            be expressed as predicates. This enables a more detailed and structured representation of
+                            user preferences and item features compared to traditional approaches.
+                        </li>
+                        <li>
+                            <h5>Capture of Rich Metadata</h5>
+                            - RDF facilitates the inclusion of rich metadata about users and items. Properties, such as
+                            genres, authors, tags, and other relevant attributes, can be linked to users' preferences
+                            and item descriptions. This additional information enhances the understanding of user
+                            preferences and item characteristics, leading to more accurate recommendations.
+                        </li>
+                        <li>
+                            <h5>Modeling User-Item Interactions:</h5>
+                            - Interactions between users and items, such as ratings, likes, or views, can be represented
+                            using RDF triples. This modeling allows for a nuanced and detailed description of user-item
+                            interactions, enabling the system to learn from explicit and implicit feedback.
+                        </li>
+                        <li>
+                            <h5> Incorporation of Contextual Information. </h5>
+                            - RDF is well-suited for incorporating contextual information into recommendation systems.
+                            Contextual factors, such as time, location, and device, can be modeled using RDF triples,
+                            providing a comprehensive view of the circumstances in which user-item interactions occur.
+                        </li>
+                        <li>
+                            <h5>Facilitation of Linked Data and Collaborative Filtering:</h5>
+                            - RDF's ability to support linked data is crucial for collaborative filtering approaches.
+                            Relationships between users and items, as well as connections between items themselves, can
+                            be represented using RDF. This enables collaborative filtering algorithms to identify
+                            patterns and similarities between users and items, contributing to more effective
+                            recommendations.
+                        </li>
+                        <li>
+                            <h5>Integration with External Knowledge Graphs:</h5>
+                            - RDF allows recommendation systems to integrate external knowledge graphs and ontologies.
+                            By connecting user and item data with broader knowledge, the system can benefit from a more
+                            comprehensive understanding of the domain, leading to improved recommendations.
+                        </li>
+                        <li>
+                            <p>Querying and Inference:</p>
+                            - SPARQL queries can be employed to retrieve relevant information from RDF datasets,
+                            facilitating the extraction of user preferences and item features. Inference mechanisms
+                            based on RDF data can be used to derive additional knowledge, enhancing the recommendation
+                            process.
+                        </li>
+                    </ol>
+                    <p>In summary, RDF provides a structured and linked data representation that can be leveraged to model
+                    complex relationships in recommendation systems.
+                    It enables a more detailed and flexible representation of user preferences, item features, and their
+                    interactions, contributing to the development of more accurate and personalized recommendation
+                    algorithms. The use of RDF aligns well with the principles of the Semantic Web and Linked Data,
+                    providing a foundation for building intelligent and interconnected recommendation systems.</p>
+
+                </section>
+                <section>
+                    <h4>1.4 Intended Audience and Reading Suggestions</h4>
+                    <p>
+                        Normal users who wish to use the application for social purposes.
+                    </p>
+                </section>
+
+                <section>
+                    <h4>1.5 Project Related links</h4>
+                    <ol>
+                        <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://github.com/Iustin07/wade"
+                            property="schema:citation">
+                            <cite property="schema:name">
+                                <a href="https://github.com/Iustin07/wade">SORE's Github page</a>
+                            </cite>
+                        </li>
+                        <li typeof="schema:WebPage" role="doc-biblioentry"
+                            resource="https://github.com/users/Iustin07/projects/1" property="schema:citation">
+                            <cite property="schema:name">
+                                <a href="https://github.com/users/Iustin07/projects/1">
+                                    SORE's tracking progress page</a>
+                            </cite>
+                        </li>
+                        <li typeof="schema:WebPage" role="doc-biblioentry"
+                            resource="https://www.figma.com/file/137lUDVi4069zLfZTNIc2X/Figma-basics?type=design&node-id=524%3A32&mode=design&t=a8tHmd4dzBYoF37e-1"
+                            property="schema:citation">
+                            <cite property="schema:name">
+                                <a
+                                    href="https://www.figma.com/file/137lUDVi4069zLfZTNIc2X/Figma-basics?type=design&node-id=524%3A32&mode=design&t=a8tHmd4dzBYoF37e-1">
+                                    SORE's figma design page</a>
+                            </cite>
+                        </li>
+                        <li typeof="schema:WebPage" role="doc-biblioentry"
+                            resource="https://github.com/Iustin07/wade/tree/main/openapi" property="schema:citation">
+                            <cite property="schema:name">
+                                <a href="https://github.com/Iustin07/wade/tree/main/openapi">
+                                    SORE's openapi document</a>
+                            </cite>
+                        </li>
+                        <li typeof="schema:WebPage" role="doc-biblioentry"
+                            resource="https://github.com/rick4470/IEEE-SRS-Tempate#42-system-feature-2-and-so-on"
+                            property="schema:citation">
+                            <cite property="schema:name">
+                                <a href="https://github.com/rick4470/IEEE-SRS-Tempate#42-system-feature-2-and-so-on">IEEE
+                                    Template for System Requirements Specification Documents</a>
+                            </cite>
+                        </li>
+                    </ol>
+                </section>
+
+            </section>
+            <section>
+                <h3>2. Products that use recommendations systems or combination</h3>
+                <h4>2.1 Facebook </h4>
+                
+                <p>Facebook collects extensive data on user behavior, including interactions, likes, comments, shares,
+                    and clicks. This data is crucial for understanding user preferences and interests.
+                    Facebook likely employs content-based filtering, where user preferences are inferred based on the
+                    content they interact with. For example,
+                    the system may analyze the types of posts, articles, videos, and advertisements a user engages with
+                    to understand their interests.[5] </p>
+                <ul>
+                    <li>
+                        Collaborative filtering involves making recommendations based on the preferences of similar
+                        users.
+                        Facebook may use collaborative filtering to recommend content that users with similar interests
+                        have found engaging.
+                        This can be done at the user level (user-to-user collaborative filtering) or at the item level
+                        (content-to-content collaborative filtering).
+                    </li>
+                    <li>
+                        Given the social nature of Facebook, the platform likely leverages the social graph.
+                        Recommendations might be influenced by the activities and preferences of a user's friends or
+                        connections.
+                        If a user's friends engage with certain content, it may be more likely to be recommended to that
+                        user.
+                    </li>
+                    <li>
+                        Facebook's recommendation system is likely dynamic and adjusts in real-time based on user
+                        behavior and changes in preferences.
+                        It may consider recent interactions and trends to provide up-to-date recommendations.
+                        Facebook employs machine learning models to process and analyze the vast amount of data it
+                        collects.
+                        These models can be trained to predict user preferences and generate personalized
+                        recommendations.
+                    </li>
+                    <li> With the increasing diversity of content types on Facebook, including text, images, and videos,
+                        the recommendation system may be designed to handle multi-modal data, providing recommendations
+                        across different content formats.
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3>3. Overall Description</h3>
+                <section role="doc-introduction">
+                    <h4>3.1 Product Description</h4>
+                    <p>
+                        Sore-Modular system able to recommend certain items of interest
+                        (people,places,music,books, hobbies)
+                        according to a given knowledge graph expressed in RDF and automatically built for
+                        a specific user – for example, based on her/his social media profile(s)
+                        – by considering multiple similar features/properties.
+                        For instance, suggesting the members of an IT team based on desired
+                        skills, geographic location (i.e. from Romania and Chile only),
+                        technical preferences (e.g., using free software), background info
+                        (education, occupation history, driving license,other competencies) and so on.
+                        The system should be "smart" enough to improve recommendations based on various methods such
+                        as user feedback, reasoning, and/or machine learning. The recommended items will be
+                        available via a SPARQL endpoint.
+                    </p>
+                </section>
+                <section>
+                    <h4>3.2 Product Approach</h4>
+                    <P> Product approch is based on the paper <a role="doc-biblioref"> Linked Data to build Recommender
+                            Systems[1]</a> by Alexandre Passant.
+                        This paper explores the utilization of Semantic Web technologies, specifically the Linked Open
+                        Data (LOD) project, in the development of a new generation of recommender systems.
+                        Unlike traditional systems using private datasets, the paper demonstrates how LOD, with its
+                        public, collaboratively created, and semantically structured data, facilitates cross-domain
+                        recommendations.
+                        This approach enables the portability of data between systems without altering the
+                        recommendation algorithm's implementation. The contributions include an overview of the LOD
+                        community effort,
+                        evaluation of semantic-distance and collaborative-filtering approaches, a method for assessing
+                        recommendations using existing categorical data, and a reference architecture for cross-domain
+                        recommender
+                        systems using Linked Data.</P>
+                    <p>The paper proposes a content-based recommendation approach using semantic distance algorithms
+                        based on Linked Data principles.
+                        It introduces six Linked Data Distance (LDD) algorithms, including variations such as LDDs,
+                        LDDws, LDDo, LDDwo, LDDc, and LDDwc.
+                        These algorithms compute the distance between entities in the Web of Data, offering a unique
+                        perspective compared to traditional semantic distance approaches.</p>
+                    <p>A use-case is presented where a recommender system is developed using data from DBpedia,
+                        providing recommendations for over 30,000 artists. User evaluations indicate that the LDDwc
+                        algorithm is considered the most accurate.</p>
+                    <p>
+                        Also the document briefly mentions the potential for cross-domain recommendations, highlighting
+                        that the distance algorithms consider relationships between entities, leading to recommendations
+                        that share commonalities with the query URI.
+                    </p>
+                    Taking this article as mani point of reference we'll try to build an app which make recommendations
+                    based on distances between concepts
+
+
+                </section>
+
+
+                <section>
+                    <h4>3.3 Product Functions</h4>
+                    <p>
+                        The web application should give some recommendations based on some data about people,
+                        oraganization in which he works, hobbies, music and movies he likes.
+                        Using the power of web semantics and linked data application should make stronger connections
+                        between people.
+                    </p>
+                    <p>Login page : use OAuth an open standard protocol that provides a secure and standardized way for
+                        third-party applications to obtain limited access to the user's resources, without exposing the
+                        user's credentials.
+                        It is commonly used as a way for users to grant access to their information on one website or
+                        application to another website or application without sharing their credentials, such as
+                        usernames and passwords.</p>
+                    <img src="https://miro.medium.com/max/1400/1*2xfYDB38ZqtXWVrBMmZsmQ.jpeg" alt="login auth arthitecture">
+                    <p>Home page : central point of application where user will receive recommendations</p>
+                    <ul>
+                        <li>
+                            will receive content based on previous data collected
+                        </li>
+                        <li>
+                            he can like or dislike other content
+                        </li>
+                    </ul>
+
+                    <p>first-time-login page: page where user can provide some preferences which will be used for
+                        filling content from home page</p>
+
+                    <ul>
+                        <li>
+                            he can like or dislike some info from: people,books,music,videos/movies options
+                        </li>
+                        <li>
+                            he can give data from an social account like youtube, goodreads, spotify by connecting with
+                            his account
+                        </li>
+                    </ul>
+                    <p>Account page: user cand edit info about him or his prefenrences</p>
+
+                </section>
+                <section>
+                    <h4>4. Product Arhitecture</h4>
+                    Overview over entire arhitecture and component subsystems
+                    <figure typeof="sa:image">
+                        <img src="./images/main_arhitecture.jpg" alt="main_arhitecture">
+                        <figcaption>overall arhitecture</figcaption>
+                    </figure>
+                    One of the flows is described below.
+                    <ul>
+                        <li>User logs into the application</li>
+                        <li>User gives access to data from various providers</li>
+                        <li>User inputs that they search for It professionals with desired skills (e.g., Web
+                            technologies, open hardware) and location preferences (Romania, Chile).</li>
+                        <li>The system uses the RDF knowledge graph to identify potential team members.</li>
+                        <li>Recommendations are provided through the /recommendations endpoint.</li>
+                        <li>Recommendations are displayed in the frontend</li>
+                        <li>User provides feedback (optional)</li>
+                        <li>Feedback is used to refine the search</li>
+                        <li>Outcome: The user receives a curated list of professionals matching the specified criteria
+                        </li>
+                    </ul>
+                    <figure typeof="sa:image">
+                        <img src="./images/flow.png" alt="flow diagram">
+                    </figure>
+                    More flows can be found at <a
+                        href="https://github.com/Iustin07/wade/blob/main/openapi/case-studies-and-usage-examples.md">case-studies-and-usage-examples</a>
+                </section>
+
+                <section>
+                    <h4> Data structure</h4>
+                    <h5>User</h5>
+                    <p>Users rdf data and users have been generated using a python script with the help of rdflib</p>
+                    <figure typeof="sa:image">
+                        <img src="./images/users_data.png" alt="user instance graph">
+                        <figcaption>user instance rdf graph</figcaption>
+                    </figure>
+                    <p>
+                        Example of instance:(incomplete because tag "otherPref" is missing because with that node will
+                        be
+                        linked uris from music, videos, books or other preferences)
+                    </p>    
+                        <xmp>
+
+                            <rdf:Description rdf:about="http://custom.org/Bernardo_Alvarez">
+                                <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+                                <ns1:name>Bernardo_Alvarez</ns1:name>
+                                <ns1:worksFor rdf:resource="http://custom.org/Amazon" />
+                                <ns1:hobby rdf:resource="http://custom.org/hobby/chess" />
+                                <ns1:hobby rdf:resource="http://custom.org/hobby/music" />
+                                <ns2:hasSkill rdf:resource="http://custom.org/skill/python" />
+                                <ns2:studied rdf:resource="http://schema.org/UAIC" />
+                                <ns2:livesIn rdf:resource="http://schema.org/Amsterdam" />
+                            </rdf:Description>
+                        </xmp>
+                        <xmp>
+                            <rdf:Description rdf:about="http://custom.org/skill/java">
+                                <rdf:type rdf:resource="http://custom.org/Skill" />
+                                <ns2:label>java</ns2:label>
+                        </xmp>
+                   
+                    <h5>Music</h5>
+                    <figure typeof="sa:image">
+                        <img src="./images/music_draph.png" alt="music graph">
+                        <figcaption>music instance rdf subgraph</figcaption>
+                    </figure>
+                    From user who links his spotify account we can retrieve his favorite songs in JSON format. Because
+                    of that we'll convert them to rdf format
+                    each instance will follow the model from image above.
+                    <pre> Example:
+                    "Name": "Still Alive",
+                    "Artist": "3 Doors Down",
+                    "Album": "Us And The Night",
+                    "Genres": [
+                        "alternative metal",
+                        "nu metal",
+                        "post-grunge",
+                        "rock"
+                    ]
+                </pre>
+                    <h5>Movies</h5>
+                    From user who links his youtube account we can retrieve watched videos in JSON format. Because of
+                    that we'll convert them to rdf format
+                    each instance wi'll follow the model from image above.
+                    <figure typeof="sa:image">
+                        <img src="./images/music_draph.png" alt="movie  instance graph">
+                        <figcaption>music instance rdf subgraph</figcaption>
+                    </figure>
+                    <pre>
+                        {
+                            "Title": "Can the LAST VIKING revive his DEAD FAITH? - CK3 Asatru Challenge",
+                            "Video ID": "kJ7E0GHBSbM",
+                            "Published At": "2022-10-15T17:18:35Z",
+                            "Tags": [
+                                "crusader kings 3 gameplay",
+                                "crusader kings 3 guide",
+                                "ck3 guide",
+                                "crusader kings 3 challenge",
+                                "ck3 broken",
+                                "crusader kings 3 intrigue",
+                                "ck3 strategy",
+                                "ck3 reviving dead religion",
+                                "ck3 asatru",
+                                "ck3 asatru 1066",
+                            ],
+                            "Description": "In the 1066 start date, there are not that many Vikings left in the world! Asatru has lost 
+                            almost all of It's power to the mighty cross! But ONE Last Viking remains! Erik the Heathen still has a chance
+                             to reclaim the Kingdom of Sweden, and bring back the DEAD FAITH to life! So join me in this Crusader Kings 3
+                              adventure to bring Odin back into the world in this CK3 Asatru Challenge!\n\nIn this video, Koifish will attempt
+                               to re-take all of Sweden from the Catholic Crusader Kings, and reform the once dead religion into a new, powerful
+                                and mighty one! I will be using all the tips and tricks and strategies that I went over in my Lifestyle guide series,
+                                 mainly focusing on Martial and Learning! I'm also playing with all the current DLC, Including Northern Lords, Royal Court 
+                                 and Fate of Iberia!"
+                        },
+                </pre>
+                    More data about movies will be added in the knowledge graph using a web scrrapper for imdb and to
+                    extract same features.
+                    <h5>Books</h5>
+                    <figure typeof="sa:image">
+                        <img src="./images/book.png" alt="book graph">
+                        <figcaption>book instance rdf subgraph</figcaption>
+                    </figure>
+                    <pre>
+                        {
+                            "Title": "The Forensic Laboratory Handbook",
+                            "Authors": [
+                                "Ashraf Mozayani",
+                                "Carla Noziglia"
+                            ],
+                            "Description": "A comprehensive and easy-to-read introduction to the work of the modern forensic laboratory.
+                             The authors explain in simple language the capabilities and limitations of modern forensic laboratory procedures,
+                              techniques, analyses, and ...",
+                            "Categories": [
+                                "Medical"
+                            ]
+                        },
+                    </pre>
+                    More data about books will be added in the knowledge graph by using a web scrrapper on elefant.ro.
+                </section>
+                <section>
+                    <h4>2.4 Operating Environment</h4>
+                    <p>
+                        The developed product can be used on any device with a connection to the Internet and a browser
+                        installed.
+                    </p>
+                </section>
+
+                <section>
+                    <h4>2.5 Implementation tools used</h4>
+                    <p>
+                        SORE will be developed in React for user interface and python for backend tasks connected to
+                        postgresql database for storing data about users, and RDF Graph for linked data.
+                    </p>
+                </section>
+
+            </section>
+
+            <article>
+                <h3>5. External Interface Requirements</h3>
+
+                <section>
+                    <h4>5.1 User Interfaces</h4>
+
+                    <figure typeof="sa:image">
+                        <figcaption>SORE's Login page</figcaption>
+                        <img src="./images/login.png" alt="login page screenshot">
+                    </figure>
+
+                    <figure typeof="sa:image">
+                        <figcaption>SORE's user page</figcaption>
+                        <img src="./images/account.png" alt="account page screenshot">
+                    </figure>
+
+                    <figure typeof="sa:image">
+                        <figcaption>Sore's first time login page</figcaption>
+                        <img src="./images/first-time.png" alt="ft screenshot">
+                    </figure>
+                    <figure typeof="sa:image">
+                        <figcaption>Sore's first time choose some points of interest</figcaption>
+                        <img src="./images/ft-people.png" alt="ft screenshot">
+                    </figure>
+                    <figure typeof="sa:image">
+                        <figcaption>SORE's Home page</figcaption>
+                        <img src="./images/home.png" alt="main page screenshot">
+                    </figure>
+                </section>
+
+                <section>
+                    <h4>5.2 Software Interfaces</h4>
+                    <p>
+                        The minimum software requirements of Sore are a working browser and connection to the
+                        Internet.
+                    </p>
+                </section>
+
+            </article>
+        </section>
+        <section>
+            <h3>6. Product and linked data principles </h3>
+            <p>In computing, linked data (often capitalized as Linked Data)
+                describes a method of publishing structured data so that it can
+                be interlinked and become more useful through semantic
+                queries. It builds upon standard Web technologies such as
+                HTTP, RDF and URIs, but rather than using them to serve web
+                pages for human readers, it extends them to share information
+                in a way that can be read automatically by computers. This
+                enables data from different sources to be connected and
+                queried.</p>
+            <p>Tim Berners-Lee, the inventor of the Web and Linked Data
+                initiator, suggested a 5 star deployment scheme for Open Data:
+            </p>
+            <ol>
+                <li> make your stuff available on the Web (whatever format)
+                    under an open license</li>
+                <li>make it available as structured data (e.g., Excel instead
+                    of image scan of a table)</li>
+                <li>use non-proprietary formats (e.g., CSV instead of Excel)</li>
+                <li>use URIs to denote things, so that people can point at
+                    your stuff</li>
+                <li>link your data to other data to provide context</li>
+            </ol>
+            <ul>
+                <li>When creating data for project we hardly tried to follow steps 4 and 5 making data as simple as
+                    possible that we can reuse each entity.
+                    A good example is from user data from chapter 2.4 where it can be seen that the thing user contains
+                    uris to other entities. And an expanded view over this
+                    type of representation of data can be seen at <a
+                        href="https://github.com/Iustin07/wade/blob/users_rdf/people_data.rdf">https://github.com/Iustin07/wade/blob/users_rdf/people_data.rdf</a>
+                </li>
+                <li>Using a uniform referencing pattern using '/' in uris.</li>
+                <li>Also use schema.org and FOAF to conect out data to other concepts that's already existing.</li>
+            </ul>
+        
+        </section>
+        <section>
+            <h3>7. References</h3>
+            <ol>
+                <li id="ref-NYT" typeof="schema:ScholarlyArticle" role="doc-biblioentry"
+                    resource="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=14d9484229322975ce4c5e7365735cf5de608f27"
+                    property="schema:citation">
+                    <cite property="schema:name">
+                        <a
+                            href="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=14d9484229322975ce4c5e7365735cf5de608f27">Using
+                            Linked Data to build Recommender Systems</a>
+                    </cite>
+                    by <span property="schema:author" typeof="schema:Person">
+                        <span property="schema:givenName">Alexandre</span>
+                        <span property="schema:familyName">Passant</span>
+                    </span> &
+                    <span property="schema:author" typeof="schema:Person">
+                        <span property="schema:givenName">Benjamin</span>
+                        <span property="schema:familyName">Heitmann</span>
+                    </span>&
+                    <span property="schema:author" typeof="schema:Person">
+                        <span property="schema:givenName">Conor</span>
+                        <span property="schema:familyName">Hayes</span>
+                    </span>
+                    ; published in
+                    <time property="schema:datePublished" datatype="xsd:gYear" datetime="2009">2009</time>
+                    <span property="schema:potentialAction" typeof="schema:ReadAction">
+                        <meta property="schema:actionStatus" content="CompletedActionStatus">
+                    </span>
+                </li>
+                <li typeof="schema:ScholarlyArticle" role="doc-biblioentry"
+                    resource="https://link.springer.com/chapter/10.1007/978-3-642-02121-3_24"
+                    property="schema:citation">
+                    <cite property="schema:name">
+                        <a href="https://link.springer.com/chapter/10.1007/978-3-642-02121-3_24">Representing, Querying
+                            and Transforming Social Networks with RDF/SPARQL</a>
+                    </cite>
+                    by <span property="schema:author" typeof="schema:Person">
+                        <span property="schema:givenName">Mauro</span>
+                        <span property="schema:familyName">San Martin</span>
+                    </span> &
+                    <span property="schema:author" typeof="schema:Person">
+                        <span property="schema:givenName">Claudio</span>
+                        <span property="schema:familyName">Guttierez</span>
+                    </span>
+                    ; published in
+                    <time property="schema:datePublished" datatype="xsd:gYear" datetime="2009">2009</time>
+                    <span property="schema:potentialAction" typeof="schema:ReadAction">
+                        <meta property="schema:actionStatus" content="CompletedActionStatus">
+                    </span>
+                </li>
+                <li typeof="schema:WebPage" role="doc-biblioentry"
+                    resource="https://link.springer.com/chapter/10.1007/978-3-642-02121-3_24"
+                    property="schema:citation">
+                    <cite property="schema:name">
+                        <a href="https://link.springer.com/chapter/10.1007/978-3-642-02121-3_24"> RDF Graph Embeddings
+                            for Content-based Recommender Systems</a>
+                    </cite>
+                </li>
+                <li typeof="schema:WebPage" role="doc-biblioentry"
+                    resource="http://essay.utwente.nl/67977/2/Thesis%20%281%29.pdf" property="schema:citation">
+                    <cite property="schema:name">
+                        <a href="http://essay.utwente.nl/67977/2/Thesis%20%281%29.pdf">Recommendations using DBpedia</a>
+                    </cite>
+                    by <span property="schema:author" typeof="schema:Person">
+                        <span property="schema:givenName">Anne</span>
+                        <span property="schema:familyName">van de Venis</span>
+                    </span> &
+                    ; published in
+                    <time property="schema:datePublished" datatype="xsd:gYear" datetime="2015">2015</time>
+                    <span property="schema:potentialAction" typeof="schema:ReadAction">
+                        <meta property="schema:actionStatus" content="CompletedActionStatus">
+                    </span>
+                </li>
+                <li typeof="schema:WebPage" role="doc-biblioentry"
+                    resource="https://medium.com/analytics-vidhya/facebook-recommendation-system-case-study-8dfc3ff5ddcc"
+                    property="schema:citation">
+                    <cite property="schema:name">
+                        <a
+                            href="https://medium.com/analytics-vidhya/facebook-recommendation-system-case-study-8dfc3ff5ddcc">
+                            Facebook recommendation system case study</a>
+                    </cite>
+                </li>
+                <li typeof="schema:WebPage" role="doc-biblioentry"
+                    resource=" https://medium.com/wallscope/creating-linked-data-31c7dd479a9e"
+                    property="schema:citation">
+                    <cite property="schema:name">
+                        <a href="https://medium.com/wallscope/creating-linked-data-31c7dd479a9e">
+                            Create linked data</a>
+                    </cite>
+                </li>
+
+                <li typeof="schema:WebPage" role="doc-biblioentry"
+                    resource="https://github.com/rick4470/IEEE-SRS-Tempate#42-system-feature-2-and-so-on"
+                    property="schema:citation">
+                    <cite property="schema:name">
+                        <a href="https://github.com/rick4470/IEEE-SRS-Tempate#42-system-feature-2-and-so-on">IEEE
+                            Template for System Requirements Specification Documents</a>
+                    </cite>
+                </li>
+            </ol>
+        </section>
+    </article>
+</body>
+</html>

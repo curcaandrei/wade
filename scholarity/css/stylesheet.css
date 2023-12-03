@@ -1,0 +1,13 @@
+html{
+    margin: 0;
+}
+body{
+    margin: 1em;
+}
+img{
+    width: 40%;
+}
+p,li{
+    text-align: justify;
+    margin: 1em;
+}
