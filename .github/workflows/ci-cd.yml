@@ -23,14 +23,14 @@ jobs:
 
       - name: Install dependencies and deploy
         run: |
-          # Loop through each service folder, except "api-samples," and install dependencies and deploy
+          # Use full paths to the cloudbuild.yaml file
           for service_folder in Backend/*; do
             if [ -d "$service_folder" ] && [ "$(basename "$service_folder")" != "api-samples" ]; then
               service_name=$(basename "$service_folder")
               pip install -r "$service_folder/requirements.txt"
               cd "$service_folder"
               gcloud config set project diesel-nova-412314
-              gcloud builds submit --config "Backend/${service_name}/cloudbuild.yaml"
-              cd ../../
+              gcloud builds submit --config "$GITHUB_WORKSPACE/Backend/${service_name}/cloudbuild.yaml"
+              cd "$GITHUB_WORKSPACE"
             fi
           done
