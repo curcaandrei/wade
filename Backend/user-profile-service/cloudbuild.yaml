@@ -3,5 +3,5 @@ steps:
     args:
       - 'app'
       - 'deploy'
-      - 'user-profile-service.yaml
+      - 'user-profile-service.yaml'
     timeout: '1600s'

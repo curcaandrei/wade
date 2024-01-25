@@ -3,5 +3,5 @@ steps:
     args:
       - 'app'
       - 'deploy'
-      - 'recommendation-service.yaml
+      - 'recommendation-service.yaml'
     timeout: '1600s'

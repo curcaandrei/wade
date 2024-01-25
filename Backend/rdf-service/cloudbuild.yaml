@@ -3,5 +3,5 @@ steps:
     args:
       - 'app'
       - 'deploy'
-      - 'rdf-service.yaml
+      - 'rdf-service.yaml'
     timeout: '1600s'
