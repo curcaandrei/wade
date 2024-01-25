@@ -30,7 +30,7 @@ jobs:
               pip install -r "$service_folder/requirements.txt"
               cd "$service_folder"
               gcloud config set project diesel-nova-412314
-              gcloud builds submit --config "${service_name}/cloudbuild.yaml"
+              gcloud builds submit --config "Backend/${service_name}/cloudbuild.yaml"
               cd ../../
             fi
           done
