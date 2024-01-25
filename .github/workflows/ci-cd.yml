@@ -26,8 +26,8 @@ jobs:
           # Use full paths to the cloudbuild.yaml file
           gcloud auth activate-service-account --key-file=Backend/diesel-nova-412314-f081f0198711.json
           gcloud config set project diesel-nova-412314
-          gcloud auth list
-          
+          gcloud config set account diesel-nova-412314@appspot.gserviceaccount.com
+
           for service_folder in Backend/*; do
             if [ -d "$service_folder" ] && [ "$(basename "$service_folder")" != "api-samples" ]; then
               service_name=$(basename "$service_folder")
