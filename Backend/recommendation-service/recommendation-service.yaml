@@ -1,0 +1,10 @@
+runtime: python39
+entrypoint: python3 main.py
+service: rdf-service
+automaticScaling:
+  targetUtilization: 0.65
+handlers:
+- url: /.*
+  script: auto
+env_variables:
+  DEBUG: False
