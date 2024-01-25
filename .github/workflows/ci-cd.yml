@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies and deploy
         run: |
           # Use full paths to the cloudbuild.yaml file
-          gcloud auth activate-service-account --key-file=Backend/diesel-nova-412314-3b3e4086a236.json
+          gcloud auth activate-service-account --key-file=Backend/diesel-nova-412314-f081f0198711.json
           gcloud config set project diesel-nova-412314
           
           for service_folder in Backend/*; do
