@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "diesel-nova-412314",
+  "private_key_id": "d17590d6066e77b117d07e61b6c83a9d24131f16",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/BraVRK5GLe45\ncVg+wQdsVfFSX7J4y4tVMN2q58aIMQWltmf3cHW5Dqt9JN4DjmkupbsUk6qUW8to\ntnKBE+bqYv34xczIaQW55Nme1MDS70O01Zsntiep8GNN9O0zQcF76+w4dJGKvuob\nAXEt/AGYchGMXl2D4Nv/fi5npJ1UQ94+PDL1fPJxyhWKiuMlsp9tslVno3SEqP7X\nUlUhbdP1s0rOdrWob0Mrx2CuyHBBTOKSEBGecJjQJRDg5QgdSmHIEUpnc4mLrsfd\n0hxpr3egoTyND7mHZQqE1cIK9v02QS/szkPHf+FQ2xoCT3aqRPld61hTmhyGNAgi\nf6twhvKxAgMBAAECggEAA694gdA78F53IGIV0rmMuTiHZVT8rT3c7Xwniz2ruH4l\n6iMUvMVER5lnP6hOZTpiLgstb1rNQpbYW9W2tQp0gYJaM6p1j4GO6tSct8tKNzeZ\nBLMFmB24ltKjbPkR1cGTDLqJ91dMG/fW5MXYYrBEzOWrWTd4/+bjSx5YRhCNJqVA\n+vDWDfOdZSt7NvYwoBrcuiJv+iJW8RIAA5gEieUX92YeHPXgrRInojMe6yz18MF4\n0roF5pjQYWqrNNpnHvWDBZ85BkQRw99vJBLTKBZZzWxk+9g/Ci4GvrgGdWmtYr1V\nraT0DjyMx0R4nR8tllxGxtkgpk/h+TSS9p6GkWjy7QKBgQD033699vi4PHhyG31m\nlzcrYPe5fGZjROxdKHNvqguROYwCWnFEpc2Q+0fEmCqZhJUA5nRb5dZI9rUUkRkc\nMhFZKoyyQcGpI5P/anqwBAoHJA6kBm+GLjO8i46UD1iWtkOnZWX0bT9gk5IhbCDu\n3kSGVzSeZ0solAhyI4YRhRIplQKBgQDHtNdF0Y5NYppXQITGCytYiybdJInEFykw\nN23tmr7lgcKnVIR96eKYs1uCmqLZHaG7O78aA0jjTRZ0fKZyyn1vjtrAUzs1jJpH\nFgDMvUUzyq2wA7KZFuZOHozFb08wa+a+SAl6XEM0Szc4onzbo9qPVQfb2yZdfm9v\nxuwdFtE1rQKBgFbVilRC6CAtEWklZmqi5OV1FWOpQYWiQ08lsQm/+yochhGvkMsP\nIL5w3RpR+4lFArG3BzwvXLWzBrOsYIMnHg/IjuwHdW1NOIYydB9Gz2eI2chAn/ut\nFpudwYmvh3KqX4NU6bqrovXUXtWLSoJqP1KEShyB9J0HIZeYEUrVLYOhAoGANwoC\nIn3kqDM6sj1X2nUNlzOSnHQLe/2eHmnIZCm33uzqRs+mTEV/a/JSkCYqJ4hhIIcQ\n3gx1tB90xtnrzcs80tgeNc86jEGZ62mHAuZPAj0jrVT3jfWft3v39Bn/SysRxvN3\nmT+AThNEvtkZbDc2bzZSGifF5RKJh9bdEA9PzWkCgYEAhM8nWDSrtbXI3buAlVnL\nAzKVoLsf2gCJnRsxjniQ0Lt0aXlsu+0jfc/hVktGrXsSYv+gsPRQtK4vCDb8OjvC\nhQkWkcn9FzFQi5hCe5kVEilZGcwjL4jGqJs0PRSxxKQSGc/1JCWWLVNd26Xv6SKy\nEqK+6Al/8aMHvF/FffQY9Mo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "githubactions@diesel-nova-412314.iam.gserviceaccount.com",
+  "client_id": "113439554949744227224",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/githubactions%40diesel-nova-412314.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
