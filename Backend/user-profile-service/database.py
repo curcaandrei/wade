@@ -42,7 +42,7 @@ with pool.connect() as db_conn:
     insert_stmt = sqlalchemy.text(
         "INSERT INTO my_table (id, title) VALUES (:id, :title)"
     )
-    db_conn.execute(insert_stmt, parameters={"id": "book1", "title": "Book One"})
+    db_conn.execute(insert_stmt, parameters={"id": "book3", "title": "Book 3"})
 
     # Query database
     result = db_conn.execute(sqlalchemy.text("SELECT * FROM my_table")).fetchall()
