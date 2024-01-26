@@ -1,8 +1,7 @@
 runtime: python39
-entrypoint: python3 main.py
 service: rdf
 handlers:
 - url: /.*
-  script: auto
+  script: main.app
 env_variables:
   DEBUG: False
