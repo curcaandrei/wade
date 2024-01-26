@@ -4,4 +4,5 @@ steps:
       - 'app'
       - 'deploy'
       - 'rdf-service.yaml'
+      - '--quiet'
     timeout: '1600s'
