@@ -39,6 +39,6 @@ jobs:
 
       - name: Deploy all services
         run: |
-          gcloud app deploy Backend/rdf-service/cloudbuild.yaml Backend/recommendation-service/cloudbuild.yaml Backend/user-profile-service/cloudbuild.yaml --quiet
+          gcloud app deploy Backend/rdf-service/rdf-service.yaml Backend/recommendation-service/recommendation-service.yaml Backend/user-profile-service/user-profile-service.yaml --quiet
 
 
