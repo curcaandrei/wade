@@ -32,36 +32,21 @@ jobs:
 
       - name: Install dependencies
         run: |
-          for service_folder in Backend/*; do
-            if [ -d "$service_folder" ] && [ "$(basename "$service_folder")" != "api-samples" ]; then
-              pip install -r "$service_folder/requirements.txt"
-            fi
-          done
+              pip install -r "Backend/recommendation-service/requirements.txt"
 
       - name: Run Unit Tests
         run: |
-          for service_folder in Backend/*; do
-            if [ -d "$service_folder/test" ]; then
-              service_name=$(basename "$service_folder")
+              service_name="recommendation-service"
               report_dir="test-reports/$service_name"
               mkdir -p "$report_dir"
               echo "Running tests in $service_folder"
-              python -m xmlrunner discover -s "$service_folder/test" -o "$report_dir" -v
-            fi
-          done
+              python -m xmlrunner discover -s "Backend/$service_folder/test" -o "$report_dir" -v
 
       - name: Upload Test Reports
         uses: actions/upload-artifact@v2
         with:
           name: Test Reports
           path: test-reports
-
-      - name: Publish Unit Test Results for RDF Service
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        with:
-          files: test-reports/rdf-service/*.xml
-          check_name: RDF Service Test Results
-          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish Unit Test Results for RECOMMENDATION Service
         uses: EnricoMi/publish-unit-test-result-action@v1
@@ -70,14 +55,7 @@ jobs:
           check_name: Recommendation Service Test Results
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish Unit Test Results for User Profile Service
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        with:
-          files: test-reports/user-profile-service/*.xml
-          check_name: User Profile Service Test Results
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Deploy all services
+      - name: Deploy Recommendation Service
         if: contains(github.event.head_commit.message, '-deploy')
         run: |
           gcloud app deploy Backend/recommendation-service/recommendation-service.yaml --quiet
