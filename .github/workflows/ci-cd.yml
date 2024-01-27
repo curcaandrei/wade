@@ -49,9 +49,6 @@ jobs:
             fi
           done
 
-      - name: Parse and Display Test Results
-        run: python Backend/parse_test_results.py
-
       - name: Upload Test Reports
         uses: actions/upload-artifact@v2
         with:
