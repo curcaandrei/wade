@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - '*'
-permissions:
-  contents: read
-  checks: write
+
 jobs:
   build-and-deploy:
+    permissions: write-all
+    
     runs-on: ubuntu-latest
 
     steps:
