@@ -8,7 +8,7 @@ on:
 jobs:
   build-and-deploy:
     permissions: write-all
-    
+
     runs-on: ubuntu-latest
 
     steps:
@@ -41,8 +41,11 @@ jobs:
         run: |
           for service_folder in Backend/*; do
             if [ -d "$service_folder/test" ]; then
+              service_name=$(basename "$service_folder")
+              report_dir="test-reports/$service_name"
+              mkdir -p "$report_dir"
               echo "Running tests in $service_folder"
-              python -m xmlrunner discover -s "$service_folder/test" -o test-reports
+              python -m xmlrunner discover -s "$service_folder/test" -o "$report_dir"
             fi
           done
 
@@ -52,11 +55,22 @@ jobs:
           name: Test Reports
           path: test-reports
 
-      - name: Publish Unit Test Results
+      - name: Publish Unit Test Results for RDF Service
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
-          files: test-reports/*.xml
-          check_name: Unit Tests
+          files: test-reports/rdf-service/*.xml
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Unit Test Results for RECOMMENDATION Service
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: test-reports/recommendation-service/*.xml
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Unit Test Results for User Profile Service
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: test-reports/user-profile-service/*.xml
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy all services
