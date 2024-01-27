@@ -45,7 +45,7 @@ jobs:
               report_dir="test-reports/$service_name"
               mkdir -p "$report_dir"
               echo "Running tests in $service_folder"
-              python -m xmlrunner discover -s "$service_folder/test" -o "$report_dir"
+              python -m xmlrunner discover -s "$service_folder/test" -o "$report_dir" -v
             fi
           done
 
