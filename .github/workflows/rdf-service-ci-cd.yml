@@ -1,0 +1,86 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - '*'
+    paths:
+      - 'Backend/rdf-service/**'
+
+jobs:
+  build-and-deploy:
+    permissions: write-all
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Set up GCP Credentials
+        if: contains(github.event.head_commit.message, '-deploy')
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        run: |
+          echo "$GCP_SA_KEY" > gcp-key.json
+          gcloud auth activate-service-account --key-file=gcp-key.json
+          gcloud config set project diesel-nova-412314
+
+      - name: Install dependencies
+        run: |
+          for service_folder in Backend/*; do
+            if [ -d "$service_folder" ] && [ "$(basename "$service_folder")" != "api-samples" ]; then
+              pip install -r "$service_folder/requirements.txt"
+            fi
+          done
+
+      - name: Run Unit Tests
+        run: |
+          for service_folder in Backend/*; do
+            if [ -d "$service_folder/test" ]; then
+              service_name=$(basename "$service_folder")
+              report_dir="test-reports/$service_name"
+              mkdir -p "$report_dir"
+              echo "Running tests in $service_folder"
+              python -m xmlrunner discover -s "$service_folder/test" -o "$report_dir" -v
+            fi
+          done
+
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test Reports
+          path: test-reports
+
+      - name: Publish Unit Test Results for RDF Service
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: test-reports/rdf-service/*.xml
+          check_name: RDF Service Test Results
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Unit Test Results for RECOMMENDATION Service
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: test-reports/recommendation-service/*.xml
+          check_name: Recommendation Service Test Results
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Unit Test Results for User Profile Service
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: test-reports/user-profile-service/*.xml
+          check_name: User Profile Service Test Results
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy all services
+        if: contains(github.event.head_commit.message, '-deploy')
+        run: |
+          gcloud app deploy Backend/rdf-service/rdf-service.yaml --quiet
+
+
