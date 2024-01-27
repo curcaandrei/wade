@@ -40,7 +40,7 @@ jobs:
           for service_folder in Backend/*; do
             if [ -d "$service_folder/test" ]; then
               echo "Running tests in $service_folder"
-              python -m unittest discover -s "$service_folder/test" -v
+              python -m xmlrunner discover -s "$service_folder/test" -o test-reports
             fi
           done
 
@@ -49,6 +49,9 @@ jobs:
         with:
           name: Test Reports
           path: test-reports
+
+      - name: List Test Reports
+        run: ls -R test-reports
 
       - name: Deploy all services
         if: contains(github.event.head_commit.message, '-deploy')
