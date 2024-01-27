@@ -59,18 +59,21 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: test-reports/rdf-service/*.xml
+          check_name: RDF Service Test Results
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish Unit Test Results for RECOMMENDATION Service
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: test-reports/recommendation-service/*.xml
+          check_name: Recommendation Service Test Results
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish Unit Test Results for User Profile Service
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: test-reports/user-profile-service/*.xml
+          check_name: User Profile Service Test Results
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy all services
