@@ -83,7 +83,7 @@ def google_books_callback():
 def youtube_callback():
     code = request.args.get('code')
     youtubeflow.fetch_token(code=code)
-    credentials = flow.credentials
+    credentials = youtubeflow.credentials
     return youtube.fetch_data(credentials)
 
 # Routes for Spotify OAuth
