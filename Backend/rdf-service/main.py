@@ -2,7 +2,7 @@ from flask import Flask, request, redirect
 import google_auth_oauthlib.flow
 from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
-from src import books, spotify
+from src import books, spotify, youtube
 from google.cloud import secretmanager
 import tempfile
 
@@ -33,6 +33,11 @@ def access_secret_version(project_id, secret_id, version_id="latest"):
 GOOGLE_BOOKS_REDIRECT_URI = access_secret_version(project_id, "GOOGLE_BOOKS_REDIRECT_URI")
 GOOGLE_BOOKS_SCOPES = ['https://www.googleapis.com/auth/books']
 
+YOUTUBE_BOOKS_REDIRECT_UI = access_secret_version(project_id, "YOUTUBE_REDIRECT_URI")
+YOUTUBE_SCOPES = [
+    "https://www.googleapis.com/auth/youtube.readonly",
+]
+
 google_client_secrets_content = access_secret_version(project_id, "GOOGLE_CLIENT_SECRETS")
 with tempfile.NamedTemporaryFile(mode='w+', delete=False) as temp_file:
     temp_file.write(google_client_secrets_content)
@@ -45,6 +50,12 @@ flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
 )
 flow.redirect_uri = GOOGLE_BOOKS_REDIRECT_URI
 
+youtubeflow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+    temp_file_path,
+    scopes=YOUTUBE_SCOPES,
+    redirect_uri=YOUTUBE_BOOKS_REDIRECT_UI
+)
+youtubeflow.redirect_uri = YOUTUBE_BOOKS_REDIRECT_UI
 
 SPOTIFY_CLIENT_ID = access_secret_version(project_id, "SPOTIFY_CLIENT_ID")
 SPOTIFY_CLIENT_SECRET = access_secret_version(project_id, "SPOTIFY_CLIENT_SECRET")
@@ -67,6 +78,14 @@ def google_books_callback():
     credentials = flow.credentials
     return books.fetch_data(credentials)
 
+# Routes for Google Books OAuth
+@app.route('/callback/youtube')
+def youtube_callback():
+    code = request.args.get('code')
+    youtubeflow.fetch_token(code=code)
+    credentials = flow.credentials
+    return youtube.fetch_data(credentials)
+
 # Routes for Spotify OAuth
 @app.route('/callback/spotify')
 def spotify_callback():
@@ -83,6 +102,11 @@ def get_spotify_data():
 @app.route('/books')
 def get_books_data():
     auth_url, _ = flow.authorization_url(prompt='consent')
+    return redirect(auth_url)
+
+@app.route('/youtube')
+def home():
+    auth_url, _ = youtubeflow.authorization_url(prompt='consent')
     return redirect(auth_url)
 
 if __name__ == '__main__':
