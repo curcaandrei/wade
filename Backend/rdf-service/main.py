@@ -20,7 +20,7 @@ def access_secret_version(project_id, secret_id, version_id="latest"):
     :param project_id: Google Cloud project ID
     :param secret_id: ID of the secret to access
     :param version_id: version of the secret; defaults to "latest"
-    :return: secret payload as a string
+    :return: secret payload as a string 
     """
     client = secretmanager.SecretManagerServiceClient()
 
