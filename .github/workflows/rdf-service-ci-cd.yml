@@ -20,10 +20,6 @@ jobs:
       GOOGLE_CLIENT_SECRETS: ${{ secrets.GOOGLE_CLIENT_SECRETS }}
 
     steps:
-      - name: Create Google Client Secrets file
-        if: contains(github.event.head_commit.message, '-deploy')
-        run: |
-          echo "$GOOGLE_CLIENT_SECRETS" > Backend/rdf-service/google_client_secrets.json
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -40,6 +36,11 @@ jobs:
           echo "$GCP_SA_KEY" > gcp-key.json
           gcloud auth activate-service-account --key-file=gcp-key.json
           gcloud config set project diesel-nova-412314
+
+      - name: Create Google Client Secrets file
+        if: contains(github.event.head_commit.message, '-deploy')
+        run: |
+          echo "$GOOGLE_CLIENT_SECRETS" > Backend/rdf-service/google_client_secrets.json
 
       - name: Install dependencies
         run: |
