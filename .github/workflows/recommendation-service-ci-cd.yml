@@ -1,0 +1,62 @@
+name: CI/CD for Recommendation
+
+on:
+  push:
+    branches:
+      - '*'
+    paths:
+      - 'Backend/recommendation-service/**'
+jobs:
+  build-and-deploy:
+    permissions: write-all
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Set up GCP Credentials
+        if: contains(github.event.head_commit.message, '-deploy')
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        run: |
+          echo "$GCP_SA_KEY" > gcp-key.json
+          gcloud auth activate-service-account --key-file=gcp-key.json
+          gcloud config set project diesel-nova-412314
+
+      - name: Install dependencies
+        run: |
+              pip install -r "Backend/recommendation-service/requirements.txt"
+
+      - name: Run Unit Tests
+        run: |
+              report_dir="test-reports/recommendation-service"
+              mkdir -p "$report_dir"
+              echo "Running tests in recommendation-service"
+              python -m xmlrunner discover -s "Backend/recommendation-service/test" -o "$report_dir" -v
+
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test Reports
+          path: test-reports
+
+      - name: Publish Unit Test Results for RECOMMENDATION Service
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: test-reports/recommendation-service/*.xml
+          check_name: Recommendation Service Test Results
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy Recommendation Service
+        if: contains(github.event.head_commit.message, '-deploy')
+        run: |
+          gcloud app deploy Backend/recommendation-service/recommendation-service.yaml --quiet
+
+
