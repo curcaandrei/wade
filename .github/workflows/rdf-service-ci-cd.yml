@@ -23,7 +23,8 @@ jobs:
       - name: Create Google Client Secrets file
         if: contains(github.event.head_commit.message, '-deploy')
         run: |
-          touch Backend/rdf-service/google_client_secrets.json
+          current_directory=$(pwd)
+          echo "Current directory is: $current_directory"
           echo "$GOOGLE_CLIENT_SECRETS" > Backend/rdf-service/google_client_secrets.json
       - name: Checkout code
         uses: actions/checkout@v2
