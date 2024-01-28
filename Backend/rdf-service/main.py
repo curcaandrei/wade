@@ -4,26 +4,52 @@ from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
 from src import books, spotify
 import os
+from google.cloud import secretmanager
+import tempfile
 
 load_dotenv()
 
 app = Flask(__name__)
 
+project_id = "diesel-nova-412314"
 
-GOOGLE_BOOKS_REDIRECT_URI = os.getenv('GOOGLE_BOOKS_REDIRECT_URI')
+def access_secret_version(project_id, secret_id, version_id="latest"):
+    """
+    Accesses the payload of the given secret version if it exists.
+
+    :param project_id: Google Cloud project ID
+    :param secret_id: ID of the secret to access
+    :param version_id: version of the secret; defaults to "latest"
+    :return: secret payload as a string
+    """
+    client = secretmanager.SecretManagerServiceClient()
+
+    name = f"projects/{project_id}/secrets/{secret_id}/versions/{version_id}"
+    response = client.access_secret_version(request={"name": name})
+
+    # Return the decoded payload of the secret
+    return response.payload.data.decode("UTF-8")
+
+
+GOOGLE_BOOKS_REDIRECT_URI = access_secret_version(project_id, "GOOGLE_BOOKS_REDIRECT_URI")
 GOOGLE_BOOKS_SCOPES = ['https://www.googleapis.com/auth/books']
 
+google_client_secrets_content = access_secret_version(project_id, "GOOGLE_CLIENT_SECRETS")
+with tempfile.NamedTemporaryFile(mode='w+', delete=False) as temp_file:
+    temp_file.write(google_client_secrets_content)
+    temp_file_path = temp_file.name
+
 flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-    "google_client_secrets.json",
+    temp_file_path,
     scopes=GOOGLE_BOOKS_SCOPES,
     redirect_uri=GOOGLE_BOOKS_REDIRECT_URI
 )
 flow.redirect_uri = GOOGLE_BOOKS_REDIRECT_URI
 
 
-SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
-SPOTIFY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
-SPOTIFY_REDIRECT_URI = os.getenv('SPOTIFY_REDIRECT_URI')
+SPOTIFY_CLIENT_ID = access_secret_version(project_id, "SPOTIFY_CLIENT_ID")
+SPOTIFY_CLIENT_SECRET = access_secret_version(project_id, "SPOTIFY_CLIENT_SECRET")
+SPOTIFY_REDIRECT_URI = access_secret_version(project_id, "SPOTIFY_REDIRECT_URI")
 SPOTIFY_SCOPE = "user-library-read user-top-read user-read-recently-played"
 
 sp_oauth = SpotifyOAuth(
