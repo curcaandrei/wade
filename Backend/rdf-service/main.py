@@ -3,7 +3,6 @@ import google_auth_oauthlib.flow
 from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
 from src import books, spotify
-import os
 from google.cloud import secretmanager
 import tempfile
 
