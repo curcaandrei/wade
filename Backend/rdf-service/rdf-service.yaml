@@ -5,7 +5,3 @@ handlers:
   script: main.app
 env_variables:
   DEBUG: False
-  GOOGLE_BOOKS_REDIRECT_URI: "https://rdf-dot-diesel-nova-412314.ew.r.appspot.com/callback/googlebooks"
-  SPOTIFY_CLIENT_ID: "6951101918594570860fe2de6005f310"
-  SPOTIFY_CLIENT_SECRET: "f2318408d1f14176a8f21f3dde60ebcd"
-  SPOTIFY_REDIRECT_URI: "https://rdf-dot-diesel-nova-412314.ew.r.appspot.com/callback/spotify"
