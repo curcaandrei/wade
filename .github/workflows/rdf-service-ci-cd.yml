@@ -25,6 +25,7 @@ jobs:
         run: |
           current_directory=$(pwd)
           echo "Current directory is: $current_directory"
+          ls -a
           echo "$GOOGLE_CLIENT_SECRETS" > Backend/rdf-service/google_client_secrets.json
       - name: Checkout code
         uses: actions/checkout@v2
