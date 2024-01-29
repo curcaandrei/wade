@@ -78,8 +78,8 @@ REDDIT_REDIRECT_URI = access_secret_version(project_id, "REDDIT_REDIRECT_URI")
 
 reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
                      client_secret=REDDIT_CLIENT_SECRET,
-                     redirect_uri=REDDIT_USER_AGENT,
-                     user_agent=REDDIT_REDIRECT_URI)
+                     redirect_uri=REDDIT_REDIRECT_URI,
+                     user_agent=REDDIT_USER_AGENT)
 
 
 # Routes for Google Books OAuth
@@ -106,7 +106,7 @@ def spotify_callback():
     return spotify.fetch_data(token_info)
 
 @app.route('/callback/reddit')
-def callback():
+def reddit_callback():
     code = request.args.get('code')
     reddit.auth.authorize(code)
 
@@ -137,12 +137,12 @@ def get_books_data():
     return redirect(auth_url)
 
 @app.route('/youtube')
-def home():
+def get_youtube_data():
     auth_url, _ = youtubeflow.authorization_url(prompt='consent')
     return redirect(auth_url)
 
 @app.route('/reddit')
-def home():
+def get_reddit_data():
     scope = ['mysubreddits', 'read']
     auth_url = reddit.auth.url(scopes=scope, state='...', duration='permanent')
     return redirect(auth_url)
