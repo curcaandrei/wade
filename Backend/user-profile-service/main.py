@@ -1,104 +1,85 @@
+import tempfile
 import praw
 from flask import Flask, request, redirect
 import google_auth_oauthlib.flow
 from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
-from src import books, spotify, youtube
 from google.cloud import secretmanager
-import tempfile
+from src import books, spotify, youtube
 
+# Load environment variables
 load_dotenv()
 
+# Flask application
 app = Flask(__name__)
 
-project_id = "diesel-nova-412314"
+# Constants
+PROJECT_ID = "diesel-nova-412314"
+SCOPES = {
+    'google_books': ['https://www.googleapis.com/auth/books'],
+    'youtube': ["https://www.googleapis.com/auth/youtube.readonly"],
+    'spotify': "user-library-read user-top-read user-read-recently-played",
+    'reddit': ['mysubreddits', 'read']
+}
 
-def access_secret_version(project_id, secret_id, version_id="latest"):
+# Initialize secret manager client
+secret_client = secretmanager.SecretManagerServiceClient()
+
+def access_secret_version(secret_id, version_id="latest"):
     """
     Accesses the payload of the given secret version if it exists.
-
-    :param project_id: Google Cloud project ID
-    :param secret_id: ID of the secret to access
-    :param version_id: version of the secret; defaults to "latest"
-    :return: secret payload as a string
     """
-    client = secretmanager.SecretManagerServiceClient()
-
-    name = f"projects/{project_id}/secrets/{secret_id}/versions/{version_id}"
-    response = client.access_secret_version(request={"name": name})
-
-    # Return the decoded payload of the secret
+    name = f"projects/{PROJECT_ID}/secrets/{secret_id}/versions/{version_id}"
+    response = secret_client.access_secret_version(request={"name": name})
     return response.payload.data.decode("UTF-8")
 
+# Initialize OAuth flows
+def init_google_flow(scopes, redirect_uri_key):
+    client_secrets_content = access_secret_version("GOOGLE_CLIENT_SECRETS")
+    with tempfile.NamedTemporaryFile(mode='w+', delete=False) as temp_file:
+        temp_file.write(client_secrets_content)
+        temp_file_path = temp_file.name
 
-GOOGLE_BOOKS_REDIRECT_URI = access_secret_version(project_id, "GOOGLE_BOOKS_REDIRECT_URI")
-GOOGLE_BOOKS_SCOPES = ['https://www.googleapis.com/auth/books']
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+        temp_file_path,
+        scopes=scopes,
+        redirect_uri=access_secret_version(redirect_uri_key)
+    )
+    return flow
 
-YOUTUBE_BOOKS_REDIRECT_UI = access_secret_version(project_id, "YOUTUBE_REDIRECT_URI")
-YOUTUBE_SCOPES = [
-    "https://www.googleapis.com/auth/youtube.readonly",
-]
-
-google_client_secrets_content = access_secret_version(project_id, "GOOGLE_CLIENT_SECRETS")
-with tempfile.NamedTemporaryFile(mode='w+', delete=False) as temp_file:
-    temp_file.write(google_client_secrets_content)
-    temp_file_path = temp_file.name
-
-flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-    temp_file_path,
-    scopes=GOOGLE_BOOKS_SCOPES,
-    redirect_uri=GOOGLE_BOOKS_REDIRECT_URI
-)
-flow.redirect_uri = GOOGLE_BOOKS_REDIRECT_URI
-
-youtubeflow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-    temp_file_path,
-    scopes=YOUTUBE_SCOPES,
-    redirect_uri=YOUTUBE_BOOKS_REDIRECT_UI
-)
-youtubeflow.redirect_uri = YOUTUBE_BOOKS_REDIRECT_UI
-
-SPOTIFY_CLIENT_ID = access_secret_version(project_id, "SPOTIFY_CLIENT_ID")
-SPOTIFY_CLIENT_SECRET = access_secret_version(project_id, "SPOTIFY_CLIENT_SECRET")
-SPOTIFY_REDIRECT_URI = access_secret_version(project_id, "SPOTIFY_REDIRECT_URI")
-SPOTIFY_SCOPE = "user-library-read user-top-read user-read-recently-played"
+flow_google_books = init_google_flow(SCOPES['google_books'], "GOOGLE_BOOKS_REDIRECT_URI")
+flow_youtube = init_google_flow(SCOPES['youtube'], "YOUTUBE_REDIRECT_URI")
 
 sp_oauth = SpotifyOAuth(
-    client_id=SPOTIFY_CLIENT_ID,
-    client_secret=SPOTIFY_CLIENT_SECRET,
-    redirect_uri=SPOTIFY_REDIRECT_URI,
-    scope=SPOTIFY_SCOPE,
+    client_id=access_secret_version("SPOTIFY_CLIENT_ID"),
+    client_secret=access_secret_version("SPOTIFY_CLIENT_SECRET"),
+    redirect_uri=access_secret_version("SPOTIFY_REDIRECT_URI"),
+    scope=SCOPES['spotify'],
     show_dialog=True
 )
 
-REDDIT_CLIENT_ID = access_secret_version(project_id, "REDDIT_ID")
-REDDIT_CLIENT_SECRET = access_secret_version(project_id, "REDDIT_SECRET")
-REDDIT_USER_AGENT = access_secret_version(project_id, "REDDIT_USER_AGENT")
-REDDIT_REDIRECT_URI = access_secret_version(project_id, "REDDIT_REDIRECT_URI")
+reddit = praw.Reddit(
+    client_id=access_secret_version("REDDIT_ID"),
+    client_secret=access_secret_version("REDDIT_SECRET"),
+    redirect_uri=access_secret_version("REDDIT_REDIRECT_URI"),
+    user_agent=access_secret_version("REDDIT_USER_AGENT")
+)
 
-reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
-                     client_secret=REDDIT_CLIENT_SECRET,
-                     redirect_uri=REDDIT_REDIRECT_URI,
-                     user_agent=REDDIT_USER_AGENT)
-
-
-# Routes for Google Books OAuth
+# Routes for each service
 @app.route('/callback/googlebooks')
 def google_books_callback():
     code = request.args.get('code')
-    flow.fetch_token(code=code)
-    credentials = flow.credentials
+    flow_google_books.fetch_token(code=code)
+    credentials = flow_google_books.credentials
     return books.fetch_data(credentials)
 
-# Routes for Google Books OAuth
 @app.route('/callback/youtube')
 def youtube_callback():
     code = request.args.get('code')
-    youtubeflow.fetch_token(code=code)
-    credentials = youtubeflow.credentials
+    flow_youtube.fetch_token(code=code)
+    credentials = flow_youtube.credentials
     return youtube.fetch_data(credentials)
 
-# Routes for Spotify OAuth
 @app.route('/callback/spotify')
 def spotify_callback():
     code = request.args.get('code')
@@ -125,7 +106,6 @@ def reddit_callback():
     }
     return user_data
 
-# Data fetching routes
 @app.route('/spotify')
 def get_spotify_data():
     auth_url = sp_oauth.get_authorize_url()
@@ -133,20 +113,18 @@ def get_spotify_data():
 
 @app.route('/books')
 def get_books_data():
-    auth_url, _ = flow.authorization_url(prompt='consent')
+    auth_url, _ = flow_google_books.authorization_url(prompt='consent')
     return redirect(auth_url)
 
 @app.route('/youtube')
 def get_youtube_data():
-    auth_url, _ = youtubeflow.authorization_url(prompt='consent')
+    auth_url, _ = flow_youtube.authorization_url(prompt='consent')
     return redirect(auth_url)
 
 @app.route('/reddit')
 def get_reddit_data():
-    scope = ['mysubreddits', 'read']
-    auth_url = reddit.auth.url(scopes=scope, state='...', duration='permanent')
+    auth_url = reddit.auth.url(scopes=SCOPES['reddit'], state='...', duration='permanent')
     return redirect(auth_url)
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

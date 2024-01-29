@@ -2,11 +2,10 @@ import pymysql
 from google.cloud.sql.connector import Connector
 import sqlalchemy
 
-# Configure your database connection here
 username = 'root'
 password = 'tZch0?6sG4Cr7>8='
 database_name = 'wadedatabase'
-instance_connection_name = 'diesel-nova-412314:europe-west3:wadeuserprofile'  # usually in the format: project:region:instance
+instance_connection_name = 'diesel-nova-412314:europe-west3:wadeuserprofile'
 
 connector = Connector()
 
