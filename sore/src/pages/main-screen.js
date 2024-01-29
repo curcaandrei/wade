@@ -2,6 +2,8 @@ import React from 'react';
 import AccountLogo from '../images/account.png';
 import '../css/first-time.css';
 import '../css/main-screen.css';
+import LikeBtn from '../images/like-btn.png';
+import Dislike from '../images/dislike.png';
 const MainScreen = () => {
 
     return (
@@ -21,7 +23,15 @@ const MainScreen = () => {
 
                 <section className='info-container'>
                     <div className='info-card purple-back'>
-                        <p>asfasfasf</p>
+                      <p className='card-content'>
+                        sadsdas
+                      </p>
+                      <div className='buttons'>
+                    
+                            <img src={LikeBtn} alt="liuked button"/>
+                            <img src={Dislike} alt="dislike button"/>
+                            
+                      </div>
                     </div>
                 </section>
             </div>

@@ -6,10 +6,14 @@ import MusicLogo from '../images/music_yeloow.png';
 import MovieLogo from '../images/movie_yellow.png';
 import AccountLogo from '../images/account.png';
 import PersonModal from './modal-component/main-modal';
+import YoutubeLogo from '../images/youtube_transp.png'
+import GoodReadsLogo from '../images/png-transparent-goodreads.png';
+import SpotifyLogo from '../images/Spotify_logo_without_text.svg.png';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 const FirstTimeScreen = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const navigate = useNavigate();
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -17,9 +21,13 @@ const FirstTimeScreen = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+  const navigateMain=()=>{
+    navigate('/main');
+  }
   return (
     <div className="second-screen">
       <div className="top-logo">
+      <button type="submit" className='done-btn' onClick={navigateMain}>Next</button>
         <a href="/my-account">
           <img src={AccountLogo} alt="Logo" />
         </a>
@@ -32,18 +40,29 @@ const FirstTimeScreen = () => {
         <p className="handwritten-text">Or find something that’s interesting to you</p>
         <div className="grid">
           <button className="grid-box" onClick={handleOpenModal}>
-            <img src={PeopleLogo} alt="Logo 1" />
+            <img src={PeopleLogo} alt="Logo people" />
           </button>
           <div className="grid-box">
-            <img src={BookLogo} alt="Logo 2" />
+            <img src={BookLogo} alt="Logo books" />
           </div>
           <div className="grid-box">
-            <img src={MovieLogo} alt="Logo 3" />
+            <img src={MovieLogo} alt="Logo movie" />
           </div>
           <div className="grid-box">
-            <img src={MusicLogo} alt="Logo 4" />
+            <img src={MusicLogo} alt="Logo music" />
           </div>
           <PersonModal isOpen={isModalOpen} onClose={handleCloseModal} />
+        </div>
+        <div className="grid top-space">
+          <div className="grid-box">
+            <img src={YoutubeLogo} alt="Logo youtube" />
+          </div>
+          <div className="grid-box">
+            <img src={GoodReadsLogo} alt="Logo goodreads" />
+          </div>
+          <div className="grid-box">
+            <img src={SpotifyLogo} alt="Logo spotify" />
+          </div>
         </div>
       </div>
     </div>

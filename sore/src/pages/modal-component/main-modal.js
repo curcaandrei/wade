@@ -2,10 +2,42 @@ import React, { useState, useEffect } from 'react';
 import '../../css/modal.css';
 import ModalCard from './modal-card';
 const PersonModal = ({ isOpen, onClose }) => {
+  const [skills, setSkills] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [companies, setCompanies] = useState([]);
   const [persons, setPersons] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const personsPerPage=5;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch skills
+        const skillsResponse = await fetch('http://localhost:5000/users/skills');
+        const skillsData = await skillsResponse.json();
+        setSkills(skillsData);
+
+        // Fetch cities
+        const citiesResponse = await fetch('http://localhost:5000/users/cities');
+        const citiesData = await citiesResponse.json();
+        setCities(citiesData);
+
+        // Fetch companies
+        const companiesResponse = await fetch('http://localhost:5000/users/companies');
+        const companiesData = await companiesResponse.json();
+        setCompanies(companiesData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+
+
   useEffect(() => {
     const fetchPersons = async () => {
       try {
@@ -40,9 +72,28 @@ const PersonModal = ({ isOpen, onClose }) => {
   return (
     <div className={`modal ${isOpen ? 'open' : ''}`}>
       <div className="modal-content">
+        <div className='closeHeader'>
         <button className="close-button" onClick={onClose}>
           Close
         </button>
+        </div>
+        <div className='modal-header'>
+       {[
+            { label: "Skills", options: skills },
+            { label: "Cities", options: cities },
+            { label: "Companies", options: companies }
+          ].map((dropdown, index) => (
+            <select key={index} className="dropdown">
+              <option value="">{`Select ${dropdown.label}`}</option>
+              {dropdown.options.map((object, indexobj) => (
+                <option key={indexobj} value={object.id}>{object.name}</option>
+              ))}
+            </select>
+          ))}
+          <button>
+            Search
+          </button>
+        </div>
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -57,6 +108,7 @@ const PersonModal = ({ isOpen, onClose }) => {
           </button>
           <span>{currentPage}</span>
           <button onClick={handleNextPage}>Next</button>
+
         </div>
       </div>
     </div>

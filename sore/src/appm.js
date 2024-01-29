@@ -11,9 +11,9 @@ const App = () => {
     <Router>
     <Routes>
       <Route path="/" element={<HomeScreen />} />
-      <Route path="/first-time-login" element={<FirstTimeScreen />} />
-      <Route path="/my-account" element={<MyAccount/>} />
-      <Route path='/main' element={<MainScreen/>}/>
+      <Route path="/first-time-login" element={<FirstTimeScreen />} exact/>
+      <Route path="/my-account" element={<MyAccount/>} exact/>
+      <Route path='/main' element={<MainScreen/>} exact/>
     </Routes>
     </Router>
   );

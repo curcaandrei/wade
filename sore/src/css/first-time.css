@@ -3,9 +3,9 @@
 .second-screen {
   
     background-color: #13141D;
-    height: 100vh; /* Ensure it takes up 100% of the viewport height */
+     height: 100vh; 
     color: wheat;
-    margin: 0; /* Reset any default margin */
+    margin: 0; 
     padding: 0;
    
   }
@@ -25,7 +25,7 @@ width: 100%;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100%;
+
   }
   
   h1 {
@@ -45,7 +45,7 @@ width: 100%;
   .handwritten-text {
     font-family: 'URW Chancery L, cursive'; 
     font-size: 18px;
-    margin-top: 10%;
+    margin-top: 5%;
 
   }
   
@@ -72,4 +72,14 @@ width: 100%;
   
   .grid-box img {
     max-width: 100px; 
+  }
+  .top-space{
+    margin-top: 2%;
+  }
+  button{
+    font-size: 20px;
+    background-color: #282935;
+    color:wheat;
+    height: 100%;
+    margin-top: 1%;
   }

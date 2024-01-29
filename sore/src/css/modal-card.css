@@ -1,6 +1,6 @@
 .rotative-card {
     width: 150px;
-    height: 200px;
+    height: 260px;
     margin: 10px;
     background-color: purple;
     position: relative;
@@ -21,17 +21,44 @@
     backface-visibility: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     padding: 10px;
     border: 1px solid #888;
     border-radius: 8px;
     box-sizing: border-box;
   }
-  .card-front >img{
-    height: 100px;
-    width: 70px;
+  .card-front-picture{
+    display: flex;
+    justify-content: center;
+  }
+  .card-front > .card-front-picture >img{
+    height: 35%px;
+    width: 50%;
   }
   .card-back {
     transform: rotateY(-180deg);
+  }
+  .card-front-content >p{
+    margin: 0;
+    font-size: 14px;
+  }
+  .card-front > .card-front-buttons{
+ 
+    margin-top: 10%;
+   display: flex;
+   flex-direction: row;
+   width: 100%;
+   justify-content: space-around;
+
+  }
+  .card-front> .card-front-buttons > button> img{
+    height: 100%;
+    width: 100%;
+  }
+  .card-front> .card-front-buttons > button{
+    background-color: rgb(60, 4, 60);
+    height: 70%;
+    width: 80%;
+    margin-right: 5%;
+    transform: none !important;
   }
