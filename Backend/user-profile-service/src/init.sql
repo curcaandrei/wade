@@ -3,7 +3,7 @@ USE users;
 
 
 CREATE TABLE users_data (
-    user_id integer  NOT NULL ,
+    user_id  varchar(30)  NOT NULL ,
     user_name VARCHAR(50),
     email varchar(150),
   locale VARCHAR(50),
@@ -18,8 +18,8 @@ CREATE TABLE users_data (
 INSERT INTO users_data
   (user_id, user_name, email, locale,city,company)
 VALUES
-  (1, 'Johnny','johhnydeep23@gmail.com','ro','Iasi','Profi'),
-  (2, 'Johnny2','johhnydeep234@gmail.com','bg','Iasi','Lidl');
+  ('1', 'Johnny','johhnydeep23@gmail.com','ro','Iasi','Profi'),
+  ('2', 'Johnny2','johhnydeep234@gmail.com','bg','Iasi','Lidl');
 
 CREATE TABLE skills (
     id integer  NOT NULL AUTO_INCREMENT,

@@ -81,14 +81,14 @@ def add_user(data):
         connection = get_db_connection()
         if connection:
             cursor = connection.cursor()
-            user_id=data.get('user_id')
-            user_name = data.get('user_name')
+            user_id=data.get('id')
+            user_name = data.get('name')
             email = data.get('email')
             locale = data.get('locale')
             city = data.get('city')
             company = data.get('company')
             is_known = True
-
+            print(user_id)
             # Inserting data into the database
             cursor.execute("INSERT INTO users_data (user_id,user_name, email, locale, city, company, isKnown) VALUES (%s,%s, %s, %s, %s, %s, %s)",
                            (user_id,user_name, email, locale, city, company, is_known))
@@ -108,7 +108,8 @@ def check_user(data):
         connection = get_db_connection()
         if connection:
             data = data
-            user_id=data.get('user_id')
+            print(data)
+            user_id=data.get('id')
             cursor = connection.cursor(dictionary=True)
             cursor.execute("SELECT isKnown FROM users_data WHERE user_id = %s ", (user_id,))
             user = cursor.fetchone()
