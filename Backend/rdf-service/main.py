@@ -1,3 +1,4 @@
+import praw
 from flask import Flask, request, redirect
 import google_auth_oauthlib.flow
 from spotipy.oauth2 import SpotifyOAuth
@@ -70,6 +71,17 @@ sp_oauth = SpotifyOAuth(
     show_dialog=True
 )
 
+REDDIT_CLIENT_ID = access_secret_version(project_id, "REDDIT_ID")
+REDDIT_CLIENT_SECRET = access_secret_version(project_id, "REDDIT_SECRET")
+REDDIT_USER_AGENT = access_secret_version(project_id, "REDDIT_USER_AGENT")
+REDDIT_REDIRECT_URI = access_secret_version(project_id, "REDDIT_REDIRECT_URI")
+
+reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
+                     client_secret=REDDIT_CLIENT_SECRET,
+                     redirect_uri=REDDIT_USER_AGENT,
+                     user_agent=REDDIT_REDIRECT_URI)
+
+
 # Routes for Google Books OAuth
 @app.route('/callback/googlebooks')
 def google_books_callback():
@@ -93,6 +105,26 @@ def spotify_callback():
     token_info = sp_oauth.get_access_token(code)
     return spotify.fetch_data(token_info)
 
+@app.route('/callback/reddit')
+def callback():
+    code = request.args.get('code')
+    reddit.auth.authorize(code)
+
+    subscribed_subreddits = []
+    for subreddit in reddit.user.subreddits(limit=None):
+        subreddit_info = {
+            'name': subreddit.display_name,
+            'description': subreddit.public_description,
+            'subscribers': subreddit.subscribers,
+            'top_posts': [{'title': post.title, 'url': post.url} for post in subreddit.top(limit=10)]
+        }
+        subscribed_subreddits.append(subreddit_info)
+
+    user_data = {
+        'subscribed_subreddits': subscribed_subreddits
+    }
+    return user_data
+
 # Data fetching routes
 @app.route('/spotify')
 def get_spotify_data():
@@ -108,6 +140,13 @@ def get_books_data():
 def home():
     auth_url, _ = youtubeflow.authorization_url(prompt='consent')
     return redirect(auth_url)
+
+@app.route('/reddit')
+def home():
+    scope = ['mysubreddits', 'read']
+    auth_url = reddit.auth.url(scopes=scope, state='...', duration='permanent')
+    return redirect(auth_url)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
