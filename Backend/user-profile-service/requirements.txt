@@ -8,3 +8,6 @@ google-api-python-client==2.36.0
 python-dotenv==0.19.2
 google-cloud-secret-manager==2.7.0
 praw==7.7.1
+pymysql==1.0.2
+sqlalchemy==1.4.27
+google-cloud-sql-connector==0.2.0

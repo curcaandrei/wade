@@ -1,3 +1,4 @@
+import json
 import tempfile
 import praw
 from flask import Flask, request, redirect
@@ -5,7 +6,7 @@ import google_auth_oauthlib.flow
 from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
 from google.cloud import secretmanager
-from src import books, spotify, youtube
+from src import books, spotify, youtube, database
 
 # Load environment variables
 load_dotenv()
@@ -66,28 +67,34 @@ reddit = praw.Reddit(
 )
 
 # Routes for each service
-@app.route('/callback/googlebooks')
-def google_books_callback():
+@app.route('/callback/googlebooks/<user_id>')
+def google_books_callback(user_id):
     code = request.args.get('code')
     flow_google_books.fetch_token(code=code)
     credentials = flow_google_books.credentials
-    return books.fetch_data(credentials)
+    data = books.fetch_data(credentials)
+    database.save_api_data("books", user_id, json.dumps(data))
+    return data
 
-@app.route('/callback/youtube')
-def youtube_callback():
+@app.route('/callback/youtube/<user_id>')
+def youtube_callback(user_id):
     code = request.args.get('code')
     flow_youtube.fetch_token(code=code)
     credentials = flow_youtube.credentials
-    return youtube.fetch_data(credentials)
+    data = youtube.fetch_data(credentials)
+    database.save_api_data("youtube", user_id, json.dumps(data))
+    return data
 
-@app.route('/callback/spotify')
-def spotify_callback():
+@app.route('/callback/spotify/<user_id>')
+def spotify_callback(user_id):
     code = request.args.get('code')
     token_info = sp_oauth.get_access_token(code)
-    return spotify.fetch_data(token_info)
+    data = spotify.fetch_data(token_info)
+    database.save_api_data("spotify", user_id, json.dumps(data))
+    return data
 
-@app.route('/callback/reddit')
-def reddit_callback():
+@app.route('/callback/reddit/<user_id>')
+def reddit_callback(user_id):
     code = request.args.get('code')
     reddit.auth.authorize(code)
 
@@ -101,29 +108,37 @@ def reddit_callback():
         }
         subscribed_subreddits.append(subreddit_info)
 
-    user_data = {
+    data = {
         'subscribed_subreddits': subscribed_subreddits
     }
-    return user_data
+    database.save_api_data("reddit", user_id, json.dumps(data))
+    return data
 
 @app.route('/spotify')
 def get_spotify_data():
+    user_id = request.args.get('user_id')
     auth_url = sp_oauth.get_authorize_url()
-    return redirect(auth_url)
+    auth_url_with_user_id = f"{auth_url}&state={user_id}"
+    return redirect(auth_url_with_user_id)
 
 @app.route('/books')
 def get_books_data():
+    user_id = request.args.get('user_id')
     auth_url, _ = flow_google_books.authorization_url(prompt='consent')
-    return redirect(auth_url)
+    auth_url_with_user_id = f"{auth_url}&state={user_id}"
+    return redirect(auth_url_with_user_id)
 
 @app.route('/youtube')
 def get_youtube_data():
+    user_id = request.args.get('user_id')
     auth_url, _ = flow_youtube.authorization_url(prompt='consent')
-    return redirect(auth_url)
+    auth_url_with_user_id = f"{auth_url}&state={user_id}"
+    return redirect(auth_url_with_user_id)
 
 @app.route('/reddit')
 def get_reddit_data():
-    auth_url = reddit.auth.url(scopes=SCOPES['reddit'], state='...', duration='permanent')
+    user_id = request.args.get('user_id')
+    auth_url = reddit.auth.url(scopes=SCOPES['reddit'], state=user_id, duration='permanent')  # Pass user_id as state
     return redirect(auth_url)
 
 if __name__ == '__main__':
