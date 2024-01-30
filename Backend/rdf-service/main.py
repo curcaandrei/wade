@@ -24,9 +24,9 @@ def execute_sparql_query(query):
 
     output = []
     for result in results["results"]["bindings"]:
-        output.append({var: binding[var]["value"] for var in binding})
+        output.append({var: result[var]["value"] for var in result})
 
     return {"results": output}
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(port=5001)

@@ -7,16 +7,7 @@ app = Flask(__name__)
 def get_recommendations():
     data = request.json
 
-    # Example:
-    # {
-    #     "user_id": "12345",
-    #     "preferences": {
-    #         "genre": "science fiction",
-    #         "author": "Isaac Asimov"
-    #     }
-    # }
-
-    # Here, form your SPARQL query based on the received data
+    # Form the SPARQL query based on the received data
     sparql_query = form_sparql_query(data)
 
     # Communicate with RDF Service
@@ -27,12 +18,20 @@ def get_recommendations():
     return jsonify(processed_data)
 
 def form_sparql_query(data):
-    # Implement logic here to form the SPARQL query based on the data
-    # Example: "SELECT * WHERE { ?s ?p ?o . FILTER(?o = '" + data['filter'] + "') }"
-    return "Your SPARQL Query"
+    # Example SPARQL query formation based on user preferences
+    genre = data.get("preferences", {}).get("genre", "")
+    author = data.get("preferences", {}).get("author", "")
+    query = f"""
+        PREFIX ex: <http://example.org/>
+        SELECT ?book
+        WHERE {{
+            ?book ex:genre "{genre}" ;
+                  ex:author "{author}" .
+        }}
+    """
+    return query
 
 def process_rdf_data(data):
-    # Implement logic here to process the RDF data
     return data
 
 if __name__ == '__main__':
