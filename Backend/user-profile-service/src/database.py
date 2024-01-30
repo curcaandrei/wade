@@ -31,11 +31,16 @@ pool = sqlalchemy.create_engine("mysql+pymysql://", creator=getconn)
 
 def save_api_data(table_name, user_id, data):
     """
-    Saves the API data to the specified table in the database.
+    Saves or updates the API data in the specified table in the database.
     """
-    insert_stmt = sqlalchemy.text(
-        f"INSERT INTO {table_name} (id, data) VALUES (:id, :data)"
+    query = sqlalchemy.text(
+        f"""
+        INSERT INTO {table_name} (id, data)
+        VALUES (:id, :data)
+        ON DUPLICATE KEY UPDATE
+        data = VALUES(data)
+        """
     )
     with pool.connect() as conn:
-        conn.execute(insert_stmt, {"id": user_id, "data": data})
+        conn.execute(query, {"id": user_id, "data": data})
         conn.commit()
