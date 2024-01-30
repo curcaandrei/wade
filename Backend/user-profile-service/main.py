@@ -71,7 +71,7 @@ app.secret_key = access_secret_version("APP_SECRET")
 # Routes for each service
 @app.route('/callback/googlebooks')
 def google_books_callback():
-    user_id = session.get('user_id')
+    user_id = request.args.get('state')
     code = request.args.get('code')
     flow_google_books.fetch_token(code=code)
     credentials = flow_google_books.credentials
@@ -81,7 +81,7 @@ def google_books_callback():
 
 @app.route('/callback/youtube')
 def youtube_callback():
-    user_id = session.get('user_id')
+    user_id = request.args.get('state')
     code = request.args.get('code')
     flow_youtube.fetch_token(code=code)
     credentials = flow_youtube.credentials
@@ -91,7 +91,7 @@ def youtube_callback():
 
 @app.route('/callback/spotify')
 def spotify_callback():
-    user_id = session.get('user_id')
+    user_id = request.args.get('state')
     code = request.args.get('code')
     token_info = sp_oauth.get_access_token(code)
     data = spotify.fetch_data(token_info)
@@ -100,7 +100,7 @@ def spotify_callback():
 
 @app.route('/callback/reddit')
 def reddit_callback():
-    user_id = session.get('user_id')
+    user_id = request.args.get('state')
     code = request.args.get('code')
     reddit.auth.authorize(code)
 
@@ -123,28 +123,24 @@ def reddit_callback():
 @app.route('/spotify')
 def get_spotify_data():
     user_id = request.args.get('user_id')
-    session['user_id'] = user_id
-    auth_url = sp_oauth.get_authorize_url()
+    auth_url = sp_oauth.get_authorize_url(state=user_id)
     return redirect(auth_url)
 
 @app.route('/books')
 def get_books_data():
     user_id = request.args.get('user_id')
-    session['user_id'] = user_id
-    auth_url, _ = flow_google_books.authorization_url(prompt='consent')
+    auth_url, _ = flow_google_books.authorization_url(prompt='consent', state=user_id)
     return redirect(auth_url)
 
 @app.route('/youtube')
 def get_youtube_data():
     user_id = request.args.get('user_id')
-    session['user_id'] = user_id
-    auth_url, _ = flow_youtube.authorization_url(prompt='consent')
+    auth_url, _ = flow_youtube.authorization_url(prompt='consent', state=user_id)
     return redirect(auth_url)
 
 @app.route('/reddit')
 def get_reddit_data():
     user_id = request.args.get('user_id')
-    session['user_id'] = user_id
     auth_url = reddit.auth.url(scopes=SCOPES['reddit'], state=user_id, duration='permanent')
     return redirect(auth_url)
 
