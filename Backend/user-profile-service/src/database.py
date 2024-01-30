@@ -43,4 +43,3 @@ def save_api_data(table_name, user_id, data):
     )
     with pool.connect() as conn:
         conn.execute(query, {"id": user_id, "data": data})
-        conn.commit()
