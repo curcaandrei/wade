@@ -3,7 +3,7 @@ USE users;
 
 
 CREATE TABLE users_data (
-    user_id  varchar(30)  NOT NULL ,
+    user_id  varchar(50)  NOT NULL ,
     user_name VARCHAR(50),
     email varchar(150),
   locale VARCHAR(50),
@@ -55,3 +55,47 @@ VALUES
   ('Apple'),
     ('Microsoft'),
   ('Profi');
+
+create table books(
+book_id integer not null,
+title varchar(500),
+average_rating float,
+image_url varchar(350),
+primary key(book_id)
+
+);
+
+create table authors(
+author_id integer not null,
+name varchar(150),
+primary key(author_id)
+);
+
+create table user_book_interaction(
+id BIGINT not null AUTO_INCREMENT,
+user_id varchar(50) ,
+book_id integer,
+rating double,
+primary key(id),
+FOREIGN KEY (user_id) REFERENCES users_data(user_id),
+FOREIGN KEY (book_id) REFERENCES books(book_id)
+);
+
+
+create table similar_books(
+id BIGINT not null AUTO_INCREMENT,
+book_id integer,
+similar_book_id integer,
+primary key(id),
+FOREIGN KEY (book_id) REFERENCES books(book_id),
+FOREIGN KEY (similar_book_id) REFERENCES books(book_id)
+);
+
+create table book_author(
+id BIGINT not null AUTO_INCREMENT,
+book_id integer,
+author_id integer,
+primary key(id),
+FOREIGN KEY (book_id) REFERENCES books(book_id),
+FOREIGN KEY (author_id) REFERENCES authors(author_id)
+);
