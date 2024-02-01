@@ -94,6 +94,27 @@ def insert_similar_books(connection, similar_books_data):
         print("Similar books data inserted successfully")
     except Error as e:
         print("Error inserting data into similar_books table:", e)
+def insert_user(connection, users_data):
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SET FOREIGN_KEY_CHECKS = 0;")
+        for user in users_data:
+            cursor.execute("INSERT INTO users_data (user_id,user_name,email,locale,city,company,isKnown) "
+                           "VALUES (%s, %s, %s,%s,%s,%s,%s)",
+                           (user["user_id"],
+                            user["user_name"],
+                            user["email"],
+                            user["locale"],
+                            user["city"],
+                            user["company"],
+                            user["isKnown"]
+                            ))
+        connection.commit()
+        cursor.execute("SET FOREIGN_KEY_CHECKS = 1;")
+        cursor.close()
+        print("Users data inserted successfully")
+    except Error as e:
+        print("Error inserting data into users_data table:", e)
 
 def insert_user_interactions(connection, user_interaction_data):
     try:
@@ -112,14 +133,36 @@ def insert_user_interactions(connection, user_interaction_data):
     except Error as e:
         print("Error inserting data into similar_books table:", e)
 
+"""
+This function is for inserting cities and companies
+"""
+def insert_others(connection, data, table_name):
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SET FOREIGN_KEY_CHECKS = 0;")
+        for other in data:
+            other_id=int(other["id"])
+            cursor.execute("INSERT INTO {table_name } (id,uname) "
+                           "VALUES (%s, %s)",
+                           (other_id,
+                            other["name"]))
+        connection.commit()
+        cursor.execute("SET FOREIGN_KEY_CHECKS = 1;")
+        cursor.close()
+        print(" data inserted successfully")
+    except Error as e:
+        print(f"Error inserting data into {table_name} table:", e)
+
+
 def main():
     #books_data = read_json('../resources/books.json')
     #authors_data = read_json('../resources/authors.json')
     #authors_books = read_json('../resources/auth-book.json')
     #similar_books_data = read_json('../resources/similar_books.json')
+    #users_data=read_json('../resources/users.json')
 
-
-    user_book_interaction_data = read_json('../resources/user_interactions.json')
+    cityd=read_json('../resources/cities.json')
+    #user_book_interaction_data = read_json('../resources/user_interactions.json')
     connection = get_db_connection()
 
     if connection:
@@ -127,7 +170,9 @@ def main():
         #insert_authors(connection, authors_data)
         #insert_auth_book(connection,authors_books)
         #insert_similar_books(connection,similar_books_data)
-        insert_user_interactions(connection,user_book_interaction_data)
+        #insert_user(connection,users_data)
+        insert_others(connection,cityd,'cities')
+        #insert_user_interactions(connection,user_book_interaction_data)
         connection.close()
 
 main()

@@ -22,39 +22,39 @@ VALUES
   ('2', 'Johnny2','johhnydeep234@gmail.com','bg','Iasi','Lidl');
 
 CREATE TABLE skills (
-    id integer  NOT NULL AUTO_INCREMENT,
+    id integer  NOT NULL,
     name VARCHAR(50),
   PRIMARY KEY (id)
 );
 INSERT INTO skills
-  (name)
+  (id,name)
 VALUES
-  ('Java'),
-    ('Photoshop'),
-  ('Web');
+  (123455,'Java'),
+ (123444,'Photoshop'),
+  (123456,'Web');
 
 CREATE TABLE cities (
-    id integer  NOT NULL AUTO_INCREMENT,
+    id integer  NOT NULL,
     name VARCHAR(50),
   PRIMARY KEY (id)
 );
 INSERT INTO cities
-  (name)
+  (id,name)
 VALUES
-  ('Iasi'),
-    ('Bucharest'),
-  ('Cluj');
+  (12345,'Westeros'),
+    (12344,'Valyria'),
+  (75676,'Winterfell');
 CREATE TABLE companies(
-    id integer  NOT NULL AUTO_INCREMENT,
+    id integer  NOT NULL,
     name VARCHAR(50),
   PRIMARY KEY (id)
 );
 INSERT INTO companies
-  (name)
+  (id,name)
 VALUES
-  ('Apple'),
-    ('Microsoft'),
-  ('Profi');
+  (12345,'Apple'),
+    (12344,'Microsoft'),
+  (56756,'Profi');
 
 create table books(
 book_id integer not null,
