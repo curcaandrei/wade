@@ -1,38 +1,30 @@
 from flask import Flask, request, jsonify
 import requests
+from src.books import form_sparql_query_books, process_rdf_data_books
+from src.movies import form_sparql_query_movies, process_rdf_data_movies
+from src.music import form_sparql_query_music, process_rdf_data_music
 
 app = Flask(__name__)
 
-@app.route('/recommendations', methods=['POST'])
-def get_recommendations():
+@app.route('/recommendations/books', methods=['POST'])
+def get_book_recommendations():
+    return get_recommendations(form_sparql_query_books, process_rdf_data_books)
+
+@app.route('/recommendations/movies', methods=['POST'])
+def get_movie_recommendations():
+    return get_recommendations(form_sparql_query_movies, process_rdf_data_movies)
+
+@app.route('/recommendations/music', methods=['POST'])
+def get_music_recommendations():
+    return get_recommendations(form_sparql_query_music, process_rdf_data_music)
+
+def get_recommendations(form_sparql_query, process_rdf_data):
     data = request.json
-
-    # Form the SPARQL query based on the received data
     sparql_query = form_sparql_query(data)
-
-    # Communicate with RDF Service
     response = requests.post('https://rdf-dot-diesel-nova-412314.ew.r.appspot.com/query', json={'query': sparql_query})
     rdf_data = response.json()
-
     processed_data = process_rdf_data(rdf_data)
     return jsonify(processed_data)
-
-def form_sparql_query(data):
-    # Example SPARQL query formation based on user preferences
-    genre = data.get("preferences", {}).get("genre", "")
-    author = data.get("preferences", {}).get("author", "")
-    query = f"""
-        PREFIX ex: <http://example.org/>
-        SELECT ?book
-        WHERE {{
-            ?book ex:genre "{genre}" ;
-                  ex:author "{author}" .
-        }}
-    """
-    return query
-
-def process_rdf_data(data):
-    return data
 
 if __name__ == '__main__':
     app.run(port=5000)
