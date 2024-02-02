@@ -1,0 +1,69 @@
+command: ontop materialize -m migrate/users.ttl -p ontop.properties -o output.ttl
+
+
+------List All Users and Their Locales:
+
+PREFIX ex: <http://example.com/>
+
+SELECT ?userId ?locale
+WHERE {
+  ?user ex:locale ?locale .
+  BIND(STRAFTER(STR(?user), "http://example.com/user/") AS ?userId)
+}
+ORDER BY ?userId
+
+
+-------Find All Books with Average Rating Above 3.0:
+
+PREFIX ex: <http://example.com/>
+
+SELECT ?bookId ?title ?averageRating
+WHERE {
+  ?book a ex:Book;
+        ex:title ?title;
+        ex:averageRating ?averageRating .
+  FILTER(?averageRating > 3.0)
+}
+ORDER BY DESC(?averageRating)
+
+
+------List Books and Their Authors:
+
+PREFIX ex: <http://example.com/>
+
+SELECT ?bookId ?title ?authorName
+WHERE {
+  ?assoc a ex:BookAuthorAssociation;
+         ex:book ?book;
+         ex:author ?author.
+  ?book ex:title ?title .
+  ?author ex:name ?authorName .
+  BIND(STRAFTER(STR(?book), "http://example.com/book/") AS ?bookId)
+}
+ORDER BY ?bookId
+
+
+-------Get All Companies and Their Users
+
+PREFIX ex: <http://example.com/>
+
+SELECT ?companyName (GROUP_CONCAT(DISTINCT ?userName; SEPARATOR=", ") AS ?users)
+WHERE {
+  ?user ex:company ?companyName ;
+        ex:userName ?userName .
+}
+GROUP BY ?companyName
+ORDER BY ?companyName
+
+--------Find Users in a Specific City (e.g., "Iasi"):
+
+PREFIX ex: <http://example.com/>
+
+SELECT ?userId ?userName ?city
+WHERE {
+  ?user ex:userName ?userName;
+        ex:city "Iasi" .
+  ?user ex:city ?city .
+  BIND(STRAFTER(STR(?user), "http://example.com/user/") AS ?userId)
+}
+ORDER BY ?userId

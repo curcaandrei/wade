@@ -4,45 +4,99 @@ from src import userquery
 
 app = Flask(__name__)
 
-@app.route('/query', methods=['POST'])
-def query_rdf_store():
-    sparql_query = request.json['query']
+SPARQL_ENDPOINT_URL = "http://34.16.185.124:9999/blazegraph/sparql"
 
-    rdf_store_result = execute_sparql_query(sparql_query)
-
-    return jsonify(rdf_store_result)
-
-@app.route('/query_by_ids', methods=['POST'])
-def query_by_ids():
-    user_ids = request.json['ids']
-
-    # Construct SPARQL query for the provided user IDs
-    sparql_query = userquery.generate_sparql_query(user_ids)
-
-    # Interact with RDF store using the constructed SPARQL query
-    rdf_store_result = execute_sparql_query(sparql_query)
-
-    # Return the result
-    return jsonify(rdf_store_result)
-
-def execute_sparql_query(query):
-    endpoint_url = "http://34.16.185.124:9999/blazegraph/sparql"
-    sparql = SPARQLWrapper(endpoint_url)
-
+def execute_sparql_query(query, append_id=False):
+    sparql = SPARQLWrapper(SPARQL_ENDPOINT_URL)
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
 
-    results = sparql.query().convert()
+    try:
+        results = sparql.query().convert()
+    except Exception as e:
+        return {"error": str(e)}, 500
 
     output = []
     for result in results["results"]["bindings"]:
-        user_info = {var: result[var]["value"] for var in result}
-        user_id = user_info['user'].rsplit('/', 1)[-1]
-        user_info['id'] = user_id
-        output.append(user_info)
+        item_info = {var: result[var]["value"] for var in result}
+        if append_id:
+            item_id = item_info.get('user', '').rsplit('/', 1)[-1]
+            item_info['id'] = item_id
+        output.append(item_info)
+    return output
 
-    return {"results": output}
+def prefixed_query(query_body):
+    return f"""
+    PREFIX ex: <http://example.com/>
+    {query_body}
+    """
 
+@app.route('/query/books', methods=['GET'])
+def get_books():
+    query_body = """
+    SELECT ?book ?title ?averageRating ?imageUrl WHERE {
+      ?book a ex:Book;
+            ex:title ?title;
+            ex:averageRating ?averageRating;
+            ex:imageUrl ?imageUrl.
+    }
+    """
+    return jsonify({"results": execute_sparql_query(prefixed_query(query_body))})
+
+@app.route('/query/cities', methods=['GET'])
+def get_cities():
+    query_body = """
+    SELECT ?city ?name WHERE {
+      ?city a ex:City;
+            ex:name ?name.
+    }
+    """
+    return jsonify({"results": execute_sparql_query(prefixed_query(query_body))})
+
+@app.route('/query/companies', methods=['GET'])
+def get_companies():
+    query_body = """
+    SELECT ?company ?name WHERE {
+      ?company a ex:Company;
+               ex:name ?name.
+    }
+    """
+    return jsonify({"results": execute_sparql_query(prefixed_query(query_body))})
+
+@app.route('/query/skills', methods=['GET'])
+def get_skills():
+    query_body = """
+    SELECT ?skill ?name WHERE {
+      ?skill a ex:Skill;
+             ex:name ?name.
+    }
+    """
+    return jsonify({"results": execute_sparql_query(prefixed_query(query_body))})
+
+@app.route('/query/authors', methods=['GET'])
+def get_authors():
+    query_body = """
+    SELECT ?author ?name WHERE {
+      ?author a ex:Author;
+              ex:name ?name.
+    }
+    """
+    return jsonify({"results": execute_sparql_query(prefixed_query(query_body))})
+
+@app.route('/query', methods=['POST'])
+def query_rdf_store():
+    sparql_query = request.json.get('query')
+    if not sparql_query:
+        return jsonify({"error": "Missing 'query' in request body"}), 400
+    return jsonify({"results": execute_sparql_query(sparql_query)})
+
+@app.route('/query_by_ids', methods=['POST'])
+def query_by_ids():
+    user_ids = request.json.get('ids')
+    if not user_ids:
+        return jsonify({"error": "Missing 'ids' in request body"}), 400
+    sparql_query = userquery.generate_sparql_query(user_ids)
+    return jsonify({"results": execute_sparql_query(sparql_query, append_id=True)})
 
 if __name__ == '__main__':
     app.run(port=5001)

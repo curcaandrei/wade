@@ -1,0 +1,123 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix ex: <http://example.com/>.
+
+<#TriplesMap1>
+    rr:logicalTable [ rr:tableName "users_data" ];
+    rr:subjectMap [
+        rr:template "http://example.com/user/{user_id}";
+        rr:class ex:User
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:userName;
+        rr:objectMap [ rr:column "user_name" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:email;
+        rr:objectMap [ rr:column "email" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:locale;
+        rr:objectMap [ rr:column "locale" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:city;
+        rr:objectMap [ rr:column "city" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:company;
+        rr:objectMap [ rr:column "company" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:isKnown;
+        rr:objectMap [ rr:column "isKnown" ]
+    ].
+
+<#BooksTriplesMap>
+    rr:logicalTable [ rr:tableName "books" ];
+    rr:subjectMap [
+        rr:template "http://example.com/book/{book_id}";
+        rr:class ex:Book
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:title;
+        rr:objectMap [ rr:column "title" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:averageRating;
+        rr:objectMap [ rr:column "average_rating" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:imageUrl;
+        rr:objectMap [ rr:column "image_url" ]
+    ].
+
+<#AuthorsTriplesMap>
+    rr:logicalTable [ rr:tableName "authors" ];
+    rr:subjectMap [
+        rr:template "http://example.com/author/{author_id}";
+        rr:class ex:Author
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:name;
+        rr:objectMap [ rr:column "name" ]
+    ].
+
+<#BookAuthorTriplesMap>
+    rr:logicalTable [ rr:tableName "book_author" ];
+    rr:subjectMap [
+        rr:template "http://example.com/book_author/{id}";
+        rr:class ex:BookAuthorAssociation
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:book;
+        rr:objectMap [
+            rr:parentTriplesMap <#BooksTriplesMap>;
+            rr:joinCondition [
+                rr:child "book_id";
+                rr:parent "book_id"
+            ]
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:author;
+        rr:objectMap [
+            rr:parentTriplesMap <#AuthorsTriplesMap>;
+            rr:joinCondition [
+                rr:child "author_id";
+                rr:parent "author_id"
+            ]
+        ]
+    ].
+
+<#SkillsTriplesMap>
+    rr:logicalTable [ rr:tableName "skills" ];
+    rr:subjectMap [
+        rr:template "http://example.com/skill/{id}";
+        rr:class ex:Skill
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:name;
+        rr:objectMap [ rr:column "name" ]
+    ].
+
+<#CitiesTriplesMap>
+    rr:logicalTable [ rr:tableName "cities" ];
+    rr:subjectMap [
+        rr:template "http://example.com/city/{id}";
+        rr:class ex:City
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:name;
+        rr:objectMap [ rr:column "name" ]
+    ].
+
+<#CompaniesTriplesMap>
+    rr:logicalTable [ rr:tableName "companies" ];
+    rr:subjectMap [
+        rr:template "http://example.com/company/{id}";
+        rr:class ex:Company
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ex:name;
+        rr:objectMap [ rr:column "name" ]
+    ].
