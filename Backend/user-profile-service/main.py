@@ -50,5 +50,12 @@ def get_user(user_id):
 def update_user(user_id):
     data = request.json
     return dockerdb.update_user(user_id,data)
+
+@app.route('/books', methods=['GET'])
+def get_books():
+    page = int(request.args.get('startId', 1))
+    per_page = int(request.args.get('limit', 10))
+    return dockerdb.get_books(page, per_page)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

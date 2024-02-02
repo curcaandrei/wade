@@ -175,3 +175,43 @@ def set_user_data(data,user_id):
         if company:
             user_dict['company'] = company
     return user_dict
+
+def get_books(starting_id,number_of_books):
+    try:
+        starting_id=int(starting_id)
+        number_of_books=int(number_of_books)
+        connection = get_db_connection()
+        cursor = connection.cursor()
+        sql_query = f"""
+            SELECT books.book_id, books.title, books.average_rating, books.image_url, GROUP_CONCAT(authors.name SEPARATOR ', ') AS authors
+            FROM books
+            LEFT JOIN book_author ON books.book_id = book_author.book_id
+            LEFT JOIN authors ON book_author.author_id = authors.author_id
+            WHERE books.book_id>= {starting_id}
+            GROUP BY books.book_id limit {number_of_books}
+            """
+
+        # Execute the SQL query
+        cursor.execute(sql_query)
+
+        # Fetch all rows from the result set
+        books_with_authors = []
+        for row in cursor.fetchall():
+            book = {
+                'book_id': row[0],
+                'title': row[1],
+                'rating': row[2],
+                'image_url': row[3],
+                'authors': row[4].split(', ') if row[4] else []
+            }
+            books_with_authors.append(book)
+
+        # Close the cursor and connection
+        cursor.close()
+        connection.close()
+
+        # Return the list of books with authors as JSON response
+        return jsonify(books_with_authors)
+
+    except mysql.connector.Error as error:
+        return jsonify({'error': str(error)})

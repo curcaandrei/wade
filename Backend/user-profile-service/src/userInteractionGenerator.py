@@ -122,8 +122,8 @@ def main():
         create_user_data(user_id)   ###if we are using foreign key mode this will be un commented and use this instead:
                                         #create_user_data_with_foreign_keys(user_id)
         create_interactions_for_user(user_id)
-    save_to_json(interactions,'../resources/user_interactions.json')
-    save_to_json(users,'../resources/users.json')
+    # save_to_json(interactions,'../resources/user_interactions.json')
+    # save_to_json(users,'../resources/users.json')
     print(users)
 
     """
