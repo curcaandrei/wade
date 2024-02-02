@@ -1,7 +1,9 @@
 import json
 import mysql.connector
 from mysql.connector import Error
-
+from flask import jsonify
+import os
+import json
 
 config = {
         'user': 'root',
@@ -94,6 +96,7 @@ def insert_similar_books(connection, similar_books_data):
         print("Similar books data inserted successfully")
     except Error as e:
         print("Error inserting data into similar_books table:", e)
+
 def insert_user(connection, users_data):
     try:
         cursor = connection.cursor()
@@ -154,25 +157,32 @@ def insert_others(connection, data, table_name):
         print(f"Error inserting data into {table_name} table:", e)
 
 
-def main():
-    #books_data = read_json('../resources/books.json')
-    #authors_data = read_json('../resources/authors.json')
-    #authors_books = read_json('../resources/auth-book.json')
-    #similar_books_data = read_json('../resources/similar_books.json')
-    #users_data=read_json('../resources/users.json')
+def populate():
+    # Get the directory path of the current script
+    current_dir = os.path.dirname(__file__)
+    print(f'directory is {current_dir}')
+    books_data = read_json('resources/books.json')
+    authors_data = read_json('resources/authors.json')
+    authors_books = read_json('resources/auth-book.json')
+    similar_books_data = read_json('resources/similar_books.json')
+    users_data=read_json('resources/users.json')
+    user_book_interaction_data = read_json('resources/user_interactions.json')
+    #cityd=read_json('../resources/cities.json')
+    try:
+        connection = get_db_connection()
+        if connection:
+            insert_books(connection, books_data)
+            insert_authors(connection, authors_data)
+            insert_auth_book(connection,authors_books)
+            insert_similar_books(connection,similar_books_data)
+            insert_user(connection,users_data)
+            insert_user_interactions(connection,user_book_interaction_data)
 
-    cityd=read_json('../resources/cities.json')
-    #user_book_interaction_data = read_json('../resources/user_interactions.json')
-    connection = get_db_connection()
-
-    if connection:
-        #insert_books(connection, books_data)
-        #insert_authors(connection, authors_data)
-        #insert_auth_book(connection,authors_books)
-        #insert_similar_books(connection,similar_books_data)
-        #insert_user(connection,users_data)
-        insert_others(connection,cityd,'cities')
-        #insert_user_interactions(connection,user_book_interaction_data)
-        connection.close()
-
-main()
+            # insert_others(connection,cityd,'cities')
+            connection.close()
+            return jsonify("Database was populated successfully"), 200
+        else:
+            return "Database error", 500
+    except Error as e:
+        print("Error on process of populate db:", e)
+        return "Error on populate db", 500
