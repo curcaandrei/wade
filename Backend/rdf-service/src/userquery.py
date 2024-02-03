@@ -12,3 +12,7 @@ def generate_sparql_query(user_ids):
     }}
     """
     return query
+# TODO: join with authors and add limit to all endpoints
+# merge frontend and user-back branches
+# host frontend
+# move oauth to project

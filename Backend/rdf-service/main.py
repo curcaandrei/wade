@@ -31,56 +31,71 @@ def prefixed_query(query_body):
     {query_body}
     """
 
+def add_limit_clause(query_body, limit):
+    if limit and limit.isdigit():
+        query_body += f" LIMIT {limit}"
+    return query_body
+
 @app.route('/query/books', methods=['GET'])
 def get_books():
-    query_body = """
-    SELECT ?book ?title ?averageRating ?imageUrl WHERE {
+    limit = request.args.get('limit')
+    query_body = add_limit_clause("""
+    SELECT ?book ?title ?averageRating ?imageUrl (GROUP_CONCAT(DISTINCT ?authorName; separator=", ") AS ?authors) WHERE {
       ?book a ex:Book;
             ex:title ?title;
             ex:averageRating ?averageRating;
             ex:imageUrl ?imageUrl.
-    }
-    """
+      OPTIONAL {
+        ?ba ex:book ?book;
+            ex:author ?author.
+        ?author ex:name ?authorName.
+      }
+    } GROUP BY ?book ?title ?averageRating ?imageUrl
+    """, limit)
     return jsonify({"results": execute_sparql_query(prefixed_query(query_body))})
 
 @app.route('/query/cities', methods=['GET'])
 def get_cities():
-    query_body = """
+    limit = request.args.get('limit')
+    query_body = add_limit_clause("""
     SELECT ?city ?name WHERE {
       ?city a ex:City;
             ex:name ?name.
     }
-    """
+    """, limit)
     return jsonify({"results": execute_sparql_query(prefixed_query(query_body))})
 
 @app.route('/query/companies', methods=['GET'])
 def get_companies():
-    query_body = """
+    limit = request.args.get('limit')
+    query_body = add_limit_clause("""
     SELECT ?company ?name WHERE {
       ?company a ex:Company;
                ex:name ?name.
     }
-    """
+    """, limit)
     return jsonify({"results": execute_sparql_query(prefixed_query(query_body))})
 
 @app.route('/query/skills', methods=['GET'])
 def get_skills():
-    query_body = """
+    limit = request.args.get('limit')
+    query_body = add_limit_clause("""
     SELECT ?skill ?name WHERE {
       ?skill a ex:Skill;
              ex:name ?name.
     }
-    """
+    """, limit)
     return jsonify({"results": execute_sparql_query(prefixed_query(query_body))})
 
 @app.route('/query/authors', methods=['GET'])
 def get_authors():
-    query_body = """
+    limit = request.args.get('limit')
+    query_body = add_limit_clause("""
     SELECT ?author ?name WHERE {
       ?author a ex:Author;
               ex:name ?name.
     }
-    """
+    """, limit)
     return jsonify({"results": execute_sparql_query(prefixed_query(query_body))})
 
 @app.route('/query', methods=['POST'])
@@ -90,7 +105,7 @@ def query_rdf_store():
         return jsonify({"error": "Missing 'query' in request body"}), 400
     return jsonify({"results": execute_sparql_query(sparql_query)})
 
-@app.route('/query_by_ids', methods=['POST'])
+@app.route('/query/books_by_ids', methods=['POST'])
 def query_by_ids():
     user_ids = request.json.get('ids')
     if not user_ids:
