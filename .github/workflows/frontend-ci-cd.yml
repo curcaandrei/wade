@@ -22,16 +22,6 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install Node.js dependencies
-        run: |
-          cd sore
-          npm install --save-dev @babel/plugin-proposal-private-property-in-object
-
-      - name: Build React App
-        run: |
-          cd sore
-          npm run build
-
       - name: Set up GCP Credentials
         if: contains(github.event.head_commit.message, '-deploy')
         env:
@@ -41,8 +31,19 @@ jobs:
           gcloud auth activate-service-account --key-file=gcp-key.json
           gcloud config set project diesel-nova-412314
 
-      - name: Deploy React App to App Engine
+      - name: Install dependencies
+        run: |
+           npm install --prefix sore
+
+      - name: Build React App
+        run: |
+           npm run build --prefix sore
+
+      - name: Deploy React App to Google Cloud App Engine
         if: contains(github.event.head_commit.message, '-deploy')
         run: |
-          gcloud app deploy sore/react-app.yaml --quiet
+          gcloud app deploy sore/app.yaml --quiet
+        env:
+          GCP_PROJECT: diesel-nova-412314
+          GCP_APP_ENGINE_ENV: standard
 
