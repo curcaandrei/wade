@@ -79,22 +79,34 @@ def insert_auth_book(connection, auth_book_data):
 
 # Function to insert data into the similar_books table
 def insert_similar_books(connection, similar_books_data):
+    valid_data = [
+        (int(similar_book['book_id']), int(similar_book['similar_book_id']))
+        for similar_book in similar_books_data
+        if similar_book['book_id'] and similar_book['similar_book_id']
+    ]
+
+    if not valid_data:
+        print("No valid similar books data to insert.")
+        return
+
     try:
         cursor = connection.cursor()
         cursor.execute("SET FOREIGN_KEY_CHECKS = 0;")
-        for similar_book in similar_books_data:
-            if similar_book['book_id']=='' or similar_book['similar_book_id']=='':
-                continue
-            book_id = int(similar_book['book_id'])
-            similar_book_id = int(similar_book['similar_book_id'])
-            cursor.execute("INSERT INTO similar_books (book_id, similar_book_id) VALUES (%s, %s)",
-                           (book_id, similar_book_id))
+        insert_query = "INSERT INTO similar_books (book_id, similar_book_id) VALUES (%s, %s)"
+
+        cursor.executemany(insert_query, valid_data)
+
         connection.commit()
         cursor.execute("SET FOREIGN_KEY_CHECKS = 1;")
-        cursor.close()
-        print("Similar books data inserted successfully")
-    except Error as e:
+        print(f"Inserted {len(valid_data)} similar books data successfully.")
+
+    except Exception as e:
+        connection.rollback()
         print("Error inserting data into similar_books table:", e)
+
+    finally:
+        cursor.close()
+
 
 def insert_user(connection, users_data):
     try:
@@ -170,9 +182,9 @@ def populate():
     try:
         connection = get_db_connection()
         if connection:
-            insert_books(connection, books_data)
-            insert_authors(connection, authors_data)
-            insert_auth_book(connection,authors_books)
+            # insert_books(connection, books_data)
+            # insert_authors(connection, authors_data)
+            # insert_auth_book(connection,authors_books)
             insert_similar_books(connection,similar_books_data)
             insert_user(connection,users_data)
             insert_user_interactions(connection,user_book_interaction_data)

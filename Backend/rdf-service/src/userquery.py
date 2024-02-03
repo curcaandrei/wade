@@ -12,5 +12,3 @@ def generate_sparql_query(user_ids):
     }}
     """
     return query
-# host frontend
-# move oauth to project
