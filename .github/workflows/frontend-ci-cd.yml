@@ -42,7 +42,7 @@ jobs:
       - name: Deploy React App to Google Cloud App Engine
         if: contains(github.event.head_commit.message, '-deploy')
         run: |
-          gcloud app deploy sore/app.yaml --quiet
+          gcloud app deploy ./sore/app.yaml --quiet
         env:
           GCP_PROJECT: diesel-nova-412314
           GCP_APP_ENGINE_ENV: standard
