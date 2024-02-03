@@ -1,39 +1,6 @@
-from flask import Flask, request, redirect
-import google_auth_oauthlib.flow
 import googleapiclient.discovery
-import os
-import json
-from dotenv import load_dotenv
 
-load_dotenv()
-
-REDIRECT_URI = os.getenv('REDIRECT_URI')
-SCOPES = [
-    "https://www.googleapis.com/auth/youtube.readonly",
-]
-
-app = Flask(__name__)
-
-flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-    "google_client_secrets.json",
-    scopes=SCOPES,
-    redirect_uri=REDIRECT_URI
-)
-flow.redirect_uri = REDIRECT_URI
-
-@app.route('/')
-def home():
-    auth_url, _ = flow.authorization_url(prompt='consent')
-    return redirect(auth_url)
-
-@app.route('/callback')
-def callback():
-    code = request.args.get('code')
-    flow.fetch_token(code=code)
-    credentials = flow.credentials
-    return get_user_data(credentials)
-
-def get_user_data(credentials):
+def fetch_data(credentials):
     youtube = googleapiclient.discovery.build(
         "youtube", "v3", credentials=credentials
     )
@@ -82,10 +49,4 @@ def get_user_data(credentials):
         'subscribed_channels': subscribed_channels_data
     }
 
-    with open('youtube_user_data.json', 'w', encoding='utf-8') as f:
-        json.dump(youtube_data, f, ensure_ascii=False, indent=4)
-
-    return 'Data has been saved to youtube_user_data.json'
-
-if __name__ == '__main__':
-    app.run(port=8888)
+    return youtube_data

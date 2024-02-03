@@ -1,55 +1,45 @@
 import pymysql
+from google.cloud import secretmanager
 from google.cloud.sql.connector import Connector
 import sqlalchemy
 
-# Configure your database connection here
-username = 'root'
-password = 'tZch0?6sG4Cr7>8='
+def access_secret_version(project_id, secret_id, version_id="latest"):
+    secret_client = secretmanager.SecretManagerServiceClient()
+    name = f"projects/{project_id}/secrets/{secret_id}/versions/{version_id}"
+    response = secret_client.access_secret_version(request={"name": name})
+    return response.payload.data.decode("UTF-8")
+
+PROJECT_ID = "diesel-nova-412314"
+username = access_secret_version(PROJECT_ID, "DB_USERNAME")
+password = access_secret_version(PROJECT_ID, "DB_PASSWORD")
 database_name = 'wadedatabase'
-instance_connection_name = 'diesel-nova-412314:europe-west3:wadeuserprofile'  # usually in the format: project:region:instance
+instance_connection_name = 'diesel-nova-412314:europe-west3:wadeuserprofile'
 
 connector = Connector()
 
 def getconn() -> pymysql.connections.Connection:
-    conn: pymysql.connections.Connection = connector.connect(
+    return connector.connect(
         instance_connection_name,
         "pymysql",
         user=username,
         password=password,
         db=database_name
     )
-    return conn
 
 # Create connection pool
-pool = sqlalchemy.create_engine(
-    "mysql+pymysql://",
-    creator=getconn,
-)
+pool = sqlalchemy.create_engine("mysql+pymysql://", creator=getconn)
 
-# Create table (if it doesn't exist)
-create_table_stmt = sqlalchemy.text("""
-    CREATE TABLE IF NOT EXISTS my_table (
-        id VARCHAR(50),
-        title VARCHAR(255),
-        PRIMARY KEY (id)
+def save_api_data(table_name, user_id, data):
+    """
+    Saves or updates the API data in the specified table in the database.
+    """
+    query = sqlalchemy.text(
+        f"""
+        INSERT INTO {table_name} (id, data)
+        VALUES (:id, :data)
+        ON DUPLICATE KEY UPDATE
+        data = VALUES(data)
+        """
     )
-""")
-
-with pool.connect() as db_conn:
-    db_conn.execute(create_table_stmt)
-
-    # Insert into database
-    insert_stmt = sqlalchemy.text(
-        "INSERT INTO my_table (id, title) VALUES (:id, :title)"
-    )
-    db_conn.execute(insert_stmt, parameters={"id": "book3", "title": "Book 3"})
-
-    # Query database
-    result = db_conn.execute(sqlalchemy.text("SELECT * FROM my_table")).fetchall()
-    db_conn.commit()
-
-    # Do something with the results
-    for row in result:
-        print(row)
-
-connector.close()
+    with pool.connect() as conn:
+        conn.execute(query, {"id": user_id, "data": data})
