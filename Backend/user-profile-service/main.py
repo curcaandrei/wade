@@ -7,7 +7,6 @@ from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
 from google.cloud import secretmanager
 from src import books, spotify, youtube, database
-from flask import session
 from flask import Flask,request
 import sys
 sys.path.append('src')
