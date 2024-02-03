@@ -1,11 +1,9 @@
 runtime: nodejs14
+service: frontend
 handlers:
-  - url: /static
-    static_dir: build/static
+- url: /
+  static_files: build/index.html
+  upload: build/index.html
 
-  - url: /(.*\.(json|ico|js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|map|txt|xml|yml))$
-    static_files: build/\1
-    upload: build/(.*\.(json|ico|js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|map|txt|xml|yml))$
-
-  - url: /.*
-    script: auto
+- url: /
+  static_dir: build
