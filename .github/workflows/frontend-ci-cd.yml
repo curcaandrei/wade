@@ -25,7 +25,7 @@ jobs:
       - name: Install Node.js dependencies
         run: |
           cd sore
-          npm install
+          npm install --save-dev @babel/plugin-proposal-private-property-in-object
 
       - name: Build React App
         run: |
