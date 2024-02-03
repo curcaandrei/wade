@@ -4,14 +4,13 @@ from mysql.connector import Error
 from flask import jsonify
 import os
 import json
-
 config = {
-        'user': 'root',
-        'password': 'secret',
-        'host':'localhost',
-        'port': '3306',
-        'database': 'users'
-    }
+    'user': 'user',
+    'password': 'user',
+    'host': '35.198.178.41',
+    'port': '3306',
+    'database': 'users'
+}
 
 def get_db_connection():
     try:

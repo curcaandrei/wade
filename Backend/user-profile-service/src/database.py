@@ -12,7 +12,7 @@ def access_secret_version(project_id, secret_id, version_id="latest"):
 PROJECT_ID = "diesel-nova-412314"
 username = access_secret_version(PROJECT_ID, "DB_USERNAME")
 password = access_secret_version(PROJECT_ID, "DB_PASSWORD")
-database_name = 'wadedatabase'
+database_name = 'users'
 instance_connection_name = 'diesel-nova-412314:europe-west3:wadeuserprofile'
 
 connector = Connector()
