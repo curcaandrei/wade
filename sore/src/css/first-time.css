@@ -1,0 +1,85 @@
+/* SecondScreen.css */
+
+.second-screen {
+  
+    background-color: #13141D;
+     height: 100vh; 
+    color: wheat;
+    margin: 0; 
+    padding: 0;
+   
+  }
+  
+ .top-logo {
+display: flex;
+justify-content: flex-end;
+width: 100%;
+  }
+  
+  .top-logo img {
+    max-width: 50px; 
+  }
+  
+  .centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+  }
+  
+  h1 {
+    margin-top: 50px;
+  }
+  
+  .search-box {
+    background-color: #282935;
+    width: 20%;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+  }
+  
+  .handwritten-text {
+    font-family: 'URW Chancery L, cursive'; 
+    font-size: 18px;
+    margin-top: 5%;
+
+  }
+  
+  .grid {
+    display: flex;
+    /* grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px; */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+   width: 100%;
+  }
+  
+  .grid-box {
+    background-color: #282935;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5%;
+    border-radius: 15px;
+  }
+  
+  .grid-box img {
+    max-width: 100px; 
+  }
+  .top-space{
+    margin-top: 2%;
+  }
+  button{
+    font-size: 20px;
+    background-color: #282935;
+    color:wheat;
+    height: 100%;
+    margin-top: 1%;
+  }

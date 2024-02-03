@@ -5,3 +5,12 @@ PyMySQL~=1.1.0
 Faker~=22.6.0
 mysql~=0.0.3
 mysql-connector-python~=8.3.0
+SPARQLWrapper==2.0.0
+google-auth-oauthlib==0.4.6
+spotipy==2.19.0
+google-api-python-client==2.36.0
+python-dotenv==0.19.2
+google-cloud-secret-manager==2.7.0
+praw==7.7.1
+sqlalchemy==1.4.27
+cloud-sql-python-connector==1.6.0

@@ -12,18 +12,8 @@ jobs:
     permissions: write-all
 
     runs-on: ubuntu-latest
-    env:
-      GOOGLE_BOOKS_REDIRECT_URI: ${{ secrets.GOOGLE_BOOKS_REDIRECT_URI }}
-      SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
-      SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-      SPOTIFY_REDIRECT_URI: ${{ secrets.SPOTIFY_REDIRECT_URI }}
-      GOOGLE_CLIENT_SECRETS: ${{ secrets.GOOGLE_CLIENT_SECRETS }}
 
     steps:
-      - name: Create Google Client Secrets file
-        if: contains(github.event.head_commit.message, '-deploy')
-        run: |
-          echo "$GOOGLE_CLIENT_SECRETS" > Backend/rdf-service/google_client_secrets.json
       - name: Checkout code
         uses: actions/checkout@v2
 
