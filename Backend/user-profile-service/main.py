@@ -12,13 +12,16 @@ import sys
 sys.path.append('src')
 import dockerdb
 from src.populatedb import populate
-app = Flask(__name__)
+from flask_cors import CORS
+
 
 # Load environment variables
 load_dotenv()
 
 # Flask application
+
 app = Flask(__name__)
+CORS(app)
 
 # Constants
 PROJECT_ID = "diesel-nova-412314"
