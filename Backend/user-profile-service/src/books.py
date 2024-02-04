@@ -30,9 +30,14 @@ def fetch_data(credentials):
 
 def get_book_info(book):
     info = book.get('volumeInfo', {})
+    industry_identifiers = {identifier['type']: identifier['identifier'] for identifier in info.get('industryIdentifiers', [])}
     return {
         'Title': info.get('title', ''),
         'Authors': info.get('authors', []),
         'Description': info.get('description', ''),
-        'Categories': info.get('categories', [])
+        'Categories': info.get('categories', []),
+        'AverageRating': info.get('averageRating'),
+        'PreviewLink': info.get('previewLink'),
+        'ISBN_10': industry_identifiers.get('ISBN_10'),
+        'ISBN_13': industry_identifiers.get('ISBN_13'),
     }

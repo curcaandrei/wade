@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from SPARQLWrapper import SPARQLWrapper, JSON
-from src import userquery
+from src import bookquery
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -107,12 +107,45 @@ def query_rdf_store():
     return jsonify({"results": execute_sparql_query(sparql_query)})
 
 @app.route('/query/books_by_ids', methods=['POST'])
-def query_by_ids():
-    user_ids = request.json.get('ids')
-    if not user_ids:
+def query_books_by_ids():
+    book_ids = request.json.get('ids')
+    if not book_ids:
         return jsonify({"error": "Missing 'ids' in request body"}), 400
-    sparql_query = userquery.generate_sparql_query(user_ids)
-    return jsonify({"results": execute_sparql_query(sparql_query, append_id=True)})
+    sparql_query = bookquery.generate_sparql_query(book_ids)
+    return jsonify({"results": execute_sparql_query(sparql_query, append_id=False)})
+
+
+@app.route('/query/users', methods=['GET'])
+def query_users():
+    city = request.args.get('city')
+    company = request.args.get('company')
+    limit = request.args.get('limit')
+
+    query_body = """
+    SELECT ?userId ?userName ?email ?city ?company
+    WHERE {{
+        ?user ex:userName ?userName .
+        OPTIONAL {{ ?user ex:email ?email . }}
+        OPTIONAL {{ ?user ex:city ?city . }}
+        OPTIONAL {{ ?user ex:company ?company . }}
+        BIND(STRAFTER(STR(?user), "http://example.com/user/") AS ?userId)
+    """
+
+    if city:
+        query_body += f'    FILTER(?city = "{city}")\n'
+    if company:
+        query_body += f'    FILTER(?company = "{company}")\n'
+
+    query_body += "}}"
+
+    if limit and limit.isdigit():
+        query_body += f" LIMIT {limit}"
+
+    query = prefixed_query(query_body)
+    results = execute_sparql_query(query)
+    return jsonify(results)
+
+
 
 if __name__ == '__main__':
     app.run(port=5001)

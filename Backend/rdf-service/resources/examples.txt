@@ -67,3 +67,6 @@ WHERE {
   BIND(STRAFTER(STR(?user), "http://example.com/user/") AS ?userId)
 }
 ORDER BY ?userId
+
+
+
