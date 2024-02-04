@@ -1,0 +1,7 @@
+runtime: python39
+service: song-recommender
+handlers:
+- url: /.*
+  script: main.app
+env_variables:
+  DEBUG: False
