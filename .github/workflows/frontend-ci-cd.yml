@@ -1,0 +1,49 @@
+name: CI/CD for React App
+
+on:
+  push:
+    branches:
+      - '*'
+    paths:
+      - 'sore/**'
+
+jobs:
+  build-and-deploy:
+    permissions: write-all
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Set up GCP Credentials
+        if: contains(github.event.head_commit.message, '-deploy')
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        run: |
+          echo "$GCP_SA_KEY" > gcp-key.json
+          gcloud auth activate-service-account --key-file=gcp-key.json
+          gcloud config set project diesel-nova-412314
+
+      - name: Install dependencies
+        run: |
+           npm install --prefix sore
+
+      - name: Build React App
+        run: |
+           npm run build --prefix sore
+
+      - name: Deploy React App to Google Cloud App Engine
+        if: contains(github.event.head_commit.message, '-deploy')
+        run: |
+          gcloud app deploy ./sore/react-app.yaml --quiet
+        env:
+          GCP_PROJECT: diesel-nova-412314
+          GCP_APP_ENGINE_ENV: standard
+

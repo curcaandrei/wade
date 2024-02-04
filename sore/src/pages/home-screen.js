@@ -28,7 +28,7 @@ const HomeScreen = () => {
     console.log(error);
 };
   const navigateMain=()=>{
-    navigate('./main');
+    navigate('/main');
   }
 //   useEffect(
 //     () => {
@@ -65,8 +65,9 @@ useEffect(() => {
         console.log(res.data);
 
         // After receiving data from Google API, make a request to localhost:5000/users/check-user
-        const checkUserRes = await axios.post('http://localhost:5000/users/check-user', res.data);
+        const checkUserRes = await axios.post('https://userpf-dot-diesel-nova-412314.ew.r.appspot.com/users/check-user', res.data);
         console.log(checkUserRes );
+        console.log('isknown: ' + checkUserRes.data.isKnown)
         if (checkUserRes.data.isKnown === 1) {
           navigate('/main');
         } else if (checkUserRes.data.isKnown === 0) {

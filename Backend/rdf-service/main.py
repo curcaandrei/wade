@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify
 from SPARQLWrapper import SPARQLWrapper, JSON
 from src import userquery
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 SPARQL_ENDPOINT_URL = "http://34.16.185.124:9999/blazegraph/sparql"
 
 def execute_sparql_query(query, append_id=False):

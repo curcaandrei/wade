@@ -6,19 +6,22 @@ import google_auth_oauthlib.flow
 from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
 from google.cloud import secretmanager
-from src import books, spotify, youtube, database
+from src import books, spotify, youtube
 from flask import Flask,request
 import sys
 sys.path.append('src')
 import dockerdb
 from src.populatedb import populate
-app = Flask(__name__)
+from flask_cors import CORS
+
 
 # Load environment variables
 load_dotenv()
 
 # Flask application
+
 app = Flask(__name__)
+CORS(app)
 
 # Constants
 PROJECT_ID = "diesel-nova-412314"
@@ -81,7 +84,7 @@ def google_books_callback():
     flow_google_books.fetch_token(code=code)
     credentials = flow_google_books.credentials
     data = books.fetch_data(credentials)
-    database.save_api_data("books", user_id, json.dumps(data))
+    dockerdb.save_api_data("books", user_id, json.dumps(data))
     return data
 
 @app.route('/callback/youtube')
@@ -91,7 +94,7 @@ def youtube_callback():
     flow_youtube.fetch_token(code=code)
     credentials = flow_youtube.credentials
     data = youtube.fetch_data(credentials)
-    database.save_api_data("youtube", user_id, json.dumps(data))
+    dockerdb.save_api_data("youtube", user_id, json.dumps(data))
     return data
 
 @app.route('/callback/spotify')
@@ -100,7 +103,7 @@ def spotify_callback():
     code = request.args.get('code')
     token_info = sp_oauth.get_access_token(code)
     data = spotify.fetch_data(token_info)
-    database.save_api_data("spotify", user_id, json.dumps(data))
+    dockerdb.save_api_data("spotify", user_id, json.dumps(data))
     return data
 
 @app.route('/callback/reddit')
@@ -122,7 +125,7 @@ def reddit_callback():
     data = {
         'subscribed_subreddits': subscribed_subreddits
     }
-    database.save_api_data("reddit", user_id, json.dumps(data))
+    dockerdb.save_api_data("reddit", user_id, json.dumps(data))
     return data
 
 @app.route('/spotify')

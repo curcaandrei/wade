@@ -14,17 +14,17 @@ const PersonModal = ({ isOpen, onClose }) => {
     const fetchData = async () => {
       try {
         // Fetch skills
-        const skillsResponse = await fetch('http://localhost:5000/users/skills');
+        const skillsResponse = await fetch('https://rdf-dot-diesel-nova-412314.ew.r.appspot.com/query/skills');
         const skillsData = await skillsResponse.json();
         setSkills(skillsData);
 
         // Fetch cities
-        const citiesResponse = await fetch('http://localhost:5000/users/cities');
+        const citiesResponse = await fetch('https://rdf-dot-diesel-nova-412314.ew.r.appspot.com/query/cities');
         const citiesData = await citiesResponse.json();
         setCities(citiesData);
 
         // Fetch companies
-        const companiesResponse = await fetch('http://localhost:5000/users/companies');
+        const companiesResponse = await fetch('https://rdf-dot-diesel-nova-412314.ew.r.appspot.com/query/companies');
         const companiesData = await companiesResponse.json();
         setCompanies(companiesData);
       } catch (error) {
