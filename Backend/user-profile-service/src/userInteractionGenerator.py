@@ -133,4 +133,3 @@ def main():
     #list_data_to_json(companies,'companies')
     #list_data_to_json(skills,'skills')
 
-main()

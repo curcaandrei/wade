@@ -156,10 +156,8 @@ def insert_others(connection, data, table_name):
         cursor.execute("SET FOREIGN_KEY_CHECKS = 0;")
         for other in data:
             other_id=int(other["id"])
-            cursor.execute("INSERT INTO {table_name } (id,uname) "
-                           "VALUES (%s, %s)",
-                           (other_id,
-                            other["name"]))
+            cursor.execute(f"INSERT INTO {table_name} (id,name) VALUES (%s, %s)",
+                           (other_id,other["name"]))
         connection.commit()
         cursor.execute("SET FOREIGN_KEY_CHECKS = 1;")
         cursor.close()
@@ -174,8 +172,7 @@ def insert_user_mapping_json(connection,user_mapping_ids):
         for other in user_mapping_ids:
             other_id=int(other["user_id_long"])
 
-            cursor.execute("INSERT INTO users_mapping_ids (user_id,user_id_long) "
-                           "VALUES (%s, %s)",
+            cursor.execute("INSERT INTO users_mapping_ids (user_id,user_id_long) VALUES (%s, %s)",
                            (other['user_id'],
                             other_id))
         connection.commit()
@@ -195,7 +192,7 @@ def populate():
     similar_books_data = read_json('resources/similar_books.json')
     users_data=read_json('resources/users.json')
     user_book_interaction_data = read_json('resources/user_interactions.json')
-    user_mapping_ids=read_json('resources/user_interactions.json')
+    user_mapping_ids=read_json('resources/user_mapping_ids.json')
     #cityd=read_json('../resources/cities.json')
     try:
         connection = get_db_connection()

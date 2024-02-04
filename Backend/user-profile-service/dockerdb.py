@@ -1,6 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
 from flask import jsonify
+import random
 import json
 config = {
     'user': 'user',
@@ -55,7 +56,7 @@ def get_users_resources(resource,limit):
 def get_resource(resourceName:str,limit:int):
     resources_dic={'skills':f"SELECT * FROM skills LIMIT {limit}",
                'cities':f"SELECT * FROM cities LIMIT {limit}",
-               'companies':f"SELECT * FROM companies LIMIT {limit}"
+               'companies': f"SELECT * FROM companies LIMIT {limit}"
                }
     return resources_dic[resourceName]
 
@@ -277,3 +278,53 @@ def get_mapper_id_of_user(user_id):
     except Error as e:
         print("Error fetching user mapping id:", e)
         return "Error fetching user mappinig id", 500
+
+def check_user_interaction(user_id):
+    try:
+        connection = get_db_connection()
+        if connection:
+            cursor = connection.cursor(dictionary=True)
+            cursor.execute(f"SELECT * FROM user_book_interaction where user_id={user_id} limit 10")
+            users = cursor.fetchall()
+            if users:
+                cursor.close()
+                connection.close()
+                return jsonify(users), 200
+            else:
+                return jsonify(["Interactions for users were not found"]),404
+        else:
+            return "Database connection error", 500
+    except Error as e:
+        print("Error fetching users:", e)
+        return "Error fetching users", 500
+
+def get_random_books_with_ids():
+    try:
+        connection = get_db_connection()
+        if connection:
+            cursor = connection.cursor(dictionary=True)
+            cursor.execute(f"SELECT book_id, average_rating FROM books order by RAND() LIMIT 10;")
+            books = cursor.fetchall()
+            if books:
+                for book in books:
+                    book['rating'] = book.pop('average_rating')
+                cursor.close()
+                connection.close()
+                return jsonify(books), 200
+            else:
+                return jsonify(["didn't find any book in db"]),404
+            return jsonify(users), 200
+        else:
+            return "Database connection error", 500
+    except Error as e:
+        print("Error fetching random books:", e)
+        return "Error fetching random books", 500
+
+def get_random_books():
+    random_data = [
+        {"book_id":random.randint(113, 36523122),
+         "rating": float(random.randint(1,5))
+         } for _ in range(10)]
+    json_data = json.dumps(random_data, indent=4)
+    print(json_data)
+
