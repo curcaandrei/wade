@@ -193,7 +193,7 @@ def populate():
     users_data=read_json('resources/users.json')
     user_book_interaction_data = read_json('resources/user_interactions.json')
     user_mapping_ids=read_json('resources/user_mapping_ids.json')
-    #cityd=read_json('../resources/cities.json')
+    cityd=read_json('resources/cities.json')
     try:
         connection = get_db_connection()
         if connection:
@@ -205,7 +205,7 @@ def populate():
             insert_user_interactions(connection,user_book_interaction_data)
             insert_user_mapping_json(connection,user_mapping_ids)
 
-            # insert_others(connection,cityd,'cities')
+            insert_others(connection,cityd,'cities')
             connection.close()
             return jsonify("Database was populated successfully"), 200
         else:

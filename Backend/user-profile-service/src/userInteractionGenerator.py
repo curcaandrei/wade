@@ -89,26 +89,26 @@ def save_to_json(list_to_save: list ,file_path):
         json.dump(list_to_save, file, indent=4)
 
 ##############Function for users with foreign key
-# def list_data_to_json(info_list:list, file_name:str):
-#     dict=[]
-#     for element in info_list:
-#         dict.append({
-#             "id":  info_list.index(element),
-#             "name": element,
-#         })
-#     file_path=f'../resources/{file_name}.json'
-#     save_to_json(dict,file_path)
-# def create_user_data_with_foreign_keys(user_id:str):
-#     global users
-#     users.append({
-#         "user_id":user_id,
-#         "user_name": fake.name(),
-#         "email": fake.email(),
-#         "city": cities.index(fake.city_provider()),
-#         "company":companies.index(fake.company_provider()),
-#         "locale": fake.locale_provider(),
-#         "isKnown":True
-#    })
+def list_data_to_json(info_list:list, file_name:str):
+    dict=[]
+    for element in info_list:
+        dict.append({
+            "id":  info_list.index(element),
+            "name": element,
+        })
+    file_path=f'../resources/{file_name}.json'
+    save_to_json(dict,file_path)
+def create_user_data_with_foreign_keys(user_id:str):
+    global users
+    users.append({
+        "user_id":user_id,
+        "user_name": fake.name(),
+        "email": fake.email(),
+        "city": cities.index(fake.city_provider()),
+        "company":companies.index(fake.company_provider()),
+        "locale": fake.locale_provider(),
+        "isKnown":True
+   })
 
 
 def main():
@@ -129,7 +129,6 @@ def main():
     """
     This is used only if users table has a foreign keys city id and company id
     """
-    #list_data_to_json(cities,'cities')
-    #list_data_to_json(companies,'companies')
+    list_data_to_json(cities,'cities')
+    list_data_to_json(companies,'companies')
     #list_data_to_json(skills,'skills')
-

@@ -134,7 +134,7 @@ def get_spotify_data():
     auth_url = sp_oauth.get_authorize_url(state=user_id)
     return redirect(auth_url)
 
-@app.route('/books')
+@app.route('/google_books')
 def get_books_data():
     user_id = request.args.get('user_id')
     auth_url, _ = flow_google_books.authorization_url(prompt='consent', state=user_id)
