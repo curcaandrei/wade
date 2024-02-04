@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 import requests
-from src.books import form_sparql_query_books, process_rdf_data_books
 from src.movies import form_sparql_query_movies, process_rdf_data_movies
 from src.music import form_sparql_query_music, process_rdf_data_music
 from flask_cors import CORS
@@ -19,7 +18,7 @@ def get_book_recommendations(user_id):
 
     payload = {'ids': book_ids}
 
-    rdf_url = 'http://127.0.0.1:5001/query/books_by_ids'
+    rdf_url = 'https://rdf-dot-diesel-nova-412314.ew.r.appspot.com/query/books_by_ids'
     rdf_response = requests.post(rdf_url, json=payload)
     rdf_data = rdf_response.json()
 
