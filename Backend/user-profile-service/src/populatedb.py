@@ -167,6 +167,23 @@ def insert_others(connection, data, table_name):
     except Error as e:
         print(f"Error inserting data into {table_name} table:", e)
 
+def insert_user_mapping_json(connection,user_mapping_ids):
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SET FOREIGN_KEY_CHECKS = 0;")
+        for other in user_mapping_ids:
+            other_id=int(other["user_id_long"])
+
+            cursor.execute("INSERT INTO users_mapping_ids (user_id,user_id_long) "
+                           "VALUES (%s, %s)",
+                           (other['user_id'],
+                            other_id))
+        connection.commit()
+        cursor.execute("SET FOREIGN_KEY_CHECKS = 1;")
+        cursor.close()
+        print(" data inserted successfully")
+    except Error as e:
+        print(f"Error inserting data into user_mappings_ids table:", e)
 
 def populate():
     # Get the directory path of the current script
@@ -178,16 +195,18 @@ def populate():
     similar_books_data = read_json('resources/similar_books.json')
     users_data=read_json('resources/users.json')
     user_book_interaction_data = read_json('resources/user_interactions.json')
+    user_mapping_ids=read_json('resources/user_interactions.json')
     #cityd=read_json('../resources/cities.json')
     try:
         connection = get_db_connection()
         if connection:
-            # insert_books(connection, books_data)
-            # insert_authors(connection, authors_data)
-            # insert_auth_book(connection,authors_books)
+            insert_books(connection, books_data)
+            insert_authors(connection, authors_data)
+            insert_auth_book(connection,authors_books)
             insert_similar_books(connection,similar_books_data)
             insert_user(connection,users_data)
             insert_user_interactions(connection,user_book_interaction_data)
+            insert_user_mapping_json(connection,user_mapping_ids)
 
             # insert_others(connection,cityd,'cities')
             connection.close()

@@ -198,5 +198,13 @@ def get_books():
     per_page = int(request.args.get('limit', 10))
     return dockerdb.get_books(page, per_page)
 
+@app.route('/users/spotify/<string:user_id>',  methods=['GET'])
+def get_spotify_data_for_user(user_id):
+    data = dockerdb.get_apidata_for_user_from_table(user_id,'spotify')
+    return data
+@app.route('/users/mapping/<string:user_id>')
+def get_long_id_of_user(user_id):
+    data = dockerdb.get_mapper_id_of_user(user_id)
+    return data
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

@@ -99,3 +99,25 @@ primary key(id),
 FOREIGN KEY (book_id) REFERENCES books(book_id),
 FOREIGN KEY (author_id) REFERENCES authors(author_id)
 );
+
+create table google_books(
+id  varchar(50) not null,
+data longtext,
+primary key(id),
+FOREIGN KEY (id) REFERENCES users_data(user_id)
+);
+
+create table spotify(
+id varchar(50) not null,
+data longtext,
+primary key(id),
+FOREIGN KEY (id) REFERENCES users_data(user_id)
+);
+
+create table users_mapping_ids(
+id BIGINT not null AUTO_INCREMENT,
+user_id  varchar(50),
+user_id_long BIGINT,
+primary key(id),
+FOREIGN KEY (user_id) REFERENCES users_data(user_id)
+);

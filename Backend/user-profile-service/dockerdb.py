@@ -54,7 +54,7 @@ def get_users_resources(resource,limit):
 def get_resource(resourceName:str,limit:int):
     resources_dic={'skills':f"SELECT * FROM skills LIMIT {limit}",
                'cities':f"SELECT * FROM cities LIMIT {limit}",
-               'companies':"SELECT * FROM companies LIMIT {limit}"
+               'companies':f"SELECT * FROM companies LIMIT {limit}"
                }
     return resources_dic[resourceName]
 
@@ -237,3 +237,41 @@ def save_api_data(table_name, user_id, data):
     finally:
         if cursor:
             cursor.close()
+
+def get_apidata_for_user_from_table(user_id, table_name):
+    try:
+        connection = get_db_connection()
+        if connection:
+            cursor = connection.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM %s WHERE user_id = %s", (table_name,user_id))
+            data = cursor.fetchone()
+            cursor.close()
+            connection.close()
+            if data:
+                return jsonify(data), 200
+            else:
+                return "User id not found", 404
+        else:
+            return "Database connection error", 500
+    except Error as e:
+        print("Error fetching spotify table:", e)
+        return "Error fetching spotify table", 500
+
+def get_mapper_id_of_user(user_id):
+    try:
+        connection = get_db_connection()
+        if connection:
+            cursor = connection.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM users_mapping_ids WHERE user_id = %s", (user_id,))
+            user = cursor.fetchone()
+            cursor.close()
+            connection.close()
+            if user:
+                return jsonify(user), 200
+            else:
+                return "User not found", 404
+        else:
+            return "Database connection error", 500
+    except Error as e:
+        print("Error fetching user mapping id:", e)
+        return "Error fetching user mappinig id", 500
