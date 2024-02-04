@@ -6,6 +6,7 @@ from src.movies import form_sparql_query_movies, process_rdf_data_movies
 from src.music import form_sparql_query_music, process_rdf_data_music
 from flask_cors import CORS
 
+
 app = Flask(__name__)
 CORS(app)
 

@@ -15,6 +15,7 @@ from src.populatedb import populate
 from flask_cors import CORS
 
 
+
 # Load environment variables
 load_dotenv()
 
