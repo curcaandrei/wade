@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, request, jsonify
 import requests
 from src.movies import form_sparql_query_movies, process_rdf_data_movies
@@ -28,9 +30,51 @@ def get_book_recommendations(user_id):
 def get_movie_recommendations():
     return get_recommendations(form_sparql_query_movies, process_rdf_data_movies)
 
+# @app.route('/recommendations/music/<user_id>', methods=['POST'])
+# def get_music_recommendations(user_id):
+#     prediction_url = f'http://34.159.12.120:8005/song-recommender/{user_id}'
+#     prediction_response = requests.get(prediction_url)
+#     if prediction_response.status_code == 200:
+#         prediction_data = prediction_response.json()
+#         favorite_songs = []
+#         for song in prediction_data:
+#             favourite_song = {
+#                 "Name": song["track_name"],
+#                 "Artist": song["artist_name"],
+#                 "Album": song["album_name"],
+#                 "Genres": song["genres"].split()
+#             }
+#             favorite_songs.append(favourite_song)
+#
+#         payload = {"favorite_songs": favorite_songs}
+#
+#         recommendation_url = 'http://34.159.12.120:8005/song-recommender'
+#         recommendation_response = requests.post(recommendation_url, json=payload)
+#         return jsonify(recommendation_response.json())
+@app.route('/recommendations/music/<user_id>', methods=['POST'])
+def get_music_recommendations_for_user(user_id):
+    prediction_url = f'http://34.159.12.120:8005/song-recommender/{user_id}'
+    prediction_response = requests.get(prediction_url)
+    prediction_data = prediction_response.json()
+    return jsonify(prediction_data)
+
 @app.route('/recommendations/music', methods=['POST'])
 def get_music_recommendations():
-    return get_recommendations(form_sparql_query_music, process_rdf_data_music)
+    data = request.json
+    favorite_songs = []
+    for song in data["favorite_songs"]:
+        favourite_song = {
+            "Name": song["track_name"],
+            "Artist": song["artist_name"],
+            "Album": song["album_name"],
+            "Genres": song["genres"].split()
+        }
+        favorite_songs.append(favourite_song)
+
+    payload = {"favorite_songs": favorite_songs}
+    recommendation_url = 'http://34.159.12.120:8005/song-recommender'
+    recommendation_response = requests.post(recommendation_url, json=payload)
+    return jsonify(recommendation_response.json())
 
 def get_recommendations(form_sparql_query, process_rdf_data):
     data = request.json
