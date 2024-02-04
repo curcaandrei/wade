@@ -138,7 +138,7 @@ def get_spotify_data():
 def get_books_data():
     user_id = request.args.get('user_id')
     auth_url, _ = flow_google_books.authorization_url(prompt='consent', state=user_id)
-    return redirect(auth_url)
+    return redirect(auth_url) 
 
 @app.route('/youtube')
 def get_youtube_data():
