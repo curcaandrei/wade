@@ -101,14 +101,14 @@ FOREIGN KEY (author_id) REFERENCES authors(author_id)
 );
 
 create table google_books(
-id  varchar(50) not null,
+user_id  varchar(50) not null,
 data longtext,
 primary key(id),
 FOREIGN KEY (id) REFERENCES users_data(user_id)
 );
 
 create table spotify(
-id varchar(50) not null,
+user_id varchar(50) not null,
 data longtext,
 primary key(id),
 FOREIGN KEY (id) REFERENCES users_data(user_id)
