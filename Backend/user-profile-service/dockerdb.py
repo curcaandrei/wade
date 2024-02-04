@@ -1,6 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
 from flask import jsonify
+import json
 config = {
     'user': 'user',
     'password': 'user',
@@ -243,11 +244,12 @@ def get_apidata_for_user_from_table(user_id, table_name):
         connection = get_db_connection()
         if connection:
             cursor = connection.cursor(dictionary=True)
-            cursor.execute("SELECT * FROM %s WHERE user_id = %s", (table_name,user_id))
+            cursor.execute(f"SELECT * FROM {table_name} WHERE user_id = {user_id}")
             data = cursor.fetchone()
             cursor.close()
             connection.close()
             if data:
+                data['data']=json.loads(data['data'])
                 return jsonify(data), 200
             else:
                 return "User id not found", 404

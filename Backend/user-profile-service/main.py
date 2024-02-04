@@ -32,7 +32,7 @@ SCOPES = {
     'reddit': ['mysubreddits', 'read']
 }
 
-# Initialize secret manager client
+#Initialize secret manager client
 secret_client = secretmanager.SecretManagerServiceClient()
 
 def access_secret_version(secret_id, version_id="latest"):
@@ -76,7 +76,7 @@ reddit = praw.Reddit(
 )
 
 app.secret_key = access_secret_version("APP_SECRET")
-# Routes for each service
+#Routes for each service
 @app.route('/callback/googlebooks')
 def google_books_callback():
     user_id = request.args.get('state')
@@ -84,7 +84,7 @@ def google_books_callback():
     flow_google_books.fetch_token(code=code)
     credentials = flow_google_books.credentials
     data = books.fetch_data(credentials)
-    dockerdb.save_api_data("books", user_id, json.dumps(data))
+    dockerdb.save_api_data("google_books", user_id, json.dumps(data))
     return data
 
 @app.route('/callback/youtube')
