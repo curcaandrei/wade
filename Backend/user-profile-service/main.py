@@ -32,7 +32,7 @@ SCOPES = {
     'reddit': ['mysubreddits', 'read']
 }
 
-# Initialize secret manager client
+#Initialize secret manager client
 secret_client = secretmanager.SecretManagerServiceClient()
 
 def access_secret_version(secret_id, version_id="latest"):
@@ -76,7 +76,7 @@ reddit = praw.Reddit(
 )
 
 app.secret_key = access_secret_version("APP_SECRET")
-# Routes for each service
+#Routes for each service
 @app.route('/callback/googlebooks')
 def google_books_callback():
     user_id = request.args.get('state')
@@ -84,7 +84,7 @@ def google_books_callback():
     flow_google_books.fetch_token(code=code)
     credentials = flow_google_books.credentials
     data = books.fetch_data(credentials)
-    dockerdb.save_api_data("books", user_id, json.dumps(data))
+    dockerdb.save_api_data("google_books", user_id, json.dumps(data))
     return data
 
 @app.route('/callback/youtube')
@@ -197,6 +197,23 @@ def get_books():
     page = int(request.args.get('startId', 1))
     per_page = int(request.args.get('limit', 10))
     return dockerdb.get_books(page, per_page)
+
+@app.route('/users/spotify/<string:user_id>',  methods=['GET'])
+def get_spotify_data_for_user(user_id):
+    data = dockerdb.get_apidata_for_user_from_table(user_id,'spotify')
+    return data
+@app.route('/users/mapping/<string:user_id>')
+def get_long_id_of_user(user_id):
+    data = dockerdb.get_mapper_id_of_user(user_id)
+    return data
+
+@app.route('/users/interactions/<user_id>', methods=['GET'])
+def check_user_interactions(user_id):
+    return dockerdb.check_user_interaction(user_id)
+
+@app.route('/users/random-books', methods=['GET'])
+def get_list_of_random_books():
+    return dockerdb.get_random_books_with_ids()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
