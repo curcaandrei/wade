@@ -320,6 +320,7 @@ def get_random_books_with_ids():
         print("Error fetching random books:", e)
         return "Error fetching random books", 500
 
+
 def get_random_books():
     random_data = [
         {"book_id":random.randint(113, 36523122),
