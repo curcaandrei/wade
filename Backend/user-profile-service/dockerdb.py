@@ -215,3 +215,25 @@ def get_books(starting_id,number_of_books):
 
     except mysql.connector.Error as error:
         return jsonify({'error': str(error)})
+
+
+def save_api_data(table_name, user_id, data):
+    """
+    Saves or updates the API data in the specified table in the database.
+    """
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor()
+        query = (
+            f"INSERT INTO {table_name} (user_id, data) "
+            "VALUES (%s, %s) "
+            "ON DUPLICATE KEY UPDATE data = VALUES(data)"
+        )
+        cursor.execute(query, (user_id, data))
+        connection.commit()
+        print(f"Data for user_id {user_id} saved/updated in {table_name} successfully.")
+    except Error as e:
+        print(f"Error saving/updating data in {table_name}:", e)
+    finally:
+        if cursor:
+            cursor.close()

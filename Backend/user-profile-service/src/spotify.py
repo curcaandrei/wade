@@ -13,7 +13,8 @@ def fetch_data(token_info):
             'Name': track['name'],
             'Artist': ", ".join([artist['name'] for artist in track['artists']]),
             'Album': track['album']['name'],
-            'Genres': [genre for artist in track['artists'] for genre in sp.artist(artist['id'])['genres']]
+            'Genres': [genre for artist in track['artists'] for genre in sp.artist(artist['id'])['genres']],
+            'URL': track['external_urls']['spotify']
         } for track in top_tracks['items']]
 
         # Retrieve artist details
