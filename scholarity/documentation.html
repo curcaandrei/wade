@@ -201,6 +201,111 @@
                     <p>
                         Normal users who wish to use the application for social purposes.
                     </p>
+
+                    <h4>1.5 RDF Configuration</h4>
+                    <p>
+                        Our system's RDF-based knowledge model is organized around an extensive collection of classes
+                        and characteristics, each of which is intended to capture and represent a particular facet of
+                        the domain. These components make it possible to accurately and completely represent entities
+                        and their connections inside the system.
+                    </p>
+                    <section>
+                        <h5>Classes</h5>
+                        <p>
+                            The classes Author, Book, City, Skill, User, BookAuthorAssociation, Company, SimilarBooks,
+                            UserBookInteraction, and UserMapping are the foundation of our model; they provide an
+                            organized way to classify the domain entities. Because every class has a distinct URI,
+                            entities can be easily identified and linkable throughout the dataset. To distinguish
+                            between authors from other entity types like books or users, the system includes an Author
+                            class.
+                        </p>
+
+                        <h5>Properties</h5>
+                        <p>book, author, averageRating, city, company, rating, title, email, imageUrl, locale, user,
+                            user_id_long, isKnown, name, similarBook, and userName: These properties define the
+                            attributes of classes or the relationships between them. They are used to describe specific
+                            characteristics of an entity (like a user's email or a book's title) or to link entities
+                            together (such as associating a book with its author).
+                        </p>
+
+                        <h5>Expressiveness and Real Usage</h5>
+                        <p>
+                        <ul>
+                            <li>
+                                The expressiveness of this model lies in its ability to accurately describe the complex
+                                relationships and attributes found within the system's domain.
+                            </li>
+                            <li>
+                                Each entity, whether it be a user, book, or company, is given a unique URI and described
+                                using a set of properties that capture its essential attributes. This enables a rich,
+                                detailed representation of the domain data.
+                            </li>
+                            <li>
+                                The model captures relationships between entities, such as the association between books
+                                and authors or 'books' and their similar counterparts, through properties like 'book'
+                                and 'similarBook'. These relationships are vital for understanding the connections and
+                                interactions within the domain.
+
+                            </li>
+
+                            <li>
+                                The use of rdf:type allows for the classification of entities under specific classes,
+                                facilitating the organization of data and supporting more efficient querying and data
+                                retrieval. For example, distinguishing between different types of interactions or
+                                associations enables tailored processing and analysis.
+                            </li>
+                            <li>
+                                The standardized RDF format and the use of URIs for entity identification promote data
+                                integration and interoperability. This structured approach makes it easier to merge data
+                                from different sources or to link data within the system to external datasets, enhancing
+                                the model's utility and extending its reach.
+                            </li>
+
+                        </ul>
+                        </p>
+                        <h5>Taxonomy</h5>
+                        <p>
+                            The taxonomy within the model is reflected in the hierarchical classification of entities
+                            and concepts. In order to organize data in a way that accurately represents relationships
+                            and categories found in the real world, a hierarchical structure is essential.
+
+                            Entities such as City, Company, and Skill are organized in a taxonomy that reflects
+                            geographical, industrial, or skill-related hierarchies, respectively. This organization
+                            allows for the aggregation of data at different levels (e.g., by city, sector, or
+                            expertise), facilitating more nuanced analysis and querying.
+                            The taxonomy aids in categorizing entities under broader concepts, enhancing the system's
+                            ability to filter, search, and recommend content.
+                        </p>
+
+                        <h5>Ontology</h5>
+                        <p>The ontology aspect of the model goes a step further by defining the set of concepts and
+                            categories in the domain and specifying the relationships and properties that link these
+                            concepts. It encapsulates not just the hierarchical structures but also the complex, often
+                            nuanced relationships between entities.
+                            Beyond simple hierarchical classifications, the ontology captures a wide array of
+                            relationships (such as authorship, ownership, or geographic location) and constraints that
+                            define how entities relate to each other.
+
+
+                        </p>
+                        <p>For example, the BookAuthorAssociation class explicitly models the relationship between books
+                            and authors, while properties like similarBook capture the nuanced concept of similarity
+                            between books.
+                        <p>The ontology supports logical inference, allowing the system to deduce new information from
+                            the existing data. For instance, if two books share a significant number of similar
+                            attributes or are frequently referenced together, the system might infer a similarity
+                            relationship, even if not explicitly stated.
+                            By adhering to standardized ontologies, the model enhances its interoperability with other
+                            systems and datasets. This standardization facilitates the integration of external data
+                            sources, enriching the system's knowledge base and providing users with a more comprehensive
+                            dataset.
+
+                            The use of a controlled vocabulary within the ontology ensures consistent terminology across
+                            the system. This consistency is crucial for effective data retrieval and analysis, as it
+                            reduces ambiguity and enhances the precision of queries and algorithms.</p>
+                        </p>
+                    </section>
+
                 </section>
 
                 <section>
@@ -250,7 +355,7 @@
             <section>
                 <h3>2. Products that use recommendations systems or combination</h3>
                 <h4>2.1 Facebook </h4>
-                
+
                 <p>Facebook collects extensive data on user behavior, including interactions, likes, comments, shares,
                     and clicks. This data is crucial for understanding user preferences and interests.
                     Facebook likely employs content-based filtering, where user preferences are inferred based on the
@@ -386,9 +491,87 @@
                 </section>
                 <section>
                     <h4>4. Product Arhitecture</h4>
+                    <section>
+                        <p>The technical architecture of the Web modular system designed for recommending items based on
+                            a knowledge graph, expressed in RDF, involves a complex interplay of APIs across different
+                            microservices. This architecture supports the integration of social media profiles, user
+                            feedback, and various features/properties to generate personalized recommendations. The
+                            system's technical aspects are organized around RDF microservices, recommendation
+                            microservices, and user profile microservices, all of which interact to form a comprehensive
+                            recommendation engine.</p>
+                        <h5>RDF Microservice</h5>
+                        <p>
+                            The RDF microservice acts as a core component for querying and manipulating RDF data. It
+                            provides endpoints for accessing detailed information about books, cities, companies,
+                            skills, and authors, leveraging SPARQL queries to fetch data from an RDF store. This
+                            microservice is fundamental for extracting the necessary data to support the recommendation
+                            logic, which includes:
+                        </p>
+                        <ul>
+                            <li>Fetching book details and associated authors, leveraging RDF's graph structure to
+                                aggregate data such as titles, ratings, and author names.
+                            </li>
+                            <li>Querying entities like cities, companies, and skills to support filtering and
+                                recommendation criteria based on user preferences or profile data.
+                            </li>
+                            <li>Enabling complex queries through a POST endpoint that accepts SPARQL queries directly,
+                                providing flexibility for dynamic recommendation scenarios.
+                            </li>
+                        </ul>
+                        <h5>Recommendation Microservice</h5>
+                        <p>The recommendation microservice is dedicated to generating personalized recommendations for
+                            users, focusing on books and songs in this implementation. It interacts with external
+                            prediction services to obtain recommendation data, which is then enriched by querying the
+                            RDF store for detailed information. Key features include:</p>
+                        <ul>
+                            <li>Book recommendations based on user IDs, where the service calls an external prediction
+                                API and then fetches detailed book information from the RDF microservice.
+                            </li>
+                            <li>Music recommendations that similarly leverage external prediction services to suggest
+                                songs based on user preferences or profiles.
+                            </li>
+                            <li>The ability to process and return recommendations in a structured format, making it easy
+                                for clients to consume and display the recommended items.
+                            </li>
+                        </ul>
+                        <h5>User Profile Microservice</h5>
+                        <ul>
+                            <li>Collecting and storing user data from various sources, which can be used to enhance the
+                                personalization of recommendations.
+                            </li>
+                            <li>Providing endpoints for retrieving user information, enabling user-based filtering and
+                                recommendations.
+                            </li>
+                            <li>Managing user interactions and feedback, which can be used to refine and improve the
+                                recommendation algorithms.
+                            </li>
+                        </ul>
+                        <br>
+                        <h5>Technical Integration and Data Flow</h5>
+                        <p>The system's architecture is designed for modularity and scalability, with each microservice
+                            handling a distinct aspect of the recommendation process. Integration is achieved through
+                            RESTful APIs and direct HTTP requests between services. The data flow typically
+                            involves:</p>
+                        <ol>
+                            <li>User data is collected via the user profile microservice from various social media
+                                platforms and stored in a database.
+                            </li>
+                            <li>The recommendation microservice fetches user-specific data and queries external APIs to
+                                generate preliminary recommendation lists.
+                            </li>
+                            <li>For items like books and music, detailed information is fetched from the RDF
+                                microservice by querying the RDF store with SPARQL.
+                            </li>
+                            <li>The enriched recommendations are returned to the user, providing personalized
+                                suggestions based on the comprehensive analysis of their profile and preferences.
+                            </li>
+                        </ol>
+                    </section>
+
+
                     Overview over entire arhitecture and component subsystems
                     <figure typeof="sa:image">
-                        <img src="./images/main_arhitecture.jpg" alt="main_arhitecture">
+                        <img src="images/main_arhitecture.jpg" alt="main_arhitecture">
                         <figcaption>overall arhitecture</figcaption>
                     </figure>
                     One of the flows is described below.
@@ -424,7 +607,7 @@
                         Example of instance:(incomplete because tag "otherPref" is missing because with that node will
                         be
                         linked uris from music, videos, books or other preferences)
-                    </p>    
+                    </p>
                         <xmp>
 
                             <rdf:Description rdf:about="http://custom.org/Bernardo_Alvarez">
@@ -443,7 +626,7 @@
                                 <rdf:type rdf:resource="http://custom.org/Skill" />
                                 <ns2:label>java</ns2:label>
                         </xmp>
-                   
+
                     <h5>Music</h5>
                     <figure typeof="sa:image">
                         <img src="./images/music_draph.png" alt="music graph">
@@ -615,7 +798,7 @@
                 <li>Using a uniform referencing pattern using '/' in uris.</li>
                 <li>Also use schema.org and FOAF to conect out data to other concepts that's already existing.</li>
             </ul>
-        
+
         </section>
         <section>
             <h3>7. References</h3>
