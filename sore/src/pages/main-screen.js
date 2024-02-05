@@ -39,7 +39,7 @@ const MainScreen = () => {
           }
         };
           fetchPersons();
-      }, [ currentPage]);
+      }, [ currentPage, userId]);
 const findUsersByUserData = async (data) => {
         // if (data['company'] && data['city']) {
         //     const company = data['company'];

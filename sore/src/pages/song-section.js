@@ -23,7 +23,7 @@ const SongSection = ({ sectionTitle}) => {
       setLoading(false);
       };
       fetchSongs();
-    }, []);
+    }, [userId]);
     const notify = (message) => toast.info(message, {
       position: "top-right",
       autoClose: 1000,
