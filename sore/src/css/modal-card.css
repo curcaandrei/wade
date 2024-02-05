@@ -27,6 +27,10 @@
     border-radius: 8px;
     box-sizing: border-box;
   }
+  .card-back >p {
+  width: 80px;
+  text-overflow: ellipsis;
+  }
   .card-front-picture{
     display: flex;
     justify-content: center;
@@ -34,7 +38,9 @@
   .card-front > .card-front-picture >img{
     height: 35%px;
     width: 50%;
+    white-space: wrap;
   }
+
   .card-back {
     transform: rotateY(-180deg);
   }
