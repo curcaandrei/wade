@@ -32,18 +32,11 @@ const FirstTimeScreen = () => {
 const fetchDataFromSpotify = async () => {
       try {
         setLoading(true);
-        const response=await fetch(`https://userpf-dot-diesel-nova-412314.ew.r.appspot.com/spotify?user_id=${userId}`, {
-              method: 'GET',
-              mode: 'no-cors',
-              headers: {
-              'Content-Type': 'application/json',
-              }
-        });
-        console.log(response);
-        RedirectPopOut(response.url)
-        setLoading(false);
+        const authUrl = `https://userpf-dot-diesel-nova-412314.ew.r.appspot.com/spotify?user_id=${userId}`;
+        window.location = authUrl;
       } catch (error) {
         console.error('Error fetching data:', error);
+        setLoading(false);
       }
     };
     const fetchDataFromGoogleBooks = async () => {
