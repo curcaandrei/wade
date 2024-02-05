@@ -43,6 +43,7 @@ const HomeScreen = () => {
 //                 .then((res) => {
 //                     setProfile(res.data);
 //                     console.log(res.data);
+//                     localStorage.setItem('user_id', 'res.data["id"]');
 //                     navigate('./first-time-login');
 //                 })
 //                 .catch((err) => console.log(err));
@@ -60,7 +61,8 @@ useEffect(() => {
             Accept: 'application/json'
           }
         });
-
+        localStorage.setItem('user_id', res.data["id"]);
+        console.log(localStorage.getItem('user_id'));
         setProfile(res.data);
         console.log(res.data);
 

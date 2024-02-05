@@ -1,92 +1,31 @@
 [
     {
         "id":1,
-    "name":"Aurel",
-    "work":"home",
+    "userName":"Aurel",
+    "company":"home",
     "city":"Iasi",
-    "profilePicture":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    "hobbies":"reading hiking",
-    "otherInfo":"sleeping is good"
+    "email":"sleeping is good"
     },
 {
     "id":2,
-    "name":"Mirel",
-"work":"home",
+    "userName":"Mirel",
+"company":"home",
 "city":"Iasi",
-"profilePicture":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-"hobbies":"reading hiking",
-"otherInfo":"sleeping is good"
+"email":"sleeping is good"
 },
 {
     "id":3,
-    "name":"Mirel",
+    "userName":"Mirel",
 "work":"home",
 "city":"Iasi",
-"profilePicture":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-"hobbies":"reading hiking",
-"otherInfo":"sleeping is good"
+"email":"sleeping is good"
 },
 {
     "id":4,
     "name":"Mirel",
 "work":"home",
 "city":"Iasi",
-"profilePicture":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-"hobbies":"reading hiking",
-"otherInfo":"sleeping is good"
-},
-{
-    "id":5,
-    "name":"Mirel",
-"work":"home",
-"city":"Iasi",
-"profilePicture":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-"hobbies":"reading hiking",
-"otherInfo":"sleeping is good"
-},
-{
-    "id":6,
-    "name":"Mirel",
-"work":"home",
-"city":"Iasi",
-"profilePicture":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-"hobbies":"reading hiking",
-"otherInfo":"sleeping is good"
-},
-{
-    "id":7,
-    "name":"Mirel",
-"work":"home",
-"city":"Iasi",
-"profilePicture":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-"hobbies":"reading hiking",
-"otherInfo":"sleeping is good"
-},
-{
-    "id":8,
-    "name":"Mirel",
-"work":"home",
-"city":"Iasi",
-"profilePicture":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-"hobbies":"reading hiking",
-"otherInfo":"sleeping is good"
-},
-{
-    "id":9,
-    "name":"Georgel",
-"work":"home",
-"city":"Iasi",
-"profilePicture":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-"hobbies":"reading hiking",
-"otherInfo":"sleeping is good"
-},
-{
-    "id":10,
-    "name":"Mirel",
-"work":"home",
-"city":"Iasi",
-"profilePicture":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-"hobbies":"reading hiking",
-"otherInfo":"sleeping is good"
+"email":"sleeping is good"
 }
+
 ]
