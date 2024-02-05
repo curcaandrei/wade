@@ -1,0 +1,62 @@
+[
+    {
+        "id": 0,
+        "name": "Iasi"
+    },
+    {
+        "id": 1,
+        "name": "Cluj"
+    },
+    {
+        "id": 2,
+        "name": "Bucharest"
+    },
+    {
+        "id": 3,
+        "name": "Vaslui"
+    },
+    {
+        "id": 4,
+        "name": "Brasov"
+    },
+    {
+        "id": 5,
+        "name": "Madrid"
+    },
+    {
+        "id": 6,
+        "name": "Londra"
+    },
+    {
+        "id": 7,
+        "name": "Amsterdam"
+    },
+    {
+        "id": 8,
+        "name": "Budapest"
+    },
+    {
+        "id": 9,
+        "name": "Genk"
+    },
+    {
+        "id": 10,
+        "name": "Vardar"
+    },
+    {
+        "id": 11,
+        "name": "Miami"
+    },
+    {
+        "id": 12,
+        "name": "Moscow"
+    },
+    {
+        "id": 13,
+        "name": "Chicago"
+    },
+    {
+        "id": 14,
+        "name": "New York"
+    }
+]

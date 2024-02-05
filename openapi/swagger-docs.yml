@@ -1,0 +1,2070 @@
+openapi: 3.0.3
+info:
+  title: MESS
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: http://127.0.0.1
+  - url: http://192.168.1.138
+  - url: http://34.159.3.201
+paths:
+  /query/books:
+    get:
+      summary: RDF service - /query/books
+      description: RDF service - /query/books
+      operationId: rdfServiceQueryBooks
+      parameters:
+        - name: city
+          in: query
+          schema:
+            type: string
+            example: Iasi
+      responses:
+        '200':
+          description: ''
+  /query/cities:
+    get:
+      summary: RDF service - /query/cities
+      description: RDF service - /query/cities
+      operationId: rdfServiceQueryCities
+      responses:
+        '200':
+          description: ''
+  /query/companies:
+    get:
+      summary: RDF service - /query/companies
+      description: RDF service - /query/companies
+      operationId: rdfServiceQueryCompanies
+      responses:
+        '200':
+          description: ''
+  /query/skills:
+    get:
+      summary: RDF service - /query/skills
+      description: RDF service - /query/skills
+      operationId: rdfServiceQuerySkills
+      responses:
+        '200':
+          description: ''
+  /query/authors:
+    get:
+      summary: RDF service - /query/authors
+      description: RDF service - /query/authors
+      operationId: rdfServiceQueryAuthors
+      responses:
+        '200':
+          description: ''
+  /query/books_by_ids:
+    post:
+      summary: RDF service - /query/books_by_ids
+      description: RDF service - /query/books_by_ids
+      operationId: rdfServiceQueryBooksByIds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  items:
+                    type: string
+                    example: '10333414'
+                  example:
+                    - '10333414'
+                    - '10291544'
+            examples:
+              RDF service - /query/books_by_ids:
+                value:
+                  ids:
+                    - '10333414'
+                    - '10291544'
+      responses:
+        '200':
+          description: ''
+  /query/users:
+    get:
+      summary: RDF service - /query/users
+      description: RDF service - /query/users
+      operationId: rdfServiceQueryUsers
+      parameters:
+        - name: company
+          in: query
+          schema:
+            type: string
+            example: Lidl
+        - name: city
+          in: query
+          schema:
+            type: string
+            example: Iasi
+        - name: limit
+          in: query
+          schema:
+            type: string
+            example: '5'
+      responses:
+        '200':
+          description: ''
+  /recommendations/books/036585969099540881610:
+    post:
+      summary: Recommendation service - /recommendations/books/<user_id>
+      description: Recommendation service - /recommendations/books/<user_id>
+      operationId: recommendationServiceRecommendationsBooksUserId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                favorite_songs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Album:
+                        type: string
+                        example: Born In The U.S.A.
+                      Artist:
+                        type: string
+                        example: Bruce Springsteen
+                      Genres:
+                        type: array
+                        items:
+                          type: string
+                          example: heartland rock
+                        example:
+                          - heartland rock
+                          - mellow gold
+                          - permanent wave
+                          - rock
+                          - singer-songwriter
+                      Name:
+                        type: string
+                        example: I'm Goin' Down
+                  example:
+                    - Album: Born In The U.S.A.
+                      Artist: Bruce Springsteen
+                      Genres:
+                        - heartland rock
+                        - mellow gold
+                        - permanent wave
+                        - rock
+                        - singer-songwriter
+                      Name: I'm Goin' Down
+                    - Album: Black Butterfly
+                      Artist: Buckcherry
+                      Genres:
+                        - alternative metal
+                        - glam metal
+                        - hard rock
+                        - nu metal
+                        - post-grunge
+                        - sleaze rock
+                      Name: Rescue Me
+            examples:
+              Recommendation service - /recommendations/books/<user_id>:
+                value:
+                  favorite_songs:
+                    - Album: Born In The U.S.A.
+                      Artist: Bruce Springsteen
+                      Genres:
+                        - heartland rock
+                        - mellow gold
+                        - permanent wave
+                        - rock
+                        - singer-songwriter
+                      Name: I'm Goin' Down
+                    - Album: Black Butterfly
+                      Artist: Buckcherry
+                      Genres:
+                        - alternative metal
+                        - glam metal
+                        - hard rock
+                        - nu metal
+                        - post-grunge
+                        - sleaze rock
+                      Name: Rescue Me
+      responses:
+        '200':
+          description: ''
+  /recommendations/music/1:
+    post:
+      summary: Recommendation service - /recommendations/music/<user_id>
+      description: Recommendation service - /recommendations/music/<user_id>
+      operationId: recommendationServiceRecommendationsMusicUserId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                favorite_songs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Album:
+                        type: string
+                        example: Born In The U.S.A.
+                      Artist:
+                        type: string
+                        example: Bruce Springsteen
+                      Genres:
+                        type: array
+                        items:
+                          type: string
+                          example: heartland rock
+                        example:
+                          - heartland rock
+                          - mellow gold
+                          - permanent wave
+                          - rock
+                          - singer-songwriter
+                      Name:
+                        type: string
+                        example: I'm Goin' Down
+                  example:
+                    - Album: Born In The U.S.A.
+                      Artist: Bruce Springsteen
+                      Genres:
+                        - heartland rock
+                        - mellow gold
+                        - permanent wave
+                        - rock
+                        - singer-songwriter
+                      Name: I'm Goin' Down
+                    - Album: Black Butterfly
+                      Artist: Buckcherry
+                      Genres:
+                        - alternative metal
+                        - glam metal
+                        - hard rock
+                        - nu metal
+                        - post-grunge
+                        - sleaze rock
+                      Name: Rescue Me
+            examples:
+              Recommendation service - /recommendations/music/<user_id>:
+                value:
+                  favorite_songs:
+                    - Album: Born In The U.S.A.
+                      Artist: Bruce Springsteen
+                      Genres:
+                        - heartland rock
+                        - mellow gold
+                        - permanent wave
+                        - rock
+                        - singer-songwriter
+                      Name: I'm Goin' Down
+                    - Album: Black Butterfly
+                      Artist: Buckcherry
+                      Genres:
+                        - alternative metal
+                        - glam metal
+                        - hard rock
+                        - nu metal
+                        - post-grunge
+                        - sleaze rock
+                      Name: Rescue Me
+      responses:
+        '200':
+          description: ''
+  /recommendations/music:
+    post:
+      summary: Recommendation service - /recommendations/music
+      description: Recommendation service - /recommendations/music
+      operationId: recommendationServiceRecommendationsMusic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                favorite_songs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      album_name:
+                        type: string
+                        example: The Dark Leaves
+                      artist_name:
+                        type: string
+                        example: Matt Pond PA
+                      genres:
+                        type: string
+                        example: philly_indie stomp_and_holler
+                      track_name:
+                        type: string
+                        example: Specks
+                      uri:
+                        type: string
+                        example: spotify:track:4gAgdhTIx6T76baPfbXHQX
+                  example:
+                    - album_name: The Dark Leaves
+                      artist_name: Matt Pond PA
+                      genres: philly_indie stomp_and_holler
+                      track_name: Specks
+                      uri: spotify:track:4gAgdhTIx6T76baPfbXHQX
+                    - album_name: Cup Chronicles
+                      artist_name: Champagne Pa
+                      genres: unknown
+                      track_name: Diamonds From Africa
+                      uri: spotify:track:4qGVbPTdfrvPGqeAKjry2N
+            examples:
+              Recommendation service - /recommendations/music:
+                value:
+                  favorite_songs:
+                    - album_name: The Dark Leaves
+                      artist_name: Matt Pond PA
+                      genres: philly_indie stomp_and_holler
+                      track_name: Specks
+                      uri: spotify:track:4gAgdhTIx6T76baPfbXHQX
+                    - album_name: Cup Chronicles
+                      artist_name: Champagne Pa
+                      genres: unknown
+                      track_name: Diamonds From Africa
+                      uri: spotify:track:4qGVbPTdfrvPGqeAKjry2N
+      responses:
+        '200':
+          description: ''
+  /books:
+    get:
+      summary: User profile Service - books
+      description: User profile Service - books
+      operationId: userProfileServiceBooks
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: '100'
+        - name: per_page
+          in: query
+          schema:
+            type: string
+            example: '10'
+      responses:
+        '200':
+          description: ''
+  /users/resources/cities:
+    get:
+      summary: User resources Cities
+      description: User resources Cities
+      operationId: userResourcesCities
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: string
+            example: '2'
+      responses:
+        '200':
+          description: ''
+  /users:
+    post:
+      summary: Users Post
+      description: Users Post
+      operationId: usersPost
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Users Post:
+                value: "{\r\n    \"user_id\":1234454364,\r\n    \"user_name\":\"Michael\",\r\n    \"email\":\"michale23@gmail.com\",\r\n    \"locale\":\"ro\",\r\n    \"city\":\"Cluj\",\r\n    \"company\":\"Microsoft\",\r\n}"
+      responses:
+        '200':
+          description: ''
+  /users/1:
+    get:
+      summary: Get User by id
+      description: Get User by id
+      operationId: getUserById
+      responses:
+        '200':
+          description: ''
+    patch:
+      summary: Users Patch
+      description: Users Patch
+      operationId: usersPatch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: Gogu@gmail.com
+            examples:
+              Users Patch:
+                value:
+                  email: Gogu@gmail.com
+      responses:
+        '200':
+          description: ''
+  /data:
+    post:
+      summary: Populate DB
+      description: Populate DB
+      operationId: populateDb
+      responses:
+        '200':
+          description: ''
+  /users-filter:
+    get:
+      summary: Users filter by city
+      description: Users filter by city
+      operationId: usersFilterByCity
+      parameters:
+        - name: city
+          in: query
+          schema:
+            type: string
+            example: Iasi
+      responses:
+        '200':
+          description: ''
+  /unzip-model:
+    post:
+      summary: Unzip model
+      description: Unzip model
+      operationId: unzipModel
+      responses:
+        '200':
+          description: ''
+  /load-model:
+    post:
+      summary: Load model
+      description: Load model
+      operationId: loadModel
+      responses:
+        '200':
+          description: ''
+  /predict/0:
+    post:
+      summary: Predict for user
+      description: Predict for user
+      operationId: predictForUser
+      responses:
+        '200':
+          description: ''
+  /predict-new-user/13000:
+    post:
+      summary: Predict new user
+      description: Predict new user
+      operationId: predictNewUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  book_id:
+                    type: number
+                    example: 21322
+                  rating:
+                    type: number
+                    example: 5
+              example:
+                - book_id: 21322
+                  rating: 5
+                - book_id: 11322
+                  rating: 4
+            examples:
+              Predict new user:
+                value:
+                  - book_id: 21322
+                    rating: 5
+                  - book_id: 11322
+                    rating: 4
+      responses:
+        '200':
+          description: ''
+  /song-recommender:
+    post:
+      summary: Song recommender
+      description: Song recommender
+      operationId: songRecommender
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                artists_info:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Followers:
+                        type: number
+                        example: 341309
+                      Genres:
+                        type: array
+                        items:
+                          type: string
+                          example: new wave pop
+                        example:
+                          - new wave pop
+                          - soft rock
+                          - yacht rock
+                      Name:
+                        type: string
+                        example: Eric Carmen
+                      Popularity:
+                        type: number
+                        example: 58
+                  example:
+                    - Followers: 341309
+                      Genres:
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Eric Carmen
+                      Popularity: 58
+                    - Followers: 8884160
+                      Genres:
+                        - rock-and-roll
+                        - rockabilly
+                      Name: Elvis Presley
+                      Popularity: 75
+                    - Followers: 1101731
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                      Name: Alter Bridge
+                      Popularity: 58
+                    - Followers: 5436556
+                      Genres:
+                        - boy band
+                        - dance pop
+                        - pop
+                      Name: Backstreet Boys
+                      Popularity: 72
+                    - Followers: 2445854
+                      Genres:
+                        - danish metal
+                        - danish rock
+                      Name: Volbeat
+                      Popularity: 67
+                    - Followers: 5945670
+                      Genres:
+                        - heartland rock
+                        - mellow gold
+                        - permanent wave
+                        - rock
+                        - singer-songwriter
+                      Name: Bruce Springsteen
+                      Popularity: 72
+                    - Followers: 4161671
+                      Genres:
+                        - album rock
+                        - blues rock
+                        - classic rock
+                        - hard rock
+                        - rock
+                      Name: ZZ Top
+                      Popularity: 66
+                    - Followers: 137158
+                      Genres:
+                        - classic uk pop
+                        - rockabilly
+                      Name: Shakin' Stevens
+                      Popularity: 56
+                    - Followers: 102643
+                      Genres:
+                        - glam metal
+                      Name: Vixen
+                      Popularity: 37
+                    - Followers: 1362925
+                      Genres:
+                        - british soul
+                        - neo mellow
+                        - scottish singer-songwriter
+                      Name: Paolo Nutini
+                      Popularity: 63
+                    - Followers: 4250014
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                        - rock
+                      Name: 3 Doors Down
+                      Popularity: 68
+                    - Followers: 665772
+                      Genres:
+                        - album rock
+                        - glam metal
+                        - hard rock
+                        - metal
+                      Name: Dokken
+                      Popularity: 49
+                    - Followers: 6731
+                      Genres: []
+                      Name: Paul Engemann
+                      Popularity: 44
+                    - Followers: 2824577
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                      Name: Stone Sour
+                      Popularity: 61
+                    - Followers: 1859516
+                      Genres:
+                        - disco
+                        - hi-nrg
+                        - new wave pop
+                        - soft rock
+                      Name: Donna Summer
+                      Popularity: 60
+                    - Followers: 81961
+                      Genres:
+                        - freestyle
+                        - hi-nrg
+                        - minneapolis sound
+                        - post-disco
+                      Name: Shannon
+                      Popularity: 40
+                    - Followers: 3351275
+                      Genres:
+                        - canadian pop
+                        - canadian singer-songwriter
+                        - classic canadian rock
+                        - heartland rock
+                        - mellow gold
+                        - soft rock
+                      Name: Bryan Adams
+                      Popularity: 72
+                    - Followers: 880953
+                      Genres:
+                        - country rock
+                        - folk
+                        - folk rock
+                        - heartland rock
+                        - mellow gold
+                        - singer-songwriter
+                        - soft rock
+                      Name: Linda Ronstadt
+                      Popularity: 59
+                    - Followers: 880111
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - pop punk
+                        - post-grunge
+                        - punk
+                        - screamo
+                      Name: AFI
+                      Popularity: 58
+                    - Followers: 728856
+                      Genres:
+                        - eurodance
+                        - europop
+                        - new wave pop
+                      Name: Ace of Base
+                      Popularity: 62
+                    - Followers: 35857
+                      Genres:
+                        - glam metal
+                      Name: Lee Aaron
+                      Popularity: 25
+                    - Followers: 1110985
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Billy Ocean
+                      Popularity: 59
+                    - Followers: 30415
+                      Genres:
+                        - classic uk pop
+                        - glam rock
+                      Name: Steve Harley
+                      Popularity: 42
+                    - Followers: 252031
+                      Genres:
+                        - europop
+                        - new wave pop
+                      Name: Des'ree
+                      Popularity: 52
+                    - Followers: 12820
+                      Genres:
+                        - tropical house
+                      Name: Saco
+                      Popularity: 54
+                    - Followers: 6772617
+                      Genres:
+                        - album rock
+                        - german hard rock
+                        - german metal
+                        - german rock
+                        - hard rock
+                        - rock
+                      Name: Scorpions
+                      Popularity: 69
+                    - Followers: 351779
+                      Genres:
+                        - freestyle
+                        - new jack swing
+                        - new wave pop
+                      Name: Milli Vanilli
+                      Popularity: 49
+                    - Followers: 3795829
+                      Genres:
+                        - soft rock
+                      Name: Tina Turner
+                      Popularity: 67
+                    - Followers: 91846
+                      Genres: []
+                      Name: Outlandish
+                      Popularity: 47
+                    - Followers: 3712396
+                      Genres:
+                        - neo mellow
+                      Name: Jack Johnson
+                      Popularity: 72
+                    - Followers: 526
+                      Genres: []
+                      Name: Sebastiën
+                      Popularity: 47
+                    - Followers: 780043
+                      Genres:
+                        - alternative metal
+                        - glam metal
+                        - hard rock
+                        - nu metal
+                        - post-grunge
+                        - sleaze rock
+                      Name: Buckcherry
+                      Popularity: 54
+                    - Followers: 3110731
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                        - rap metal
+                      Name: Godsmack
+                      Popularity: 65
+                    - Followers: 693031
+                      Genres:
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - synthpop
+                      Name: Laura Branigan
+                      Popularity: 58
+                    - Followers: 27624862
+                      Genres:
+                        - australian rock
+                        - hard rock
+                        - rock
+                      Name: AC/DC
+                      Popularity: 78
+                    - Followers: 190317
+                      Genres:
+                        - punk 'n' roll
+                      Name: Danko Jones
+                      Popularity: 48
+                    - Followers: 2257870
+                      Genres:
+                        - album rock
+                        - classic rock
+                        - heartland rock
+                        - mellow gold
+                        - rock
+                        - singer-songwriter
+                        - soft rock
+                        - yacht rock
+                      Name: Daryl Hall & John Oates
+                      Popularity: 71
+                    - Followers: 50776
+                      Genres:
+                        - glam rock
+                      Name: Steve Harley & Cockney Rebel
+                      Popularity: 43
+                    - Followers: 2512973
+                      Genres:
+                        - australian rock
+                        - dance rock
+                        - funk rock
+                        - new romantic
+                        - new wave
+                        - rock
+                      Name: INXS
+                      Popularity: 67
+                    - Followers: 274601
+                      Genres:
+                        - finnish heavy metal
+                        - finnish power metal
+                        - power metal
+                      Name: Beast In Black
+                      Popularity: 58
+                    - Followers: 1631141
+                      Genres:
+                        - album rock
+                        - classic rock
+                        - country rock
+                        - folk rock
+                        - hard rock
+                        - heartland rock
+                        - mellow gold
+                        - rock
+                        - singer-songwriter
+                        - soft rock
+                      Name: John Mellencamp
+                      Popularity: 63
+                    - Followers: 3921702
+                      Genres:
+                        - album rock
+                        - art rock
+                        - beatlesque
+                        - classic rock
+                        - glam rock
+                        - mellow gold
+                        - rock
+                        - soft rock
+                        - symphonic rock
+                      Name: Electric Light Orchestra
+                      Popularity: 68
+                    - Followers: 1505237
+                      Genres:
+                        - new romantic
+                        - new wave
+                        - new wave pop
+                        - soft rock
+                        - synthpop
+                      Name: Culture Club
+                      Popularity: 61
+                favorite_songs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Album:
+                        type: string
+                        example: Born In The U.S.A.
+                      Artist:
+                        type: string
+                        example: Bruce Springsteen
+                      Genres:
+                        type: array
+                        items:
+                          type: string
+                          example: heartland rock
+                        example:
+                          - heartland rock
+                          - mellow gold
+                          - permanent wave
+                          - rock
+                          - singer-songwriter
+                      Name:
+                        type: string
+                        example: I'm Goin' Down
+                  example:
+                    - Album: Born In The U.S.A.
+                      Artist: Bruce Springsteen
+                      Genres:
+                        - heartland rock
+                        - mellow gold
+                        - permanent wave
+                        - rock
+                        - singer-songwriter
+                      Name: I'm Goin' Down
+                    - Album: Black Butterfly
+                      Artist: Buckcherry
+                      Genres:
+                        - alternative metal
+                        - glam metal
+                        - hard rock
+                        - nu metal
+                        - post-grunge
+                        - sleaze rock
+                      Name: Rescue Me
+                    - Album: Us And The Night
+                      Artist: 3 Doors Down
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                        - rock
+                      Name: Still Alive
+                    - Album: Breaking the Chains
+                      Artist: Dokken
+                      Genres:
+                        - album rock
+                        - glam metal
+                        - hard rock
+                        - metal
+                      Name: Breaking the Chains
+                    - Album: Colour By Numbers (Remastered / Expanded Edition)
+                      Artist: Culture Club
+                      Genres:
+                        - new romantic
+                        - new wave
+                        - new wave pop
+                        - soft rock
+                        - synthpop
+                      Name: Karma Chameleon - Remastered 2002
+                    - Album: Eliminator
+                      Artist: ZZ Top
+                      Genres:
+                        - album rock
+                        - blues rock
+                        - classic rock
+                        - hard rock
+                        - rock
+                      Name: Legs - 2008 Remaster
+                    - Album: All Night Long
+                      Artist: Buckcherry
+                      Genres:
+                        - alternative metal
+                        - glam metal
+                        - hard rock
+                        - nu metal
+                        - post-grunge
+                        - sleaze rock
+                      Name: All Night Long
+                    - Album: The River
+                      Artist: Bruce Springsteen
+                      Genres:
+                        - heartland rock
+                        - mellow gold
+                        - permanent wave
+                        - rock
+                        - singer-songwriter
+                      Name: Hungry Heart
+                    - Album: Out of the Blue
+                      Artist: Electric Light Orchestra
+                      Genres:
+                        - album rock
+                        - art rock
+                        - beatlesque
+                        - classic rock
+                        - glam rock
+                        - mellow gold
+                        - rock
+                        - soft rock
+                        - symphonic rock
+                      Name: Sweet Talkin' Woman
+                    - Album: Backstreet Boys
+                      Artist: Backstreet Boys
+                      Genres:
+                        - boy band
+                        - dance pop
+                        - pop
+                      Name: Quit Playing Games (With My Heart)
+                    - Album: Highway to Hell
+                      Artist: AC/DC
+                      Genres:
+                        - australian rock
+                        - hard rock
+                        - rock
+                      Name: Touch Too Much
+                    - Album: Vixen
+                      Artist: Vixen
+                      Genres:
+                        - glam metal
+                      Name: Edge Of A Broken Heart
+                    - Album: These Streets
+                      Artist: Paolo Nutini
+                      Genres:
+                        - british soul
+                        - neo mellow
+                        - scottish singer-songwriter
+                      Name: New Shoes
+                    - Album: Heart Like A Wheel
+                      Artist: Linda Ronstadt
+                      Genres:
+                        - country rock
+                        - folk
+                        - folk rock
+                        - heartland rock
+                        - mellow gold
+                        - singer-songwriter
+                        - soft rock
+                      Name: When Will I Be Loved
+                    - Album: The Very Best of Billy Ocean
+                      Artist: Billy Ocean
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Caribbean Queen (No More Love On the Run)
+                    - Album: The Very Best of Billy Ocean
+                      Artist: Billy Ocean
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Get Outta My Dreams, Get Into My Car
+                    - Album: Kick (Remastered 2011)
+                      Artist: INXS
+                      Genres:
+                        - australian rock
+                        - dance rock
+                        - funk rock
+                        - new romantic
+                        - new wave
+                        - rock
+                      Name: Need You Tonight
+                    - Album: When Legends Rise
+                      Artist: Godsmack
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                        - rap metal
+                      Name: When Legends Rise
+                    - Album: One Day Remains
+                      Artist: Alter Bridge
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                      Name: Metalingus
+                    - Album: Simple Dreams
+                      Artist: Linda Ronstadt
+                      Genres:
+                        - country rock
+                        - folk
+                        - folk rock
+                        - heartland rock
+                        - mellow gold
+                        - singer-songwriter
+                        - soft rock
+                      Name: It's so Easy
+                    - Album: The Sign
+                      Artist: Ace of Base
+                      Genres:
+                        - eurodance
+                        - europop
+                        - new wave pop
+                      Name: The Sign
+                    - Album: The Best Years of Our Lives (Deluxe Version)
+                      Artist: Steve Harley, Steve Harley & Cockney Rebel
+                      Genres:
+                        - classic uk pop
+                        - glam rock
+                        - glam rock
+                      Name: Make Me Smile (Come up and See Me) - 2014 Remaster
+                    - Album: The Very Best of Billy Ocean
+                      Artist: Billy Ocean
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Loverboy
+                    - Album: DECEMBERUNDERGROUND
+                      Artist: AFI
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - pop punk
+                        - post-grunge
+                        - punk
+                        - screamo
+                      Name: Miss Murder
+                    - Album: The Definitive Collection
+                      Artist: Eric Carmen
+                      Genres:
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Hungry Eyes - From "Dirty Dancing" Soundtrack
+                    - Album: Lee Aaron
+                      Artist: Lee Aaron
+                      Genres:
+                        - glam metal
+                      Name: Powerline
+                    - Album: Upside Down
+                      Artist: Jack Johnson
+                      Genres:
+                        - neo mellow
+                      Name: Upside Down
+                    - Album: From Hell With Love
+                      Artist: Beast In Black
+                      Genres:
+                        - finnish heavy metal
+                        - finnish power metal
+                        - power metal
+                      Name: From Hell With Love
+                    - Album: There Are Two Kinds Of Music...Rock 'n' Roll
+                      Artist: Shakin' Stevens
+                      Genres:
+                        - classic uk pop
+                        - rockabilly
+                      Name: Love Attack
+                    - Album: Scarface (Expanded Motion Picture Soundtrack)
+                      Artist: Paul Engemann
+                      Genres: []
+                      Name: Scarface (Push It To The Limit)
+                    - Album: Savage Amusement
+                      Artist: Scorpions
+                      Genres:
+                        - album rock
+                        - german hard rock
+                        - german metal
+                        - german rock
+                        - hard rock
+                        - rock
+                      Name: Rhythm of Love - 2015 Remaster
+                    - Album: Reckless (30th Anniversary / Deluxe Edition)
+                      Artist: Bryan Adams, Tina Turner
+                      Genres:
+                        - canadian pop
+                        - canadian singer-songwriter
+                        - classic canadian rock
+                        - heartland rock
+                        - mellow gold
+                        - soft rock
+                        - soft rock
+                      Name: It's Only Love
+                    - Album: House of Gold & Bones, Part 1
+                      Artist: Stone Sour
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                      Name: Absolute Zero
+                    - Album: She Works Hard For The Money
+                      Artist: Donna Summer
+                      Genres:
+                        - disco
+                        - hi-nrg
+                        - new wave pop
+                        - soft rock
+                      Name: She Works Hard For The Money
+                    - Album: Seal The Deal & Let's Boogie (Deluxe)
+                      Artist: Volbeat
+                      Genres:
+                        - danish metal
+                        - danish rock
+                      Name: The Devil's Bleeding Crown
+                    - Album: Let the Music Play
+                      Artist: Shannon
+                      Genres:
+                        - freestyle
+                        - hi-nrg
+                        - minneapolis sound
+                        - post-disco
+                      Name: Give Me Tonight
+                    - Album: Billy Ocean (Expanded Edition)
+                      Artist: Billy Ocean
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Love Really Hurts Without You
+                    - Album: Supernatural
+                      Artist: Des'ree
+                      Genres:
+                        - europop
+                        - new wave pop
+                      Name: Life
+                    - Album: Girl You Know It's True - The Best Of Milli Vanilli
+                      Artist: Milli Vanilli
+                      Genres:
+                        - freestyle
+                        - new jack swing
+                        - new wave pop
+                      Name: Girl You Know It's True
+                    - Album: Gotta Give Me
+                      Artist: Saco, Sebastiën
+                      Genres:
+                        - tropical house
+                      Name: Gotta Give Me (feat. Sebastiën)
+                    - Album: Billy Ocean (Expanded Edition)
+                      Artist: Billy Ocean
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Red Light Spells Danger
+                    - Album: Billy Ocean (Expanded Edition)
+                      Artist: Billy Ocean
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: L.O.D. (Love on Delivery)
+                    - Album: Branigan
+                      Artist: Laura Branigan
+                      Genres:
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - synthpop
+                      Name: Gloria
+                    - Album: Seal The Deal & Let's Boogie (Deluxe)
+                      Artist: Volbeat, Danko Jones
+                      Genres:
+                        - danish metal
+                        - danish rock
+                        - punk 'n' roll
+                      Name: Black Rose
+                    - Album: Another Place & Time
+                      Artist: Donna Summer
+                      Genres:
+                        - disco
+                        - hi-nrg
+                        - new wave pop
+                        - soft rock
+                      Name: This Time I Know It's for Real
+                    - Album: American Fool
+                      Artist: John Mellencamp
+                      Genres:
+                        - album rock
+                        - classic rock
+                        - country rock
+                        - folk rock
+                        - hard rock
+                        - heartland rock
+                        - mellow gold
+                        - rock
+                        - singer-songwriter
+                        - soft rock
+                      Name: Hurts So Good
+                    - Album: The Very Best of Daryl Hall / John Oates
+                      Artist: Daryl Hall & John Oates
+                      Genres:
+                        - album rock
+                        - classic rock
+                        - heartland rock
+                        - mellow gold
+                        - rock
+                        - singer-songwriter
+                        - soft rock
+                        - yacht rock
+                      Name: Out of Touch
+                    - Album: Elvis (Fool)
+                      Artist: Elvis Presley
+                      Genres:
+                        - rock-and-roll
+                        - rockabilly
+                      Name: Burning Love
+                    - Album: Born In The U.S.A.
+                      Artist: Bruce Springsteen
+                      Genres:
+                        - heartland rock
+                        - mellow gold
+                        - permanent wave
+                        - rock
+                        - singer-songwriter
+                      Name: Dancing In the Dark
+                    - Album: Bread & Barrels Of Water (International Version)
+                      Artist: Outlandish
+                      Genres: []
+                      Name: Aicha
+            examples:
+              Song recommender:
+                value:
+                  artists_info:
+                    - Followers: 341309
+                      Genres:
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Eric Carmen
+                      Popularity: 58
+                    - Followers: 8884160
+                      Genres:
+                        - rock-and-roll
+                        - rockabilly
+                      Name: Elvis Presley
+                      Popularity: 75
+                    - Followers: 1101731
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                      Name: Alter Bridge
+                      Popularity: 58
+                    - Followers: 5436556
+                      Genres:
+                        - boy band
+                        - dance pop
+                        - pop
+                      Name: Backstreet Boys
+                      Popularity: 72
+                    - Followers: 2445854
+                      Genres:
+                        - danish metal
+                        - danish rock
+                      Name: Volbeat
+                      Popularity: 67
+                    - Followers: 5945670
+                      Genres:
+                        - heartland rock
+                        - mellow gold
+                        - permanent wave
+                        - rock
+                        - singer-songwriter
+                      Name: Bruce Springsteen
+                      Popularity: 72
+                    - Followers: 4161671
+                      Genres:
+                        - album rock
+                        - blues rock
+                        - classic rock
+                        - hard rock
+                        - rock
+                      Name: ZZ Top
+                      Popularity: 66
+                    - Followers: 137158
+                      Genres:
+                        - classic uk pop
+                        - rockabilly
+                      Name: Shakin' Stevens
+                      Popularity: 56
+                    - Followers: 102643
+                      Genres:
+                        - glam metal
+                      Name: Vixen
+                      Popularity: 37
+                    - Followers: 1362925
+                      Genres:
+                        - british soul
+                        - neo mellow
+                        - scottish singer-songwriter
+                      Name: Paolo Nutini
+                      Popularity: 63
+                    - Followers: 4250014
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                        - rock
+                      Name: 3 Doors Down
+                      Popularity: 68
+                    - Followers: 665772
+                      Genres:
+                        - album rock
+                        - glam metal
+                        - hard rock
+                        - metal
+                      Name: Dokken
+                      Popularity: 49
+                    - Followers: 6731
+                      Genres: []
+                      Name: Paul Engemann
+                      Popularity: 44
+                    - Followers: 2824577
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                      Name: Stone Sour
+                      Popularity: 61
+                    - Followers: 1859516
+                      Genres:
+                        - disco
+                        - hi-nrg
+                        - new wave pop
+                        - soft rock
+                      Name: Donna Summer
+                      Popularity: 60
+                    - Followers: 81961
+                      Genres:
+                        - freestyle
+                        - hi-nrg
+                        - minneapolis sound
+                        - post-disco
+                      Name: Shannon
+                      Popularity: 40
+                    - Followers: 3351275
+                      Genres:
+                        - canadian pop
+                        - canadian singer-songwriter
+                        - classic canadian rock
+                        - heartland rock
+                        - mellow gold
+                        - soft rock
+                      Name: Bryan Adams
+                      Popularity: 72
+                    - Followers: 880953
+                      Genres:
+                        - country rock
+                        - folk
+                        - folk rock
+                        - heartland rock
+                        - mellow gold
+                        - singer-songwriter
+                        - soft rock
+                      Name: Linda Ronstadt
+                      Popularity: 59
+                    - Followers: 880111
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - pop punk
+                        - post-grunge
+                        - punk
+                        - screamo
+                      Name: AFI
+                      Popularity: 58
+                    - Followers: 728856
+                      Genres:
+                        - eurodance
+                        - europop
+                        - new wave pop
+                      Name: Ace of Base
+                      Popularity: 62
+                    - Followers: 35857
+                      Genres:
+                        - glam metal
+                      Name: Lee Aaron
+                      Popularity: 25
+                    - Followers: 1110985
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Billy Ocean
+                      Popularity: 59
+                    - Followers: 30415
+                      Genres:
+                        - classic uk pop
+                        - glam rock
+                      Name: Steve Harley
+                      Popularity: 42
+                    - Followers: 252031
+                      Genres:
+                        - europop
+                        - new wave pop
+                      Name: Des'ree
+                      Popularity: 52
+                    - Followers: 12820
+                      Genres:
+                        - tropical house
+                      Name: Saco
+                      Popularity: 54
+                    - Followers: 6772617
+                      Genres:
+                        - album rock
+                        - german hard rock
+                        - german metal
+                        - german rock
+                        - hard rock
+                        - rock
+                      Name: Scorpions
+                      Popularity: 69
+                    - Followers: 351779
+                      Genres:
+                        - freestyle
+                        - new jack swing
+                        - new wave pop
+                      Name: Milli Vanilli
+                      Popularity: 49
+                    - Followers: 3795829
+                      Genres:
+                        - soft rock
+                      Name: Tina Turner
+                      Popularity: 67
+                    - Followers: 91846
+                      Genres: []
+                      Name: Outlandish
+                      Popularity: 47
+                    - Followers: 3712396
+                      Genres:
+                        - neo mellow
+                      Name: Jack Johnson
+                      Popularity: 72
+                    - Followers: 526
+                      Genres: []
+                      Name: Sebastiën
+                      Popularity: 47
+                    - Followers: 780043
+                      Genres:
+                        - alternative metal
+                        - glam metal
+                        - hard rock
+                        - nu metal
+                        - post-grunge
+                        - sleaze rock
+                      Name: Buckcherry
+                      Popularity: 54
+                    - Followers: 3110731
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                        - rap metal
+                      Name: Godsmack
+                      Popularity: 65
+                    - Followers: 693031
+                      Genres:
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - synthpop
+                      Name: Laura Branigan
+                      Popularity: 58
+                    - Followers: 27624862
+                      Genres:
+                        - australian rock
+                        - hard rock
+                        - rock
+                      Name: AC/DC
+                      Popularity: 78
+                    - Followers: 190317
+                      Genres:
+                        - punk 'n' roll
+                      Name: Danko Jones
+                      Popularity: 48
+                    - Followers: 2257870
+                      Genres:
+                        - album rock
+                        - classic rock
+                        - heartland rock
+                        - mellow gold
+                        - rock
+                        - singer-songwriter
+                        - soft rock
+                        - yacht rock
+                      Name: Daryl Hall & John Oates
+                      Popularity: 71
+                    - Followers: 50776
+                      Genres:
+                        - glam rock
+                      Name: Steve Harley & Cockney Rebel
+                      Popularity: 43
+                    - Followers: 2512973
+                      Genres:
+                        - australian rock
+                        - dance rock
+                        - funk rock
+                        - new romantic
+                        - new wave
+                        - rock
+                      Name: INXS
+                      Popularity: 67
+                    - Followers: 274601
+                      Genres:
+                        - finnish heavy metal
+                        - finnish power metal
+                        - power metal
+                      Name: Beast In Black
+                      Popularity: 58
+                    - Followers: 1631141
+                      Genres:
+                        - album rock
+                        - classic rock
+                        - country rock
+                        - folk rock
+                        - hard rock
+                        - heartland rock
+                        - mellow gold
+                        - rock
+                        - singer-songwriter
+                        - soft rock
+                      Name: John Mellencamp
+                      Popularity: 63
+                    - Followers: 3921702
+                      Genres:
+                        - album rock
+                        - art rock
+                        - beatlesque
+                        - classic rock
+                        - glam rock
+                        - mellow gold
+                        - rock
+                        - soft rock
+                        - symphonic rock
+                      Name: Electric Light Orchestra
+                      Popularity: 68
+                    - Followers: 1505237
+                      Genres:
+                        - new romantic
+                        - new wave
+                        - new wave pop
+                        - soft rock
+                        - synthpop
+                      Name: Culture Club
+                      Popularity: 61
+                  favorite_songs:
+                    - Album: Born In The U.S.A.
+                      Artist: Bruce Springsteen
+                      Genres:
+                        - heartland rock
+                        - mellow gold
+                        - permanent wave
+                        - rock
+                        - singer-songwriter
+                      Name: I'm Goin' Down
+                    - Album: Black Butterfly
+                      Artist: Buckcherry
+                      Genres:
+                        - alternative metal
+                        - glam metal
+                        - hard rock
+                        - nu metal
+                        - post-grunge
+                        - sleaze rock
+                      Name: Rescue Me
+                    - Album: Us And The Night
+                      Artist: 3 Doors Down
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                        - rock
+                      Name: Still Alive
+                    - Album: Breaking the Chains
+                      Artist: Dokken
+                      Genres:
+                        - album rock
+                        - glam metal
+                        - hard rock
+                        - metal
+                      Name: Breaking the Chains
+                    - Album: Colour By Numbers (Remastered / Expanded Edition)
+                      Artist: Culture Club
+                      Genres:
+                        - new romantic
+                        - new wave
+                        - new wave pop
+                        - soft rock
+                        - synthpop
+                      Name: Karma Chameleon - Remastered 2002
+                    - Album: Eliminator
+                      Artist: ZZ Top
+                      Genres:
+                        - album rock
+                        - blues rock
+                        - classic rock
+                        - hard rock
+                        - rock
+                      Name: Legs - 2008 Remaster
+                    - Album: All Night Long
+                      Artist: Buckcherry
+                      Genres:
+                        - alternative metal
+                        - glam metal
+                        - hard rock
+                        - nu metal
+                        - post-grunge
+                        - sleaze rock
+                      Name: All Night Long
+                    - Album: The River
+                      Artist: Bruce Springsteen
+                      Genres:
+                        - heartland rock
+                        - mellow gold
+                        - permanent wave
+                        - rock
+                        - singer-songwriter
+                      Name: Hungry Heart
+                    - Album: Out of the Blue
+                      Artist: Electric Light Orchestra
+                      Genres:
+                        - album rock
+                        - art rock
+                        - beatlesque
+                        - classic rock
+                        - glam rock
+                        - mellow gold
+                        - rock
+                        - soft rock
+                        - symphonic rock
+                      Name: Sweet Talkin' Woman
+                    - Album: Backstreet Boys
+                      Artist: Backstreet Boys
+                      Genres:
+                        - boy band
+                        - dance pop
+                        - pop
+                      Name: Quit Playing Games (With My Heart)
+                    - Album: Highway to Hell
+                      Artist: AC/DC
+                      Genres:
+                        - australian rock
+                        - hard rock
+                        - rock
+                      Name: Touch Too Much
+                    - Album: Vixen
+                      Artist: Vixen
+                      Genres:
+                        - glam metal
+                      Name: Edge Of A Broken Heart
+                    - Album: These Streets
+                      Artist: Paolo Nutini
+                      Genres:
+                        - british soul
+                        - neo mellow
+                        - scottish singer-songwriter
+                      Name: New Shoes
+                    - Album: Heart Like A Wheel
+                      Artist: Linda Ronstadt
+                      Genres:
+                        - country rock
+                        - folk
+                        - folk rock
+                        - heartland rock
+                        - mellow gold
+                        - singer-songwriter
+                        - soft rock
+                      Name: When Will I Be Loved
+                    - Album: The Very Best of Billy Ocean
+                      Artist: Billy Ocean
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Caribbean Queen (No More Love On the Run)
+                    - Album: The Very Best of Billy Ocean
+                      Artist: Billy Ocean
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Get Outta My Dreams, Get Into My Car
+                    - Album: Kick (Remastered 2011)
+                      Artist: INXS
+                      Genres:
+                        - australian rock
+                        - dance rock
+                        - funk rock
+                        - new romantic
+                        - new wave
+                        - rock
+                      Name: Need You Tonight
+                    - Album: When Legends Rise
+                      Artist: Godsmack
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                        - rap metal
+                      Name: When Legends Rise
+                    - Album: One Day Remains
+                      Artist: Alter Bridge
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                      Name: Metalingus
+                    - Album: Simple Dreams
+                      Artist: Linda Ronstadt
+                      Genres:
+                        - country rock
+                        - folk
+                        - folk rock
+                        - heartland rock
+                        - mellow gold
+                        - singer-songwriter
+                        - soft rock
+                      Name: It's so Easy
+                    - Album: The Sign
+                      Artist: Ace of Base
+                      Genres:
+                        - eurodance
+                        - europop
+                        - new wave pop
+                      Name: The Sign
+                    - Album: The Best Years of Our Lives (Deluxe Version)
+                      Artist: Steve Harley, Steve Harley & Cockney Rebel
+                      Genres:
+                        - classic uk pop
+                        - glam rock
+                        - glam rock
+                      Name: Make Me Smile (Come up and See Me) - 2014 Remaster
+                    - Album: The Very Best of Billy Ocean
+                      Artist: Billy Ocean
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Loverboy
+                    - Album: DECEMBERUNDERGROUND
+                      Artist: AFI
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - pop punk
+                        - post-grunge
+                        - punk
+                        - screamo
+                      Name: Miss Murder
+                    - Album: The Definitive Collection
+                      Artist: Eric Carmen
+                      Genres:
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Hungry Eyes - From "Dirty Dancing" Soundtrack
+                    - Album: Lee Aaron
+                      Artist: Lee Aaron
+                      Genres:
+                        - glam metal
+                      Name: Powerline
+                    - Album: Upside Down
+                      Artist: Jack Johnson
+                      Genres:
+                        - neo mellow
+                      Name: Upside Down
+                    - Album: From Hell With Love
+                      Artist: Beast In Black
+                      Genres:
+                        - finnish heavy metal
+                        - finnish power metal
+                        - power metal
+                      Name: From Hell With Love
+                    - Album: There Are Two Kinds Of Music...Rock 'n' Roll
+                      Artist: Shakin' Stevens
+                      Genres:
+                        - classic uk pop
+                        - rockabilly
+                      Name: Love Attack
+                    - Album: Scarface (Expanded Motion Picture Soundtrack)
+                      Artist: Paul Engemann
+                      Genres: []
+                      Name: Scarface (Push It To The Limit)
+                    - Album: Savage Amusement
+                      Artist: Scorpions
+                      Genres:
+                        - album rock
+                        - german hard rock
+                        - german metal
+                        - german rock
+                        - hard rock
+                        - rock
+                      Name: Rhythm of Love - 2015 Remaster
+                    - Album: Reckless (30th Anniversary / Deluxe Edition)
+                      Artist: Bryan Adams, Tina Turner
+                      Genres:
+                        - canadian pop
+                        - canadian singer-songwriter
+                        - classic canadian rock
+                        - heartland rock
+                        - mellow gold
+                        - soft rock
+                        - soft rock
+                      Name: It's Only Love
+                    - Album: House of Gold & Bones, Part 1
+                      Artist: Stone Sour
+                      Genres:
+                        - alternative metal
+                        - nu metal
+                        - post-grunge
+                      Name: Absolute Zero
+                    - Album: She Works Hard For The Money
+                      Artist: Donna Summer
+                      Genres:
+                        - disco
+                        - hi-nrg
+                        - new wave pop
+                        - soft rock
+                      Name: She Works Hard For The Money
+                    - Album: Seal The Deal & Let's Boogie (Deluxe)
+                      Artist: Volbeat
+                      Genres:
+                        - danish metal
+                        - danish rock
+                      Name: The Devil's Bleeding Crown
+                    - Album: Let the Music Play
+                      Artist: Shannon
+                      Genres:
+                        - freestyle
+                        - hi-nrg
+                        - minneapolis sound
+                        - post-disco
+                      Name: Give Me Tonight
+                    - Album: Billy Ocean (Expanded Edition)
+                      Artist: Billy Ocean
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Love Really Hurts Without You
+                    - Album: Supernatural
+                      Artist: Des'ree
+                      Genres:
+                        - europop
+                        - new wave pop
+                      Name: Life
+                    - Album: Girl You Know It's True - The Best Of Milli Vanilli
+                      Artist: Milli Vanilli
+                      Genres:
+                        - freestyle
+                        - new jack swing
+                        - new wave pop
+                      Name: Girl You Know It's True
+                    - Album: Gotta Give Me
+                      Artist: Saco, Sebastiën
+                      Genres:
+                        - tropical house
+                      Name: Gotta Give Me (feat. Sebastiën)
+                    - Album: Billy Ocean (Expanded Edition)
+                      Artist: Billy Ocean
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: Red Light Spells Danger
+                    - Album: Billy Ocean (Expanded Edition)
+                      Artist: Billy Ocean
+                      Genres:
+                        - disco
+                        - mellow gold
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - yacht rock
+                      Name: L.O.D. (Love on Delivery)
+                    - Album: Branigan
+                      Artist: Laura Branigan
+                      Genres:
+                        - new romantic
+                        - new wave pop
+                        - soft rock
+                        - synthpop
+                      Name: Gloria
+                    - Album: Seal The Deal & Let's Boogie (Deluxe)
+                      Artist: Volbeat, Danko Jones
+                      Genres:
+                        - danish metal
+                        - danish rock
+                        - punk 'n' roll
+                      Name: Black Rose
+                    - Album: Another Place & Time
+                      Artist: Donna Summer
+                      Genres:
+                        - disco
+                        - hi-nrg
+                        - new wave pop
+                        - soft rock
+                      Name: This Time I Know It's for Real
+                    - Album: American Fool
+                      Artist: John Mellencamp
+                      Genres:
+                        - album rock
+                        - classic rock
+                        - country rock
+                        - folk rock
+                        - hard rock
+                        - heartland rock
+                        - mellow gold
+                        - rock
+                        - singer-songwriter
+                        - soft rock
+                      Name: Hurts So Good
+                    - Album: The Very Best of Daryl Hall / John Oates
+                      Artist: Daryl Hall & John Oates
+                      Genres:
+                        - album rock
+                        - classic rock
+                        - heartland rock
+                        - mellow gold
+                        - rock
+                        - singer-songwriter
+                        - soft rock
+                        - yacht rock
+                      Name: Out of Touch
+                    - Album: Elvis (Fool)
+                      Artist: Elvis Presley
+                      Genres:
+                        - rock-and-roll
+                        - rockabilly
+                      Name: Burning Love
+                    - Album: Born In The U.S.A.
+                      Artist: Bruce Springsteen
+                      Genres:
+                        - heartland rock
+                        - mellow gold
+                        - permanent wave
+                        - rock
+                        - singer-songwriter
+                      Name: Dancing In the Dark
+                    - Album: Bread & Barrels Of Water (International Version)
+                      Artist: Outlandish
+                      Genres: []
+                      Name: Aicha
+      responses:
+        '200':
+          description: ''
+  /users/spotify/1:
+    get:
+      summary: Users/spotify/id
+      description: Users/spotify/id
+      operationId: usersSpotifyId
+      responses:
+        '200':
+          description: ''
+  /users/mapping/766056648586624112687:
+    get:
+      summary: User mappings
+      description: User mappings
+      operationId: userMappings
+      responses:
+        '200':
+          description: ''
+  /song-recommender/1:
+    get:
+      summary: Song recommender for user
+      description: Song recommender for user
+      operationId: songRecommenderForUser
+      responses:
+        '200':
+          description: ''
+  /users/interactions/613976839705930983755:
+    get:
+      summary: User interactions
+      description: User interactions
+      operationId: userInteractions
+      responses:
+        '200':
+          description: ''
+  /users/random-books:
+    get:
+      summary: User random books
+      description: User random books
+      operationId: userRandomBooks
+      responses:
+        '200':
+          description: ''
+tags: []
