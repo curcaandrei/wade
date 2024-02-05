@@ -451,7 +451,7 @@
                             will receive content based on previous data collected
                         </li>
                         <li>
-                            he can like or dislike other content
+                            he can select items and based on that selection to receive new items.
                         </li>
                     </ul>
 
@@ -578,35 +578,22 @@
 
                 <section>
                     <h4>4.2 Data structure</h4>
-                    <h5>User</h5>
-                    <p>Users rdf data and users have been generated using a python script with the help of rdflib</p>
-                    <figure typeof="sa:image">
-                        <img src="./images/users_data.png" alt="user instance graph">
-                        <figcaption>user instance rdf graph</figcaption>
-                    </figure>
-                    <p>
-                        Example of instance:(incomplete because tag "otherPref" is missing because with that node will
-                        be
-                        linked uris from music, videos, books or other preferences)
-                    </p>
-                        <xmp>
 
-                            <rdf:Description rdf:about="http://custom.org/Bernardo_Alvarez">
-                                <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
-                                <ns1:name>Bernardo_Alvarez</ns1:name>
-                                <ns1:worksFor rdf:resource="http://custom.org/Amazon" />
-                                <ns1:hobby rdf:resource="http://custom.org/hobby/chess" />
-                                <ns1:hobby rdf:resource="http://custom.org/hobby/music" />
-                                <ns2:hasSkill rdf:resource="http://custom.org/skill/python" />
-                                <ns2:studied rdf:resource="http://schema.org/UAIC" />
-                                <ns2:livesIn rdf:resource="http://schema.org/Amsterdam" />
-                            </rdf:Description>
-                        </xmp>
-                        <xmp>
-                            <rdf:Description rdf:about="http://custom.org/skill/java">
-                                <rdf:type rdf:resource="http://custom.org/Skill" />
-                                <ns2:label>java</ns2:label>
-                        </xmp>
+                    <h5>User</h5>
+                       <p>
+                        Sparql queris:
+                        <p>SELECT ?userId ?userName ?email ?city ?company
+                        WHERE {{
+                            ?user ex:userName ?userName .
+                            OPTIONAL {{ ?user ex:email ?email . }}
+                            OPTIONAL {{ ?user ex:city ?city . }}
+                            OPTIONAL {{ ?user ex:company ?company . }}
+                            BIND(STRAFTER(STR(?user), "http://example.com/user/") AS ?userId)
+                        </p>
+                        <P>
+
+                        </P>
+                       </p> 
 
                     <h5>Music</h5>
                     <figure typeof="sa:image">
@@ -665,10 +652,7 @@
                     More data about movies will be added in the knowledge graph using a web scrrapper for imdb and to
                     extract same features.
                     <h5>Books</h5>
-                    <figure typeof="sa:image">
-                        <img src="./images/book.png" alt="book graph">
-                        <figcaption>book instance rdf subgraph</figcaption>
-                    </figure>
+                    Data provided by api
                     <pre>
                         {
                             "Title": "The Forensic Laboratory Handbook",
@@ -684,7 +668,30 @@
                             ]
                         },
                     </pre>
-                    More data about books will be added in the knowledge graph by using a web scrrapper on elefant.ro.
+                   <p>
+                    SparqlQl query
+                    <p>
+                        
+                        PREFIX ex: <http://example.com/>
+                        SELECT ?book (REPLACE(STR(?book), "^.*/book/", "") AS ?bookId) ?title ?averageRating ?imageUrl (GROUP_CONCAT(DISTINCT ?authorName; separator=", ") AS ?authors)
+                        WHERE {{
+                          {values_clause}
+                          ?book ex:title ?title .
+                          OPTIONAL {{ ?book ex:averageRating ?averageRating . }}
+                          OPTIONAL {{ ?book ex:imageUrl ?imageUrl . }}
+                          OPTIONAL {{ 
+                            ?bookAuthor ex:book ?book .
+                            ?bookAuthor ex:author ?author .
+                            ?author ex:name ?authorName .
+                          }}
+                        }}
+                        GROUP BY ?book ?title ?averageRating ?imageUrl
+                        
+                    </p>
+                   </p>
+                   <p>
+                    Other rdf resources: Cities, Companies, Skills
+                   </p>
                 </section>
                 <section>
                     <h3>Recommenders</h3>
@@ -929,6 +936,10 @@
                     <figure typeof="sa:image">
                         <figcaption>SORE's Home page</figcaption>
                         <img src="./images/home.png" alt="main page screenshot">
+                    </figure>
+                    <figure typeof="sa:image">
+                        <figcaption>SORE's Home page</figcaption>
+                        <img src="./images/home2.png" alt="main page 2screenshot">
                     </figure>
                 </section>
 
