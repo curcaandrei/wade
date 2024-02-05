@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/first-time.css';
 import PeopleLogo from '../images/people_yell.png';
 import BookLogo from '../images/book_yellow.png';
@@ -10,9 +10,11 @@ import YoutubeLogo from '../images/youtube_transp.png'
 import GoodReadsLogo from '../images/png-transparent-goodreads.png';
 import SpotifyLogo from '../images/Spotify_logo_without_text.svg.png';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import axios from 'axios';
 const FirstTimeScreen = () => {
+  const userId = localStorage.getItem('user_id');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -24,6 +26,31 @@ const FirstTimeScreen = () => {
   const navigateMain=()=>{
     navigate('/main');
   }
+  const RedirectPopOut = (url) => {
+      window.open(url, '_blank');
+    };
+const fetchDataFromSpotify = async () => {
+      try {
+        setLoading(true);
+        const response=await fetch(`https://userpf-dot-diesel-nova-412314.ew.r.appspot.com/spotify?user_id=${userId}`);
+        console.log(response);
+        RedirectPopOut(response.url)
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    const fetchDataFromGoogleBooks = async () => {
+      try {
+        setLoading(true);
+        const response=await fetch(`https://userpf-dot-diesel-nova-412314.ew.r.appspot.com/books?user_id=${userId}`);
+        console.log(response);
+        RedirectPopOut(response.url)
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
   return (
     <div className="second-screen">
       <div className="top-logo">
@@ -36,6 +63,11 @@ const FirstTimeScreen = () => {
         <h1>Let's start</h1>
         <div className="search-box">
             <h4>Search for something</h4>
+            {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <p></p>
+        )}
         </div>
         <p className="handwritten-text">Or find something that’s interesting to you</p>
         <div className="grid">
@@ -55,13 +87,13 @@ const FirstTimeScreen = () => {
         </div>
         <div className="grid top-space">
           <div className="grid-box">
-            <img src={YoutubeLogo} alt="Logo youtube" />
+            <img src={YoutubeLogo} alt="Logo youtube"/>
           </div>
           <div className="grid-box">
-            <img src={GoodReadsLogo} alt="Logo goodreads" />
+            <img src={GoodReadsLogo} alt="Logo goodreads" onClick={fetchDataFromGoogleBooks} />
           </div>
           <div className="grid-box">
-            <img src={SpotifyLogo} alt="Logo spotify" />
+            <img src={SpotifyLogo} alt="Logo spotify" onClick={fetchDataFromSpotify}/>
           </div>
         </div>
       </div>

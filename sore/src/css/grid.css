@@ -1,0 +1,33 @@
+/* Styles for the grid layout */
+.grid-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Styles for the card */
+  .card-main {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color:#282935;
+  }
+  
+  /* Styles for the button */
+ .card-main > .button-main {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    height: fit-content;
+  }
+  
+  /* Styles for the book list */
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 5px;
+  }
