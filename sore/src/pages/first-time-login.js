@@ -33,7 +33,8 @@ const fetchDataFromSpotify = async () => {
       try {
         setLoading(true);
         const authUrl = `https://userpf-dot-diesel-nova-412314.ew.r.appspot.com/spotify?user_id=${userId}`;
-        window.location = authUrl;
+        RedirectPopOut(authUrl);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
         setLoading(false);
