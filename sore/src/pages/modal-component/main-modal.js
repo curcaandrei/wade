@@ -90,7 +90,7 @@ const handleButtonClick = async () => {
   try {
     setLoading(true);
     const queryParams = constructQueryParams(selectedOptions);
-    const response = await axios.get(`https://userpf-dot-diesel-nova-412314.ew.r.appspot.com/users-filter?${queryParams}`);
+    const response = await axios.get(`https://rdf-dot-diesel-nova-412314.ew.r.appspot.com/query/users?${queryParams}`);
     const data = response.data
     console.log(data);
     setPersons(data);
