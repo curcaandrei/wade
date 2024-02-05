@@ -421,7 +421,8 @@
                 </section>
                 <section>
                     <h4>3.2 Product Approach</h4>
-                    <p> Product approach is based on combination of collaborative filtering and content based filtering algorithms 
+                    <p> Product approach is based on combination of collaborative filtering and content based filtering
+                        algorithms
                         for providing recommendations.
                     </p>
 
@@ -730,22 +731,28 @@
                         <ul>
                             <li>
                                 <p>
-                                    The dataset was prepared; the user_id, book_id and rating columns must be numeric values;
-                                     since the user_id column was a UID string, a StringIndexer was used in order to convert it to a numerical value:
-                                     <figure typeof="sa:image">
-                                        <img src="./images/string-indexer.jpg" alt="string-indexer">
-                                    </figure>
+                                    The dataset was prepared; the user_id, book_id and rating columns must be numeric
+                                    values;
+                                    since the user_id column was a UID string, a StringIndexer was used in order to
+                                    convert it to a numerical value:
+                                <figure typeof="sa:image">
+                                    <img src="./images/string-indexer.jpg" alt="string-indexer">
+                                </figure>
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                The dataset is split between train (80% of data from the initial dataset) and test data (the rest of 20%) and the algorithm instance is initialised using the following options:
+                                    The dataset is split between train (80% of data from the initial dataset) and test
+                                    data (the rest of 20%) and the algorithm instance is initialised using the following
+                                    options:
                                 <ul>
                                     <li>rank=150</li>
                                     <li>maxIter = 5 → the maximum number of iterations to run the algorithm</li>
                                     <li>regParam = 0.01 → regularization parameter</li>
-                                    <li>onnegative = True → as a cause of the dataset being sparse, the constraint of using nonnegative least squares was used</li>
-                                    <li>coldStartStrategy = drop → strategy for dealing with unknown or new users/items at prediction time</li>
+                                    <li>onnegative = True → as a cause of the dataset being sparse, the constraint of
+                                        using nonnegative least squares was used</li>
+                                    <li>coldStartStrategy = drop → strategy for dealing with unknown or new users/items
+                                        at prediction time</li>
                                 </ul>
                                 <figure typeof="sa:image">
                                     <img src="./images/split-data.jpg" alt="split-data">
@@ -758,21 +765,22 @@
                             </li>
                             <li>
                                 <p>
-                                    After the training phase is completed, the model is evaluated on the test dataset computing the RMSE metric:
-                                    <figure typeof="sa:image">
-                                        <img src="./images/rmse.jpg" alt="rmse">
-                                    </figure>
+                                    After the training phase is completed, the model is evaluated on the test dataset
+                                    computing the RMSE metric:
+                                <figure typeof="sa:image">
+                                    <img src="./images/rmse.jpg" alt="rmse">
+                                </figure>
                                 </p>
                             </li>
                             <li>
                                 <p>
                                     Having the model in place, it can be further used for predictions:
-                                    <figure typeof="sa:image">
-                                        <img src="./images/predictions-als.jpg" alt="predictions-als">
-                                    </figure>
-                                    <figure typeof="sa:image">
-                                        <img src="./images/predictions2.png" alt="predictions-2">
-                                    </figure>
+                                <figure typeof="sa:image">
+                                    <img src="./images/predictions-als.jpg" alt="predictions-als">
+                                </figure>
+                                <figure typeof="sa:image">
+                                    <img src="./images/predictions2.png" alt="predictions-2">
+                                </figure>
                                 </p>
                             </li>
                         </ul>
@@ -780,22 +788,27 @@
                     </section>
                     <section>
                         <h4>Content based filtering</h4>
-                        <p>Content-based filtering focuses on the characteristics of the games themselves and the stated interests of the users. 
-                            It requires detailed information about the songs, such as genres, theme, albums, and more. 
+                        <p>Content-based filtering focuses on the characteristics of the games themselves and the stated
+                            interests of the users.
+                            It requires detailed information about the songs, such as genres, theme, albums, and more.
                             The steps to implement this approach are as follows:
                         <ul>
                             <li>
-                                Feature Extraction: Analyze and extract relevant information from game metadata to create a feature profile of each song
+                                Feature Extraction: Analyze and extract relevant information from game metadata to
+                                create a feature profile of each song
                             </li>
                             <li>
-                                User Profile: Build each user’s preference profile based on previous ratings and preferences
+                                User Profile: Build each user’s preference profile based on previous ratings and
+                                preferences
                             </li>
                             <li>
-                                Similarity between songs: Calculate the similarity between songs based on their features. 
+                                Similarity between songs: Calculate the similarity between songs based on their
+                                features.
                                 This can be done using techniques such as cosine similarity or the Jaccard index.
                             </li>
                             <li>
-                                Recommendations generation: Recommend games that share similar characteristics with the top rated songs by the user.
+                                Recommendations generation: Recommend games that share similar characteristics with the
+                                top rated songs by the user.
                             </li>
                         </ul>
                         </p>
@@ -809,10 +822,11 @@
                         <ul>
                             <li>
                                 <p>
-                                    From the initial dataset we keept only some features from different reasons which in the final lead to the next format:
-                                     <figure typeof="sa:image">
-                                        <img src="./images/filtered-data.jpg" alt="song-data">
-                                    </figure>
+                                    From the initial dataset we keept only some features from different reasons which in
+                                    the final lead to the next format:
+                                <figure typeof="sa:image">
+                                    <img src="./images/filtered-data.jpg" alt="song-data">
+                                </figure>
                                 </p>
                             </li>
                             <li>
@@ -826,38 +840,44 @@
                             <li>
                                 <p>
                                     TFIDFVectorizer
-                                    <p>
-                                        TF-IDF: TF-IDF is the product of TF and IDF. It combines the local term frequency with the global information on the term's importance across documents. Terms with high TF-IDF scores are those that appear frequently in a given document but rarely in the entire corpus, indicating their significance in that document.
-                                    </p>
-                                    <figure typeof="sa:image">
-                                        <img src="./images/tdfidf.jpg" alt="tdfidf">
-                                    </figure>
+                                <p>
+                                    TF-IDF: TF-IDF is the product of TF and IDF. It combines the local term frequency
+                                    with the global information on the term's importance across documents. Terms with
+                                    high TF-IDF scores are those that appear frequently in a given document but rarely
+                                    in the entire corpus, indicating their significance in that document.
+                                </p>
+                                <figure typeof="sa:image">
+                                    <img src="./images/tdfidf.jpg" alt="tdfidf">
+                                </figure>
                                 </p>
                             </li>
                             <li>
                                 <p>
                                     Compute similarity between playlist and each songs from database.
-                                    <figure typeof="sa:image">
-                                        <img src="./images/cosine_impl.jpg" alt="cosine">
-                                    </figure>
-                                    <p>
-                                        The similarity metric chosen was cosine similarity.
-                                    </p>
-                                    <p>
-                                        Cosine similarity is a mathematical value that measures the similarities between vectors.
-                                         Imagining our songs vectors as only two-dimensional, the visual representation would look similar to the figure below.
-                                         <figure typeof="sa:image">
-                                            <img src="./images/cosine.jpg" alt="cosine-example">
-                                        </figure>
-                                        Once the two vectors are pointing generally in the same direction, then they are similar. 
+                                <figure typeof="sa:image">
+                                    <img src="./images/cosine_impl.jpg" alt="cosine">
+                                </figure>
+                                <p>
+                                    The similarity metric chosen was cosine similarity.
+                                </p>
+                                <p>
+                                    Cosine similarity is a mathematical value that measures the similarities between
+                                    vectors.
+                                    Imagining our songs vectors as only two-dimensional, the visual representation would
+                                    look similar to the figure below.
+                                <figure typeof="sa:image">
+                                    <img src="./images/cosine.jpg" alt="cosine-example">
+                                </figure>
+                                Once the two vectors are pointing generally in the same direction, then they are
+                                similar.
                                 </p>
                             </li>
                             <li>
                                 <p>
                                     For each song from user playlist get the top 2 songs that are similar.
-                                    <figure typeof="sa:image">
-                                        <img src="./images/final-prediction.jpg" alt="cosine-example">
-                                    </figure>
+                                <figure typeof="sa:image">
+                                    <img src="./images/final-prediction.jpg" alt="cosine-example">
+                                </figure>
                                 </p>
                             </li>
                         </ul>
