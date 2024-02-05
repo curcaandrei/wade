@@ -43,7 +43,7 @@ const fetchDataFromSpotify = async () => {
     const fetchDataFromGoogleBooks = async () => {
       try {
         setLoading(true);
-        const response=await fetch(`https://userpf-dot-diesel-nova-412314.ew.r.appspot.com/books?user_id=${userId}`);
+        const response=await fetch(`https://userpf-dot-diesel-nova-412314.ew.r.appspot.com/google-books?user_id=${userId}`);
         console.log(response);
         RedirectPopOut(response.url)
         setLoading(false);
